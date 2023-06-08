@@ -1,0 +1,22 @@
+.App {
+  background-color: #ffe8b9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+h1 {
+  width: 60%;
+  height: 40%; 
+  padding: 30px 20px 20px 30px;
+  text-align: left;
+  font-size: 55px; 
+  color: #c03700;
+  border-radius: 10px;
+  border: 1px solid;
+  font-family: bold;
+}
+
+
+
