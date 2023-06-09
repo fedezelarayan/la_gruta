@@ -1,5 +1,6 @@
 import './App.css';
 import {Routes, Route} from "react-router-dom";
+import Navbar from './components/Navbar/Navbar';
 
 
 
@@ -7,11 +8,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-     <h1>
-      ✅Acá comienza nuestra aventura y 
-      desafio como programadores, 
-      si vos podes, yo tambien puedo 💪
-      </h1>
+      <Route path='/' element={<Navbar/>}/>
       </Routes>
     </div>
   );
