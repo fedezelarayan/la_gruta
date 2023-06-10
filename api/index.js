@@ -1,7 +1,11 @@
-// archivo de preeba
+//*Se importa el servidor, la base de datos y se conectan ambos
 
-let x = 9;
+const server = require("./src/app");
+const { conn } = require("./src/db.js");
+const PORT = process.env.PORT || 3001;
 
-if(x > 5) console.log(x);
-
-if(x<=5) console.log('bueno no se si te la puedo creer');
+conn.sync({ force: true }).then(() => {
+  server.listen(PORT, () => {
+    console.log(`Server raised in port ${PORT}`); // eslint-disable-line no-console
+  });
+});
