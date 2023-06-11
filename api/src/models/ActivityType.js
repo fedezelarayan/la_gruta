@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
 
-    sequelize.define(Activity, {
+    sequelize.define(ActivityTipe, {
         id: {
             type: DataTypes.UUID,
             defaultvalue: DataTypes.UUIDV4,
@@ -10,20 +10,16 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         name: {
-            type: DataTypes.STRING,
+            type: STRING,
             allowNull: false,
-        },
-        class_activity: {
-            type: DataTypes.STRING,
+          },
+          image: {
+            type: STRING,
             allowNull: false,
-        },
-        date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
+          },
     },
-        {
-            timestamps: false,
-        }
-    );
-};
+    {
+        timestamps: false,
+      }
+    )
+}
