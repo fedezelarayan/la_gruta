@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        class_activity: {
+        class_activity: { //Que sería class_activity? Si es el tipo de actividad no deberia estar en este modelo, se generaría solo en la tabla intermedia
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -21,6 +21,12 @@ module.exports = (sequelize) => {
             type: DataTypes.DATE,
             allowNull: false,
         },
+        img: {
+            allowNull: false,
+            isUrl: {
+                msg: "La imagen debe tener formato URL"
+            }
+        }
     },
         {
             timestamps: false,
