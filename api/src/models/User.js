@@ -18,16 +18,20 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         dni:{
-                type: DataTypes.INTEGER,
-                defaultValue: 0,
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+            allowNull: false,
         },
-        age: {
+        birthDate: {
             type: DataTypes.INTEGER,
             defaultValue: 0,
         },
         image: {
             type: DataTypes.STRING,
-            defaultValue: ""
+            defaultValue: "",
+            isUrl: {
+                msg: "La imagen debe ser una URL"
+            }
         },
         phone:{
             type: DataTypes.INTEGER,
@@ -36,15 +40,28 @@ module.exports = (sequelize) => {
         mail:{
             type: DataTypes.STRING,
             allowNull: false,
+            isEmail: {
+                msg: "Debe ingresar un email válido"
+            }
         },
         admin:{
-            type: DataTypes.BOOLEAN,
+            type: DataTypes.BOOLEAN, 
             allowNull: false,
             defaultValue: false,
         },
         password:{
             type: DataTypes.INTEGER,
+            allowNull: false,
             defaultValue: 12345678,
+            isAlphanumeric: {
+                msg: "La contraseña debe ser alfanumérica"
+            }, //Chequea que sea alfanumerico
+            len: {
+                arg: [[6, 14]],
+                msg: "La contraseña debe tener entre 6 y 14 caracteres"
+            }, //longitud de la contraseña
+
+
         },
         volunteer:{
             type: DataTypes.BOOLEAN,
