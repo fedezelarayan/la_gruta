@@ -2,10 +2,10 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
 
-    sequelize.define(ActivityTipe, {
+    sequelize.define(ActivityType, {
         id: {
-            type: DataTypes.UUID,
-            defaultvalue: DataTypes.UUIDV4,
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
             allowNull: false,
             primaryKey: true
         },
