@@ -16,9 +16,10 @@ module.exports = (sequelize) => {
         edad: {
             type: DataTypes.INTEGER,
             defaultValue: 0,
+            min: 1,
         },
-        historia: {
-            type: DataTypes.STRING,
+        history: {
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         image: {
