@@ -2,7 +2,7 @@ const {DataTypes} = require("sequelize");
 
 module.exports = (sequelize) => {
 
-    sequelize.define(Niño, {
+    sequelize.define(Children, {
         id:{
             type:DataTypes.UUID,
             defaultvalue: DataTypes.UUIDV4,
@@ -16,15 +16,20 @@ module.exports = (sequelize) => {
         edad: {
             type: DataTypes.INTEGER,
             defaultValue: 0,
+            min: 1,
         },
-        historia: {
-            type: DataTypes.STRING,
+        history: {
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         image: {
-            type: DataTypes.STRING,
+            type: DataTypes.ARRAY(DataTypes.STRING),
             defaultValue: ""
         },
-    })
+    },
+    {
+        timestamps: false,
+    }
+    )
 
 }
