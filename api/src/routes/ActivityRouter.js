@@ -6,10 +6,10 @@ const {
   deleteActivityHandler,
 } = require("../handlers/activityHandler");
 
-const servicesRouter = Router();
+const ActivityRouter = Router();
 
-servicesRouter.get("/", getAllActivityHandler);
-servicesRouter.post("/", postActivityHandler);
-servicesRouter.delete("/:id_activity", deleteActivityHandler);
+ActivityRouter.get("/", getAllActivityHandler);
+ActivityRouter.post("/", postActivityHandler);
+ActivityRouter.delete("/:id_activity", deleteActivityHandler);
 
 module.exports = ActivityRouter;

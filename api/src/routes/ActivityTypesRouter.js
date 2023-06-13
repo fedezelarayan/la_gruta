@@ -8,9 +8,10 @@ const {
     putActivityTypesHandler
 } = require ("../handlers/roomTypesHandler")
 
-roomTypesRouter.get("/", getAllActivityTypesHandler)
-roomTypesRouter.get("/:id_hotel", getActivityTypesHandler)
-roomTypesRouter.post("/:id_hotel", createActivityTypesHandler)
-roomTypesRouter.put("/:id_roomtype", putActivityTypesHandler)
+ActivityTypesRouter.get("/", getAllActivityTypesHandler)
+ActivityTypesRouter.get("/:id_Activity", getActivityTypesHandler)
+ActivityTypesRouter.post("/:id_Activity", createActivityTypesHandler)
+ActivityTypesRouter.put("/:id_Activity", putActivityTypesHandler)
+
 
 module.exports = ActivityTypesRouter;

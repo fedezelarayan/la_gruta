@@ -6,10 +6,10 @@ const {
   deleteChildrenHandler,
 } = require("../handlers/activityHandler");
 
-const servicesRouter = Router();
+const ChildrenRouter = Router();
 
-servicesRouter.get("/", getAllChildrenHandler);
-servicesRouter.post("/", postChildrenHandler);
-servicesRouter.delete("/:id_activity", deleteChildrenHandler);
+ChildrenRouter.get("/", getAllChildrenHandler);
+ChildrenRouter.post("/", postChildrenHandler);
+ChildrenRouter.delete("/:id_activity", deleteChildrenHandler);
 
 module.exports = ChildrenRouter;

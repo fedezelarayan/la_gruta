@@ -8,9 +8,9 @@ const {
     putProductsTypesHandler
 } = require ("../handlers/roomTypesHandler")
 
-roomTypesRouter.get("/", getAllProductsTypesHandler)
-roomTypesRouter.get("/:id_hotel", getProductsTypesHandler)
-roomTypesRouter.post("/:id_hotel", createProductsTypesHandler)
-roomTypesRouter.put("/:id_roomtype", putProductsTypesHandler)
+ProductsTypesRouter.get("/", getAllProductsTypesHandler)
+ProductsTypesRouter.get("/:id_productsTypes", getProductsTypesHandler)
+ProductsTypesRouter.post("/:id_productsTypes", createProductsTypesHandler)
+ProductsTypesRouter.put("/:id_productsTypes", putProductsTypesHandler)
 
 module.exports = ProductsTypesRouter;

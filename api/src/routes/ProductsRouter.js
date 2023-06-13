@@ -10,12 +10,12 @@ const {
   getAllProductsAdminHandler
 } = require("../handlers/productsHandler");
 
-hotelsRouter.get("/allProducts/:id_superAdmin", getAllProductsAdminHandler);
-hotelsRouter.get("/", getAllProductsHandler);
-hotelsRouter.get("/:id_products", getDetailProductsHandler);
-hotelsRouter.get("/stats/:id_superAdmin/:filter", getFilterSuperAdminProductsHandler);
-hotelsRouter.put("/status/:id_products", putStatusProductsHandler)
-hotelsRouter.put("/update/:id_products", updateProductsHandler)
-hotelsRouter.post("/:id_user", postProductsHandler);
+productsRouter.get("/allProducts/:id_superAdmin", getAllProductsAdminHandler);
+productsRouter.get("/", getAllProductsHandler);
+productsRouter.get("/:id_products", getDetailProductsHandler);
+productsRouter.get("/stats/:id_superAdmin/:filter", getFilterSuperAdminProductsHandler);
+productsRouter.put("/status/:id_products", putStatusProductsHandler)
+productsRouter.put("/update/:id_products", updateProductsHandler)
+productsRouter.post("/:id_user", postProductsHandler);
 
 module.exports = productsRouter;
