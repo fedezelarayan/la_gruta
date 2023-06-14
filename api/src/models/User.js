@@ -22,8 +22,8 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         birthDate: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
+            type: DataTypes.STRING,
+            // defaultValue: 0,
         },
         image: {
             type: DataTypes.STRING,
@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
             }
         },
         phone:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             defaultValue: 0,
         },
         mail:{
