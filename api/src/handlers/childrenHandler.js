@@ -1,9 +1,10 @@
 
+const { getAllChildren } = require('../controllers/childrenControllers/getChildren')
 
-
-const getAllChildrenHandler = (req, res) => {
+const getAllChildrenHandler = async (req, res) => {
     try {
-        res.status(200).send('Aca se trae a todos los children. (NIY)')
+        const allChildren = await getAllChildren();
+        res.status(200).send(allChildren);
     } catch (error) {
         res.status(400).json({error: error.message})
     }
