@@ -123,7 +123,7 @@ const productsTestData = [
 const activityTestData = [
     {
         name: "American badger",
-        type_activity: "Brown",
+        type_activity: 6,
         date: "13/12/2022",
         description:
             "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
@@ -131,7 +131,7 @@ const activityTestData = [
     },
     {
         name: "Caracara, yellow-headed",
-        type_activity: "Corscot",
+        type_activity: 3,
         date: "1/8/2022",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
@@ -139,7 +139,7 @@ const activityTestData = [
     },
     {
         name: "Common dolphin",
-        type_activity: "Pawling",
+        type_activity: 7,
         date: "10/4/2023",
         description:
             "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
@@ -147,7 +147,7 @@ const activityTestData = [
     },
     {
         name: "Lorikeet, scaly-breasted",
-        type_activity: "Weeping Birch",
+        type_activity: 1,
         date: "7/12/2022",
         description:
             "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
@@ -155,7 +155,7 @@ const activityTestData = [
     },
     {
         name: "Black bear",
-        type_activity: "Fair Oaks",
+        type_activity: 2,
         date: "14/5/2022",
         description:
             "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
@@ -163,7 +163,7 @@ const activityTestData = [
     },
     {
         name: "Bee-eater, nubian",
-        type_activity: "Luster",
+        type_activity: 5,
         date: "7/8/2022",
         description:
             "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
@@ -171,7 +171,7 @@ const activityTestData = [
     },
     {
         name: "Desert spiny lizard",
-        type_activity: "Chive",
+        type_activity: 4,
         date: "25/3/2023",
         description:
             "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
@@ -179,7 +179,7 @@ const activityTestData = [
     },
     {
         name: "Duck, blue",
-        type_activity: "Pennsylvania",
+        type_activity: 3,
         date: "24/7/2021",
         description:
             "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",

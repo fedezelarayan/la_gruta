@@ -1,6 +1,8 @@
 
 const { getAllChildren } = require('../controllers/childrenControllers/getChildren')
 
+//  -----------------------Get All-------------------------------------------
+
 const getAllChildrenHandler = async (req, res) => {
     try {
         const allChildren = await getAllChildren();
@@ -10,5 +12,7 @@ const getAllChildrenHandler = async (req, res) => {
     }
 }
 
+
+// ----------------------
 
 module.exports = { getAllChildrenHandler }
