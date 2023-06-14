@@ -13,7 +13,7 @@ const {
 
 productsRouter.get("/", getAllProductsHandler);
 productsRouter.get("/:id_products", getDetailProductsHandler);
-productsRouter.post("/:id_user", postProductsHandler);
+productsRouter.post("/", postProductsHandler);
 productsRouter.get("/status/:id_superAdmin/:filter", getFilterSuperAdminProductsHandler);
 productsRouter.get("/allProducts/:id_superAdmin", getAllProductsAdminHandler);
 productsRouter.put("/status/:id_products", putStatusProductsHandler)

@@ -3,32 +3,42 @@ const { Activity } = require("../db");
 //*-----------------GET Activity---------------------
 const getAllActivity = async () => {
 
-    const allActivitys = await Activity.findAll();
+    const allActivity = await Activity.findAll();
   
-    if (!allActivitys.length) {
+    if (!allActivity.length) {
       throw new Error("Actividades no encontrados");
     } else {
-      return allActivitys;
+      return allActivity;
     }
   };
 
 //*-----------------POST Activity---------------------
-const createActivity = async ({ name }) => {
+const createActivity = async ({ name, description, type_activity, date, img }) => {
     if (!name) throw new Error("No puedes enviar un nombre vacío");
-  
-    const activity = await Activity.findOne({ where: { name } });
-  
-    if (activity) {
+
+    const existingActivity = await Activity.findAll({ where: { name } })
+    console.log(existingActivity);
+
+    if (existingActivity.length) {
       throw new Error("La Actividad existe");
     } else {
-      await Activity.create({
-        name,
+
+      const newActivity = await Activity.create({
+        name, description, date, img,
 
       });
-      return;
+
+      newActivity.addActivityType(type_activity)
+      return newActivity;
     }
   };
 
+ /*  const createActivity = async (name, description, class_activity, date, img) => {
+    const newActivity = await Activity.create({ name, description, class_activity, date, img })
+    newActivity.addActivityType(type)
+    return newActivity;
+}
+ */
 //*-----------------DELETE Activity---------------------
 const deleteActivity = async (id) => {
     const activity = await Activity.findByPk(id);
