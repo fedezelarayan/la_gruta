@@ -5,8 +5,7 @@ module.exports = (sequelize) => {
     sequelize.define('Products', {
         id: {
             type: DataTypes.UUID,
-            defaultvalue: DataTypes.UUIDV4,
-            allowNull: false,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
         name: {
