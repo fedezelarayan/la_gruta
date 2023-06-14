@@ -1,21 +1,23 @@
 const { Router } = require("express");
-const productsRouter = Router();  ProductsRouter
+const productsRouter = Router();  
 const {
   getAllProductsHandler,
   getDetailProductsHandler,
   postProductsHandler,
+  getFilterSuperAdminProductsHandler,
+  getAllProductsAdminHandler, 
   putStatusProductsHandler,
   updateProductsHandler,
-  getFilterSuperAdminProductsHandler,
-  getAllProductsAdminHandler
 } = require("../handlers/productsHandler");
 
-productsRouter.get("/allProducts/:id_superAdmin", getAllProductsAdminHandler);
+
 productsRouter.get("/", getAllProductsHandler);
 productsRouter.get("/:id_products", getDetailProductsHandler);
-productsRouter.get("/stats/:id_superAdmin/:filter", getFilterSuperAdminProductsHandler);
+productsRouter.post("/:id_user", postProductsHandler);
+productsRouter.get("/status/:id_superAdmin/:filter", getFilterSuperAdminProductsHandler);
+productsRouter.get("/allProducts/:id_superAdmin", getAllProductsAdminHandler);
 productsRouter.put("/status/:id_products", putStatusProductsHandler)
 productsRouter.put("/update/:id_products", updateProductsHandler)
-productsRouter.post("/:id_user", postProductsHandler);
+
 
 module.exports = productsRouter;

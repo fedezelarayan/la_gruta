@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
 
-    sequelize.define(Activity, {
+    sequelize.define('Activity', {
         id: {
             type: DataTypes.UUID,
             defaultvalue: DataTypes.UUIDV4,
@@ -22,11 +22,17 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         img: {
+            type: DataTypes.STRING, 
             allowNull: false,
             isUrl: {
                 msg: "La imagen debe tener formato URL"
             }
+        },
+        description: {
+            allowNull: false,
+            type: DataTypes.TEXT,        
         }
+
     },
         {
             timestamps: false,

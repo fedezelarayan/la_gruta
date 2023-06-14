@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
 
-    sequelize.define(ActivityType, {
+    sequelize.define('ActivityType', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
         name: {
-            type: STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         }
     },
