@@ -2,11 +2,10 @@ const {DataTypes} = require("sequelize");
 
 module.exports = (sequelize) => {
 
-    sequelize.define(Children, {
+    sequelize.define('Children', {
         id:{
             type:DataTypes.UUID,
-            defaultvalue: DataTypes.UUIDV4,
-            allowNull: false,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
         name: {
@@ -23,7 +22,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         image: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
+            type: DataTypes.STRING,
             defaultValue: ""
         },
     },
