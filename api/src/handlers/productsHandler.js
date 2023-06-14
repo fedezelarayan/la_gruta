@@ -1,38 +1,37 @@
-/* const { 
-    getAllProducts, ya
-    getDetailProducts, ya
-    postProducts, ya
-    putStatusProducts, ya
-    updateProducts, 
-    getFilterAdminProducts, ya
-    getAllAdminProducts ya
-} = require ('../controllers/productsControllers'); */
+ const { 
+    getAllProducts,
+    postProducts,
+    getDetailProducts,
+    deleteProduct,
+/*    putStatusProducts,
+    updateProducts,
+    getFilterAdminProducts,
+    getAllAdminProducts*/
+} = require ('../controllers/productsControllers'); 
 
 const getAllProductsHandler = async (req, res) => {
     try {
-        /* const allProducts = await getAllProducts();
-        res.status(200).json(allProducts); */ 
-        res.status(200).json("aqui traeriamos todas los productos"); 
+        const allProducts = await getAllProducts();
+        res.status(200).json(allProducts); 
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 }
 
 const getDetailProductsHandler = async (req, res) => {
+    const { id_products } = req.params;
     try {
-/*         const detailProducts = await getDetailProducts ()
-        res.status(200).json(detailProducts); */
-        res.status(200).json ("aqui traeriamos el detalle de cada producto") 
-
+        const detailProducts = await getDetailProducts (id_products)
+        res.status(200).json(detailProducts); 
     } catch (error) {
         res.status(400).json ({ error: error.message })
     }
 };
 const postProductsHandler = async (req, res) => {
-/*     const {id, name, price, image, description, stock, type} = req.body */
+    const {name, price, image, description, stock, type} = req.body
 try {
-    /* const newProduct = await postProducts (id, name, price, image, description, stock, type) */
-    res.status(200).json(/* newProduct */"aqui creariamos un producto")
+    const newProduct = await postProducts (name, price, image, description, stock, type)
+    res.status(200).json(newProduct)
 } catch (error) {
     res.status(400).json({ error: error.message })   
 }
@@ -79,6 +78,16 @@ const updateProductsHandler = async (req, res) => {
     
 }
 
+const deleteProducts = async (req, res) => {
+    const {id} = req.params
+    try {
+        const delProduct = await deleteProduct(id);
+        res.status(200).json(delProduct);
+    } catch (error) {
+        res.status(400).json({ error: error.message })        
+    }
+}
+
 module.exports = {
     getAllProductsHandler,
     getDetailProductsHandler,   
@@ -86,5 +95,6 @@ module.exports = {
     getFilterSuperAdminProductsHandler,
     putStatusProductsHandler,
     getAllProductsAdminHandler, 
-    updateProductsHandler   
+    updateProductsHandler,
+    deleteProducts,   
 };
