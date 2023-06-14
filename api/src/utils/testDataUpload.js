@@ -15,13 +15,21 @@ const {
     productsTypeTestData,
 } = require("./testData");
 
-const testDataUploader = () => {
+const testDataUploader = async () => {
 
-    Children.bulkCreate(childrenTestData, {ignoreDuplicates: true });
 
-    Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
+    try {
+        
+        await Children.bulkCreate(childrenTestData, { ignoreDuplicates: true });
+    
+        await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
 
-    console.log('Datos cargados exitosamente!');
+        console.log('Datos cargados exitosamente!');
+
+    } catch (error) {
+        console.log(error)
+    }
+
 }
 
 module.exports = { testDataUploader };
