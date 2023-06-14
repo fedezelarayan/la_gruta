@@ -2,8 +2,9 @@ const { Router } = require("express");
 const productsRouter = Router();  
 const {
   getAllProductsHandler,
-  getDetailProductsHandler,
   postProductsHandler,
+  getDetailProductsHandler,
+  deleteProducts,
   getFilterSuperAdminProductsHandler,
   getAllProductsAdminHandler, 
   putStatusProductsHandler,
@@ -12,8 +13,9 @@ const {
 
 
 productsRouter.get("/", getAllProductsHandler);
+productsRouter.post("/create"/* :id_user */, postProductsHandler);
 productsRouter.get("/:id_products", getDetailProductsHandler);
-productsRouter.post("/:id_user", postProductsHandler);
+productsRouter.delete("/delete/:id", deleteProducts)
 productsRouter.get("/status/:id_superAdmin/:filter", getFilterSuperAdminProductsHandler);
 productsRouter.get("/allProducts/:id_superAdmin", getAllProductsAdminHandler);
 productsRouter.put("/status/:id_products", putStatusProductsHandler)
