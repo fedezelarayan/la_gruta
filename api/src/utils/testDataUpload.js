@@ -17,25 +17,26 @@ const {
 
 const testDataUploader = async () => {
 
-
     try {
+
+        await User.bulkCreate(userTestData, { ignoreDuplicates: true });
         
         await Children.bulkCreate(childrenTestData, { ignoreDuplicates: true });
     
         await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
 
-        // await Activity.bulkCreate(activityTestData, { ignoreDuplicates: true });
+        await ProductsType.bulkCreate(productsTypeTestData, { ignoreDuplicates: true });
 
-        // await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
+        await Activity.bulkCreate(activityTestData, { ignoreDuplicates: true });
 
-        // await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
-
-        // await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
+        await ActivityType.bulkCreate(activityTypeTestData, { ignoreDuplicates: true });
 
         console.log('Datos cargados exitosamente!');
 
     } catch (error) {
-        console.log(error)
+
+        console.log(error);
+
     }
 
 }

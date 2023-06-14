@@ -127,7 +127,7 @@ const activityTestData = [
         date: "13/12/2022",
         description:
             "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-        image: "http://dummyimage.com/143x100.png/dddddd/000000",
+        img: "http://dummyimage.com/143x100.png/dddddd/000000",
     },
     {
         name: "Caracara, yellow-headed",
@@ -135,7 +135,7 @@ const activityTestData = [
         date: "1/8/2022",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
-        image: "http://dummyimage.com/234x100.png/cc0000/ffffff",
+        img: "http://dummyimage.com/234x100.png/cc0000/ffffff",
     },
     {
         name: "Common dolphin",
@@ -143,7 +143,7 @@ const activityTestData = [
         date: "10/4/2023",
         description:
             "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-        image: "http://dummyimage.com/184x100.png/dddddd/000000",
+        img: "http://dummyimage.com/184x100.png/dddddd/000000",
     },
     {
         name: "Lorikeet, scaly-breasted",
@@ -151,7 +151,7 @@ const activityTestData = [
         date: "7/12/2022",
         description:
             "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-        image: "http://dummyimage.com/133x100.png/ff4444/ffffff",
+        img: "http://dummyimage.com/133x100.png/ff4444/ffffff",
     },
     {
         name: "Black bear",
@@ -159,7 +159,7 @@ const activityTestData = [
         date: "14/5/2022",
         description:
             "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
-        image: "http://dummyimage.com/245x100.png/dddddd/000000",
+        img: "http://dummyimage.com/245x100.png/dddddd/000000",
     },
     {
         name: "Bee-eater, nubian",
@@ -167,7 +167,7 @@ const activityTestData = [
         date: "7/8/2022",
         description:
             "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-        image: "http://dummyimage.com/154x100.png/dddddd/000000",
+        img: "http://dummyimage.com/154x100.png/dddddd/000000",
     },
     {
         name: "Desert spiny lizard",
@@ -175,7 +175,7 @@ const activityTestData = [
         date: "25/3/2023",
         description:
             "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-        image: "http://dummyimage.com/199x100.png/dddddd/000000",
+        img: "http://dummyimage.com/199x100.png/dddddd/000000",
     },
     {
         name: "Duck, blue",
@@ -183,7 +183,7 @@ const activityTestData = [
         date: "24/7/2021",
         description:
             "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-        image: "http://dummyimage.com/159x100.png/cc0000/ffffff",
+        img: "http://dummyimage.com/159x100.png/cc0000/ffffff",
     },
 ];
 
