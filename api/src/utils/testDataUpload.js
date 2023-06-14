@@ -24,6 +24,14 @@ const testDataUploader = async () => {
     
         await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
 
+        // await Activity.bulkCreate(activityTestData, { ignoreDuplicates: true });
+
+        // await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
+
+        // await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
+
+        // await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
+
         console.log('Datos cargados exitosamente!');
 
     } catch (error) {
