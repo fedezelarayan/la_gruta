@@ -124,7 +124,7 @@ const activityTestData = [
     {
         name: "American badger",
         type_activity: 6,
-        date: "13/12/2022",
+        date: "13 December 2022",
         description:
             "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
         img: "http://dummyimage.com/143x100.png/dddddd/000000",
@@ -132,7 +132,7 @@ const activityTestData = [
     {
         name: "Caracara, yellow-headed",
         type_activity: 3,
-        date: "1/8/2022",
+        date: "1 August 2022",
         description:
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
         img: "http://dummyimage.com/234x100.png/cc0000/ffffff",
@@ -140,7 +140,7 @@ const activityTestData = [
     {
         name: "Common dolphin",
         type_activity: 7,
-        date: "10/4/2023",
+        date: "10 April 2023",
         description:
             "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
         img: "http://dummyimage.com/184x100.png/dddddd/000000",
@@ -148,7 +148,7 @@ const activityTestData = [
     {
         name: "Lorikeet, scaly-breasted",
         type_activity: 1,
-        date: "7/12/2022",
+        date: "7 December 2022",
         description:
             "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
         img: "http://dummyimage.com/133x100.png/ff4444/ffffff",
@@ -156,7 +156,7 @@ const activityTestData = [
     {
         name: "Black bear",
         type_activity: 2,
-        date: "14/5/2022",
+        date: "14 May 2022",
         description:
             "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
         img: "http://dummyimage.com/245x100.png/dddddd/000000",
@@ -164,7 +164,7 @@ const activityTestData = [
     {
         name: "Bee-eater, nubian",
         type_activity: 5,
-        date: "7/8/2022",
+        date: "7 August 2022",
         description:
             "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
         img: "http://dummyimage.com/154x100.png/dddddd/000000",
@@ -172,7 +172,7 @@ const activityTestData = [
     {
         name: "Desert spiny lizard",
         type_activity: 4,
-        date: "25/3/2023",
+        date: "25 March 2023",
         description:
             "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
         img: "http://dummyimage.com/199x100.png/dddddd/000000",
@@ -180,7 +180,7 @@ const activityTestData = [
     {
         name: "Duck, blue",
         type_activity: 3,
-        date: "24/7/2021",
+        date: "24 July 2021",
         description:
             "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
         img: "http://dummyimage.com/159x100.png/cc0000/ffffff",
@@ -247,9 +247,7 @@ const childrenTestData = [
 
 const userTestData = [
     {
-        name: "Demott",
-        lastname: "Bricklebank",
-        dni: 6737364,
+        fullName: "Demott Bricklebank",
         birthDate: "21/6/1978",
         image: "http://dummyimage.com/112x100.png/cc0000/ffffff",
         phone: "811-718-5045",
@@ -257,9 +255,7 @@ const userTestData = [
         password: 55544,
     },
     {
-        name: "Ema",
-        lastname: "Overpool",
-        dni: 9089551,
+        fullName: "Ema Overpool",
         birthDate: "13/9/2000",
         image: "http://dummyimage.com/130x100.png/5fa2dd/ffffff",
         phone: "732-321-2396",
@@ -267,9 +263,7 @@ const userTestData = [
         password: 60899,
     },
     {
-        name: "Kenn",
-        lastname: "Lea",
-        dni: 7064492,
+        fullName: "Kenn Lea",
         birthDate: "17/12/1963",
         image: "http://dummyimage.com/215x100.png/5fa2dd/ffffff",
         phone: "879-619-4432",
@@ -277,9 +271,7 @@ const userTestData = [
         password: 74003,
     },
     {
-        name: "Kiele",
-        lastname: "Fillon",
-        dni: 456235,
+        fullName: "Kiele Fillon",
         birthDate: "24/5/1985",
         image: "http://dummyimage.com/140x100.png/ff4444/ffffff",
         phone: "837-782-9016",
@@ -287,9 +279,7 @@ const userTestData = [
         password: 36537,
     },
     {
-        name: "Goldarina",
-        lastname: "Hasard",
-        dni: 5925162,
+        fullName: "Goldarina Hasard",
         birthDate: "1/5/1964",
         image: "http://dummyimage.com/243x100.png/dddddd/000000",
         phone: "227-891-8597",
@@ -297,9 +287,7 @@ const userTestData = [
         password: 69748,
     },
     {
-        name: "Brien",
-        lastname: "Abrahamian",
-        dni: 16418,
+        fullName: "Brien Abrahamian",
         birthDate: "15/9/1984",
         image: "http://dummyimage.com/212x100.png/ff4444/ffffff",
         phone: "278-991-6369",
@@ -307,9 +295,7 @@ const userTestData = [
         password: 56518,
     },
     {
-        name: "Carson",
-        lastname: "Birwhistle",
-        dni: 7841433,
+        fullName: "Carson Birwhistle",
         birthDate: "12/9/1962",
         image: "http://dummyimage.com/189x100.png/ff4444/ffffff",
         phone: "434-402-4511",
@@ -317,9 +303,7 @@ const userTestData = [
         password: 25104,
     },
     {
-        name: "Babbie",
-        lastname: "Hanning",
-        dni: 5204231,
+        fullName: "Babbie Hanning",
         birthDate: "18/11/1975",
         image: "http://dummyimage.com/190x100.png/cc0000/ffffff",
         phone: "589-367-9878",
@@ -327,9 +311,7 @@ const userTestData = [
         password: 76564,
     },
     {
-        name: "Thelma",
-        lastname: "Bilney",
-        dni: 5812218,
+        fullName: "Thelma Bilney",
         birthDate: "12/4/1998",
         image: "http://dummyimage.com/146x100.png/5fa2dd/ffffff",
         phone: "152-371-0141",
@@ -337,9 +319,7 @@ const userTestData = [
         password: 80503,
     },
     {
-        name: "Kaiser",
-        lastname: "Croyser",
-        dni: 6379876,
+        fullName: "Kaiser Croyser",
         birthDate: "15/8/1970",
         image: "http://dummyimage.com/195x100.png/5fa2dd/ffffff",
         phone: "872-587-5905",
@@ -347,9 +327,7 @@ const userTestData = [
         password: 1727,
     },
     {
-        name: "Tallie",
-        lastname: "Casellas",
-        dni: 3078097,
+        fullName: "Tallie Casellas",
         birthDate: "22/8/1979",
         image: "http://dummyimage.com/199x100.png/dddddd/000000",
         phone: "127-179-5836",
@@ -357,9 +335,7 @@ const userTestData = [
         password: 92618,
     },
     {
-        name: "Ganny",
-        lastname: "Coston",
-        dni: 7322957,
+        fullName: "Ganny Coston",
         birthDate: "7/9/1977",
         image: "http://dummyimage.com/124x100.png/cc0000/ffffff",
         phone: "520-699-8792",
