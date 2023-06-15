@@ -7,8 +7,9 @@ const {
 
 // Handler para traer las actividades //
 const getAllActivityHandler = async (req, res) => {
+    const {offset} = req.query
    try{
-    const  allActivity = await getAllActivity();
+    const  allActivity = await getAllActivity(offset);
     res.status(200).json(allActivity);
 
    }catch (error) {
