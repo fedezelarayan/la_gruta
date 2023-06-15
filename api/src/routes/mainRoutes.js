@@ -3,7 +3,7 @@ const { Router } = require("express");
 // import reouter
 
 const ActivityRouter = require("./ActivityRouter");
-/* const UserRouter = require("./UserRouter"); */
+const UserRouter = require("./UserRouter");
 const ProductsRouter = require("./ProductsRouter");
 const ChildrenRouter = require("./ChildrenRouter");
 /* const ProductsTypesRouter = require("./ProductsTypeRouter"); */
@@ -14,7 +14,7 @@ const router = Router();
 
 // Rutes
 
-/* router.use("/user", UserRouter); */
+router.use("/user", UserRouter);
 router.use("/activity", ActivityRouter);
 router.use("/products", ProductsRouter);
 router.use("/children", ChildrenRouter);
