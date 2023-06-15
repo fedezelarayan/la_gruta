@@ -4,12 +4,12 @@ const {
   getAllChildrenHandler,
   postChildrenHandler,
   deleteChildrenHandler,
-} = require("../handlers/activityHandler");
+} = require("../handlers/childrenHandler");
 
 const ChildrenRouter = Router();
 
 ChildrenRouter.get("/", getAllChildrenHandler);
 ChildrenRouter.post("/", postChildrenHandler);
-ChildrenRouter.delete("/:id_activity", deleteChildrenHandler);
+ChildrenRouter.delete("/:id_child", deleteChildrenHandler);
 
 module.exports = ChildrenRouter;

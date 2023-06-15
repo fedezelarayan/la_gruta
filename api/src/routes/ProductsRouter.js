@@ -15,6 +15,7 @@ const {
 productsRouter.get("/", getAllProductsHandler);
 productsRouter.post("/create"/* :id_user */, postProductsHandler);
 productsRouter.get("/:id_products", getDetailProductsHandler);
+productsRouter.post("/", postProductsHandler);
 productsRouter.delete("/delete/:id", deleteProducts)
 productsRouter.get("/status/:id_superAdmin/:filter", getFilterSuperAdminProductsHandler);
 productsRouter.get("/allProducts/:id_superAdmin", getAllProductsAdminHandler);
