@@ -59,7 +59,7 @@ const postUser = async ( fullName, password, email, rol ) => {
   User.addRol(rol);
 };
 
-//*---------------GET ALL USERS---------------------
+//*---------------GET ALL USERS----------------------
 const getAllUsers = async (id_user) => {
   const findUser = await User.findOne({ where: { id: id_user } });
 
