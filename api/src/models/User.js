@@ -8,17 +8,8 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        name: {
+        fullName:{
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        lastname:{
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        dni:{
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
             allowNull: false,
         },
         birthDate: {
