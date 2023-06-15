@@ -28,11 +28,21 @@ const deleteProduct = async (id) => {
 return deletedProduct;
 }
 
+const restoreProductos = async (id) => {
+    const resProduc = await Products.findByPk(id, { paranoid: false })
+    if(!resProduc){
+        throw new Error("Producto no encontrado")
+    }
+    resProduc.restore();
+    return resProduc;
+}
+
 module.exports = {
     getAllProducts,
     postProducts,
     getDetailProducts,
     deleteProduct,
+    restoreProductos,
  /*   putStatusProducts,
     updateProducts,
     getFilterAdminProducts,

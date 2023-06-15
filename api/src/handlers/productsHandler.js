@@ -3,6 +3,7 @@
     postProducts,
     getDetailProducts,
     deleteProduct,
+    restoreProductos,
 /*    putStatusProducts,
     updateProducts,
     getFilterAdminProducts,
@@ -31,7 +32,7 @@ const postProductsHandler = async (req, res) => {
     const {name, price, image, description, stock, type} = req.body
 try {
     const newProduct = await postProducts (name, price, image, description, stock, type)
-    res.status(200).json(newProduct)
+    res.status(200).json("Producto creado exitosamente")
 } catch (error) {
     res.status(400).json({ error: error.message })   
 }
@@ -82,11 +83,21 @@ const deleteProducts = async (req, res) => {
     const {id} = req.params
     try {
         const delProduct = await deleteProduct(id);
-        res.status(200).json(delProduct);
+        res.status(200).json("Producto eliminado.");
     } catch (error) {
         res.status(400).json({ error: error.message })        
     }
 }
+
+const restoreProducts = async (req, res) => {
+    const { id } = req.params 
+    try {
+        const restProduct = await restoreProductos(id);
+        res.status(200).json("Producto restaurado.");
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+ }
 
 module.exports = {
     getAllProductsHandler,
@@ -96,5 +107,6 @@ module.exports = {
     putStatusProductsHandler,
     getAllProductsAdminHandler, 
     updateProductsHandler,
-    deleteProducts,   
+    deleteProducts,
+    restoreProducts,   
 };
