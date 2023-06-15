@@ -2,9 +2,9 @@ const { Activity, ActivityType } = require("../db");
 /* const ActivityType = require("../models/ActivityType"); */
 
 //*-----------------GET Activity---------------------
-const getAllActivity = async () => {
+const getAllActivity = async (clic = 0) => {
 
-    const allActivity = await Activity.findAll({include:{model:ActivityType,through:{attributes:[]}}});
+    const allActivity = await Activity.findAll({include:{model:ActivityType,through:{attributes:[]}},limit: 5, offset: (clic *5) });
   
     if (!allActivity.length) {
       throw new Error("Actividades no encontrados");
