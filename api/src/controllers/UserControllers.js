@@ -31,7 +31,7 @@ const getUser = async (password, email) => {
 
 //*---------------CREATE USER---------------------
 
-const postUser = async ({ fullName, password, email }) => {
+const postUser = async ( fullName, password, email, rol ) => {
   if (!fullName || !password || !email) {
     throw new Error("Faltan datos");
   } else {
@@ -55,6 +55,8 @@ const postUser = async ({ fullName, password, email }) => {
       return;
     }
   }
+
+  User.addRol(rol);
 };
 
 //*---------------GET ALL USERS---------------------
