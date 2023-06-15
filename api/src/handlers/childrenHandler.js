@@ -1,5 +1,5 @@
 
-const { getAllChildren } = require('../controllers/childrenControllers/getChildren')
+const { getAllChildren, createNewChild } = require('../controllers/childrenControllers')
 
 //  ----------------------Get All--------------------------------------------
 
@@ -16,8 +16,10 @@ const getAllChildrenHandler = async (req, res) => {
 // ----------------------Post Child------------------------------------------
 
 const postChildrenHandler = async (req, res) => {
+    const { name, edad, history, image } = req.body;
     try {
-        res.status(200).send('En esta ruta se crearía un nuevo niño (NIY)')
+        createNewChild(name, edad ,history, image)
+        res.status(200).json(newChild);
     } catch (error) {
         res.status(400).json({error: error.message})
     }
