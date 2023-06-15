@@ -1,6 +1,6 @@
 const { Children } = require('../db');
 
-
+// *--------------------------Función para traerse a todos los niños de la DB-------------
 const getAllChildren = async () => {
 
     const allChildren = await Children.findAll();
@@ -8,7 +8,12 @@ const getAllChildren = async () => {
     return allChildren;
 }
 
-const createNewChild = ( name, edad, history, image ) => {
+//* --------------------------Función para crear a un nuevo niño en la DB-----------------
+
+const createNewChild = async ( name, edad, history, image ) => {
+
+    // ?-------------------Validación de los datos mandados-------------------------------
+
     if(!name || !history) throw Error('Faltan datos necesarios');
 
     if(typeof name !== 'string' || !isNaN(name)) throw Error('El nombre debe ser de tipo string');
@@ -21,8 +26,20 @@ const createNewChild = ( name, edad, history, image ) => {
 
     if(!image.match(imgRegEx)) throw Error('La imagen debe ser cargada en formato URL');
 
-    Children.create({ name, edad, history, image });
+    // ?-------------------Creación del niño----------------------------------------------
+
+    const newChild = await Children.create({ name, edad, history, image });
+
+    return newChild
 
 }
 
-module.exports = { getAllChildren, createNewChild }
+//* --------------------------Función para eliminar a un niño de la DB por ID-------------
+
+const deleteChild = async (id) => {
+    const child = await Children.findByPk(id);
+    const deletedChild = await child.destroy();
+    return deletedChild;
+}
+
+module.exports = { getAllChildren, createNewChild, deleteChild }

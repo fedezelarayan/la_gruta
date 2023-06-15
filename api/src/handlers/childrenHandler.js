@@ -1,7 +1,7 @@
 
-const { getAllChildren, createNewChild } = require('../controllers/childrenControllers')
+const { getAllChildren, createNewChild, deleteChild } = require('../controllers/childrenControllers')
 
-//  ----------------------Get All--------------------------------------------
+//*  ----------------------Get All--------------------------------------------
 
 const getAllChildrenHandler = async (req, res) => {
     try {
@@ -13,24 +13,26 @@ const getAllChildrenHandler = async (req, res) => {
 }
 
 
-// ----------------------Post Child------------------------------------------
+//* ----------------------Post Child------------------------------------------
 
 const postChildrenHandler = async (req, res) => {
     const { name, edad, history, image } = req.body;
     try {
-        createNewChild(name, edad ,history, image)
-        res.status(200).json(newChild);
+        const newChild = await createNewChild(name, edad ,history, image)
+        res.status(200).json({newChild, msg: 'Niño creado exitosamente'});
     } catch (error) {
         res.status(400).json({error: error.message})
     }
 }
 
 
-// ----------------------Delete Child----------------------------------------
+//* ----------------------Delete Child----------------------------------------
 
 const deleteChildrenHandler = async (req, res) => {
+    const { id_child } = req.params;
     try {
-        res.status(200).send('En esta ruta se eliminaría un niño (NIY)')
+        const deletedChild = await deleteChild(id_child);
+        res.status(200).json({msg: 'Niño eliminado correctamente.'});
     } catch (error) {
         res.status(400).json({error: error.message})
     }
