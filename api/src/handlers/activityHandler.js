@@ -20,10 +20,10 @@ const getAllActivityHandler = async (req, res) => {
 
 // Handler para postear la actividad//
 const postActivityHandler = async (req, res)=> {
-    const {name, description, class_activity, date, img} = req.body;
+    const {name, description, type_activity, date, img} = req.body;
 
     try{
-        await createActivity({name, description, class_activity, date, img});
+        await createActivity({name, description, type_activity, date, img});
         res.status(200).json("Actividad creada con exito");
     }catch (error) {
         res.status(400).json({error: error.message});
