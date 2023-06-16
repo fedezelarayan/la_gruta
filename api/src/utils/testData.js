@@ -2,7 +2,7 @@ const productsTestData = [{
     name: "Remera blanca", 
     price: 100, 
     image: "https://afaar.vtexassets.com/arquivos/ids/155903-1600-auto?v=638113837487800000&width=1600&height=auto&aspect=true",
-    /* type: "Remera", */
+    ProductsType: 1,
     description: "remera blanca",
     stock: 5,
 },
@@ -10,7 +10,7 @@ const productsTestData = [{
     name: "Remera negra", 
     price: 100, 
     image: "https://afaar.vtexassets.com/arquivos/ids/155904-1600-auto?v=638113839210270000&width=1600&height=auto&aspect=true",
-    /* type: "Remera", */
+    ProductsType: 3,
     description: "remera negra",
     stock: 6,
 },
@@ -18,7 +18,7 @@ const productsTestData = [{
     name: "Remera gris", 
     price: 100, 
     image: "https://afaar.vtexassets.com/arquivos/ids/155902-1600-auto?v=638113835917000000&width=1600&height=auto&aspect=true",
-    /* type: "Remera", */
+    ProductsType: 6,
     description: "remera gris",
     stock: 3,
 },
@@ -26,7 +26,7 @@ const productsTestData = [{
     name: "Remera roja", 
     price: 100, 
     image: "https://aedlp.vtexassets.com/arquivos/ids/156138-500-auto?v=1772979721&width=500&height=auto&aspect=true",
-    /* type: "Remera", */
+    ProductsType: 4,
     description: "remera roja",
     stock: 3,
 },
@@ -34,7 +34,7 @@ const productsTestData = [{
     name: "Remera verde", 
     price: 100, 
     image: "https://http2.mlstatic.com/D_NQ_NP_926685-MLA42160565643_062020-O.webp",
-    /* type: "Remera", */
+    ProductsType: 8,
     description: "remera verde",
     stock: 3,
 },
@@ -42,7 +42,7 @@ const productsTestData = [{
     name: "Remera amarilla", 
     price: 100, 
     image: "https://http2.mlstatic.com/D_NQ_NP_803855-MLA46308276931_062021-O.webp",
-    /* type: "Remera", */
+    ProductsType: 3,
     description: "remera amarilla",
     stock: 3,
 },
@@ -50,7 +50,7 @@ const productsTestData = [{
     name: "Gorra", 
     price: 150, 
     image: "https://http2.mlstatic.com/D_NQ_NP_2X_930720-MLA48164080171_112021-F.webp",
-    /* type: "Gorra", */
+    ProductsType: 2,
     description: "gorra nike",
     stock: 3,
 }]
