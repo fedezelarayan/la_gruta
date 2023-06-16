@@ -309,6 +309,12 @@ const productsTypeTestData = [
     { name: "Redhold" },
 ];
 
+const rolTestData = [
+    { name: "admin" },
+    { name: "voluntario" },
+    { name: "padrino" }
+]
+
 module.exports = {
     productsTestData,
     activityTestData,
@@ -316,4 +322,5 @@ module.exports = {
     userTestData,
     activityTypeTestData,
     productsTypeTestData,
+    rolTestData
 };

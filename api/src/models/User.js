@@ -34,11 +34,6 @@ module.exports = (sequelize) => {
                 msg: "Debe ingresar un email válido"
             }
         },
-        admin:{
-            type: DataTypes.BOOLEAN, 
-            allowNull: false,
-            defaultValue: false,
-        },
         password:{
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -52,20 +47,10 @@ module.exports = (sequelize) => {
             }, //longitud de la contraseña
 
 
-        },
-        volunteer:{
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false,
-        },
-        sponsor:{
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false,
         }
     },
     {
-        timestamps: false,
+        paranoid: true,
     }
     );
 }

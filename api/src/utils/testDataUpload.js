@@ -5,6 +5,7 @@ const {
     Products,
     ProductsType,
     User,
+    Rol
 } = require("../db");
 const {
     productsTestData,
@@ -13,6 +14,7 @@ const {
     userTestData,
     activityTypeTestData,
     productsTypeTestData,
+    rolTestData
 } = require("./testData");
 
 const testDataUploader = async () => {
@@ -20,6 +22,8 @@ const testDataUploader = async () => {
     try {
 
         await User.bulkCreate(userTestData, { ignoreDuplicates: true });
+
+        await Rol.bulkCreate(rolTestData, { ignoreDuplicates: true });
         
         await Children.bulkCreate(childrenTestData, { ignoreDuplicates: true });
     
