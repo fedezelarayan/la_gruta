@@ -8,6 +8,7 @@ const ProductsRouter = require("./ProductsRouter");
 const ChildrenRouter = require("./ChildrenRouter");
 /* const ProductsTypesRouter = require("./ProductsTypeRouter"); */
 /* const ActivityTypesRouter = require("./ActivityTypesRouter"); */
+const filterProductsRouter = require ("./filters/filterProductsRouter");
 const router = Router();
 
 
@@ -20,6 +21,7 @@ router.use("/products", ProductsRouter);
 router.use("/children", ChildrenRouter);
 /* router.use("/productsTypes", ProductsTypesRouter); */
 /* router.use("/activityTypes", ActivityTypesRouter); */
+router.use("/filter", filterProductsRouter);
 
 /* server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     const status = err.status || 500;
