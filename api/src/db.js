@@ -39,7 +39,7 @@ let capsEntries = entries.map((entry) => [
 
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Activity, ActivityType, Children, Products, ProductsType, User } = sequelize.models;
+const { Activity, ActivityType, Children, Products, ProductsType, User, Rol } = sequelize.models;
 
 Activity.belongsToMany(ActivityType, { through: "Activity_ActivityType" });
 ActivityType.belongsToMany(Activity, { through: "Activity_ActivityType" });
@@ -52,6 +52,9 @@ Activity.belongsToMany(User, { through: "User_Activity" });
 
 User.belongsToMany(Products, { through: "User_Products" });
 Products.belongsToMany(User, { through: "User_Products" });
+
+User.belongsToMany(Rol, { through: "User_Rol" });
+Rol.belongsToMany(User, { through: "User_Rol" });
 
 module.exports = {
     ...sequelize.models,

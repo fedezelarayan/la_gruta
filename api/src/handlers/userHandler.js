@@ -32,9 +32,9 @@ const getUserHandler = async (req, res) => {
   
   //* Handler que postea el user en la DB
   const postUserHandler = async (req, res) => {
-    const { fullName, password, email, admin } = req.body;
+    const { fullName, password, email, rol } = req.body;
     try {
-      await postUser({ fullName, password, email, admin });
+      await postUser( fullName, password, email, rol );
       res.status(200).json("Usuario agregado con exito");
     } catch (error) {
       res.status(400).json({ error: error.message });
