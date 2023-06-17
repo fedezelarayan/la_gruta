@@ -19,6 +19,26 @@ const getAllActivity = async (clic = 0) => {
     }
   };
 
+
+  //*---------------GET AtivityID--------------------
+
+  const getActivityById = async (id) =>{
+    const activityId = await Activity.findByPk(id, {
+      include: {
+        model: ActivityType,
+        through: {
+          attributes:[]
+        }
+      }
+    })
+    
+    if(!activityId){
+      throw new Error ("No se encontro la actividad");
+    }else {
+      return activityId;
+    }
+  };
+
 //*-----------------POST Activity---------------------
 const createActivity = async ({ name, description, type_activity, date, img }) => {
     if (!name) throw new Error("No puedes enviar un nombre vacío");
@@ -59,5 +79,5 @@ const deleteActivity = async (id) => {
 
 };
   
-  module.exports = { getAllActivity, createActivity, deleteActivity };
+  module.exports = { getAllActivity, createActivity, deleteActivity, getActivityById };
 
