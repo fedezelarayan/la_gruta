@@ -2,7 +2,6 @@ const productsTestData = [{
     name: "Remera blanca", 
     price: 100, 
     image: "https://afaar.vtexassets.com/arquivos/ids/155903-1600-auto?v=638113837487800000&width=1600&height=auto&aspect=true",
-    ProductsType: 1,
     description: "remera blanca",
     stock: 5,
 },
@@ -10,7 +9,6 @@ const productsTestData = [{
     name: "Remera negra", 
     price: 100, 
     image: "https://afaar.vtexassets.com/arquivos/ids/155904-1600-auto?v=638113839210270000&width=1600&height=auto&aspect=true",
-    ProductsType: 3,
     description: "remera negra",
     stock: 6,
 },
@@ -18,7 +16,6 @@ const productsTestData = [{
     name: "Remera gris", 
     price: 100, 
     image: "https://afaar.vtexassets.com/arquivos/ids/155902-1600-auto?v=638113835917000000&width=1600&height=auto&aspect=true",
-    ProductsType: 6,
     description: "remera gris",
     stock: 3,
 },
@@ -26,7 +23,6 @@ const productsTestData = [{
     name: "Remera roja", 
     price: 100, 
     image: "https://aedlp.vtexassets.com/arquivos/ids/156138-500-auto?v=1772979721&width=500&height=auto&aspect=true",
-    ProductsType: 4,
     description: "remera roja",
     stock: 3,
 },
@@ -34,7 +30,6 @@ const productsTestData = [{
     name: "Remera verde", 
     price: 100, 
     image: "https://http2.mlstatic.com/D_NQ_NP_926685-MLA42160565643_062020-O.webp",
-    ProductsType: 8,
     description: "remera verde",
     stock: 3,
 },
@@ -42,7 +37,6 @@ const productsTestData = [{
     name: "Remera amarilla", 
     price: 100, 
     image: "https://http2.mlstatic.com/D_NQ_NP_803855-MLA46308276931_062021-O.webp",
-    ProductsType: 3,
     description: "remera amarilla",
     stock: 3,
 },
@@ -50,11 +44,186 @@ const productsTestData = [{
     name: "Gorra", 
     price: 150, 
     image: "https://http2.mlstatic.com/D_NQ_NP_2X_930720-MLA48164080171_112021-F.webp",
-    ProductsType: 2,
+
     description: "gorra nike",
     stock: 3,
-}]
+},
+{ 
+    name: "Remera blanca", 
+    price: 100, 
+    image: "https://afaar.vtexassets.com/arquivos/ids/155903-1600-auto?v=638113837487800000&width=1600&height=auto&aspect=true",
+ 
+    description: "Remera blanca de Estudiantes de La Plata",
+    stock: 5,
+  },
+  { 
+    name: "Remera negra", 
+    price: 100, 
+    image: "https://afaar.vtexassets.com/arquivos/ids/155904-1600-auto?v=638113839210270000&width=1600&height=auto&aspect=true",
 
+    description: "Remera negra de Estudiantes de La Plata",
+    stock: 6,
+  },
+  { 
+    name: "Remera gris", 
+    price: 100, 
+    image: "https://afaar.vtexassets.com/arquivos/ids/155902-1600-auto?v=638113835917000000&width=1600&height=auto&aspect=true",
+ 
+    description: "Remera gris de Estudiantes de La Plata",
+    stock: 3,
+  },
+  {
+    name: "Remera roja", 
+    price: 100, 
+    image: "https://aedlp.vtexassets.com/arquivos/ids/156138-500-auto?v=1772979721&width=500&height=auto&aspect=true",
+
+    description: "Remera roja de Estudiantes de La Plata",
+    stock: 3,
+  },
+  { 
+    name: "Remera verde", 
+    price: 100, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_926685-MLA42160565643_062020-O.webp",
+
+    description: "Remera verde generica",
+    stock: 3,
+  },
+  { 
+    name: "Remera amarilla", 
+    price: 100, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_803855-MLA46308276931_062021-O.webp",
+ 
+    description: "Remera amarilla generica",
+    stock: 3,
+  },
+  { 
+    name: "Gorra", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_2X_930720-MLA48164080171_112021-F.webp",
+ 
+    description: "gorra nike - Espectacular",
+    stock: 3,
+  },
+  { 
+    name: "Remera Pokemon", 
+    price: 250, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_783614-MLA52065051214_102022-V.webp",
+
+    description: "Remera blanca personalizada de Pokemon",
+    stock: 3,
+  },
+  { 
+    name: "Remera Copiar-Pegar", 
+    price: 200, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_769920-MLA50207769034_062022-V.webp",
+
+    description: "Remera negra copiar - pegar",
+    stock: 3,
+  },
+  { 
+    name: "Remera star wars", 
+    price: 200, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_826113-MLA50233484452_062022-V.webp",
+
+    description: "Remera blanca Darth Vader",
+    stock: 3,
+  },
+  { 
+    name: "Remera blanca", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_923599-MLA54800329255_042023-V.webp",
+
+    description: "Remera blanca generica",
+    stock: 3,
+  },
+  { 
+    name: "Remera SuperPapa", 
+    price: 211, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_894074-MLA50233482928_062022-V.webp",
+
+    description: "Remera azul personalizada - Super Papa",
+    stock: 3,
+  },
+  { 
+    name: "Remera estampada", 
+    price: 100, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_703763-MLA53789032141_022023-V.webp",
+ 
+    description: "Remera blanca estampada - Pew Pew Madafakas",
+    stock: 3,
+  },
+  { 
+    name: "Remera Charly", 
+    price: 300, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_624992-MLA51228120332_082022-V.webp",
+
+    description: "Remera blanca - caricatura Charly Garcia",
+    stock: 3,
+  },
+  { 
+    name: "Remera Morat", 
+    price: 160, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_631618-MLA53787728707_022023-V.webp",
+
+    description: "Remera blanca personalizada de Morat",
+    stock: 3,
+  },
+  { 
+    name: "Remera Homero", 
+    price: 299, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_852991-MLA49364628351_032022-V.webp",
+
+    description: "Remera blanca con estampa de Los Simpson - Mr Chispa",
+    stock: 3,
+  },
+  { 
+    name: "Remera Flash", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_977216-MLA51259686475_082022-W.webp",
+
+    description: "Remera roja personalizada de Flash",
+    stock: 3,
+  },
+  { 
+    name: "Remera SuperMario", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_758736-MLA69694464307_052023-W.webp",
+
+    description: "Remera negra de manga larga de Super Mario",
+    stock: 3,
+  },
+  { 
+    name: "Remera negra", 
+    price: 250, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_790095-MLA69997793287_062023-W.webp",
+
+    description: "Remera negra de Puma",
+    stock: 3,
+  },
+  { 
+    name: "Remera New York", 
+    price: 200, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_894429-MLA54968708481_042023-W.webp",
+
+    description: "Remera azul de New York",
+    stock: 3,
+  },
+  { 
+    name: "Remera RyM", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_985581-MLA69809779004_062023-W.webp",
+
+    description: "Remera con estampa de Rick y Morty",
+    stock: 3,
+  },
+  { 
+    name: "Remera Celeste", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_675208-MLA46442521850_062021-W.webp",
+ 
+    description: "Remera celeste con estampa del genio de Aladdin",
+    stock: 3,
+  }];
 
 const activityTestData = [
     {

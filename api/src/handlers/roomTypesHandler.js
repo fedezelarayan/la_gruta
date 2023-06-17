@@ -1,24 +1,26 @@
 const {
-    getAllProductsTypes,
-    getAllActivityTypes
-} = require ('../controllers/roomTypeController')
+    getAllActivityTypes, 
+    getAllProductTypes
+} = require ('../controllers/roomTypeControllers')
 
-
-const getAllProductsTypesHandler = async (req, res) => {
-    try {
-        const allProductsTypes = await getAllProductsTypes();
-        res.status(200).json(allProductsTypes); 
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-}
 const getAllActivityTypesHandler = async (req, res) => {
     try {
-        const allactivityTypes = await getAllActivityTypes();
-        res.status(200).json(allactivityTypes); 
+        const activityTypes = await getAllActivityTypes();
+        res.status(200).json(activityTypes);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({error: error.message})
+    }
+}
+const getAllProductsTypesHandler = async (req, res) => {
+    try {
+        const productTypes = await getAllProductTypes();
+        res.status(200).json(productTypes);
+    } catch (error) {
+        res.status(400).json({error: error.message})
     }
 }
 
-module.exports = {getAllProductsTypesHandler, getAllActivityTypesHandler};
+module.exports = {
+    getAllProductsTypesHandler,
+    getAllActivityTypesHandler
+}

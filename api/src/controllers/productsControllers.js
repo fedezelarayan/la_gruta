@@ -5,9 +5,9 @@ const getAllProducts = async () => {
         include: {
             model: ProductsType,
             attributes: ['name'],
-            through:{ attributes: [] }
+            through: { attributes: [] }
         }
-    })
+    });
     return dbProducts;
 }
 
