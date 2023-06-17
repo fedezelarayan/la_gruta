@@ -22,7 +22,7 @@ const getDetailProducts = async (id) => {
         include: {
             model: ProductsType,
             attributes: ['name'],
-            through: { attributes: [] }
+            through: { attributes: "" }
         }
     })
     return products;

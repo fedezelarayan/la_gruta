@@ -6,7 +6,7 @@ const {
 /*     getProductsTypesHandler,
     createProductsTypesHandler,
     putProductsTypesHandler */
-} = require ("../handlers/roomTypesHandler.js")
+} = require ("../handlers/roomTypesHandler")
 
 ProductsTypesRouter.get("/", getAllProductsTypesHandler)
 /* ProductsTypesRouter.get("/:id_productsTypes", getProductsTypesHandler)

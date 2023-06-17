@@ -11,8 +11,6 @@ const filterProductsRouter = require ("./filters/filterProductsRouter");
 const filterActivityRouter = require ("./filters/filterActivityRouter");
 const router = Router();
 
-
-
 // Rutes
 
 router.use("/user", UserRouter);
@@ -23,7 +21,6 @@ router.use("/productsTypes", ProductsTypesRouter);
 router.use("/activityTypes", ActivityTypesRouter);
 router.use("/filter", filterProductsRouter);
 router.use("/filter_activity", filterActivityRouter);
-
 
 
 module.exports = router;
