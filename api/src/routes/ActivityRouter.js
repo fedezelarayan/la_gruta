@@ -8,7 +8,7 @@ const {
 
 const ActivityRouter = Router();
 
-ActivityRouter.get("/?offset", getAllActivityHandler);
+ActivityRouter.get("/", getAllActivityHandler);
 ActivityRouter.post("/", postActivityHandler);
 ActivityRouter.delete("/:id_activity", deleteActivityHandler);
 
