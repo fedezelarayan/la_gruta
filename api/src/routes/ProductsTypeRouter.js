@@ -3,14 +3,14 @@ const ProductsTypesRouter = Router();
 
 const {
     getAllProductsTypesHandler,
-    getProductsTypesHandler,
+/*     getProductsTypesHandler,
     createProductsTypesHandler,
-    putProductsTypesHandler
-} = require ("../handlers/roomTypesHandler")
+    putProductsTypesHandler */
+} = require ("../handlers/roomTypesHandler.js")
 
 ProductsTypesRouter.get("/", getAllProductsTypesHandler)
-ProductsTypesRouter.get("/:id_productsTypes", getProductsTypesHandler)
+/* ProductsTypesRouter.get("/:id_productsTypes", getProductsTypesHandler)
 ProductsTypesRouter.post("/:id_productsTypes", createProductsTypesHandler)
-ProductsTypesRouter.put("/:id_productsTypes", putProductsTypesHandler)
+ProductsTypesRouter.put("/:id_productsTypes", putProductsTypesHandler) */
 
 module.exports = ProductsTypesRouter;

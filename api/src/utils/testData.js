@@ -1,124 +1,234 @@
-const productsTestData = [
-    {
-        name: "Labetalol Hydrochloride",
-        price: 45,
-        image: "http://dummyimage.com/122x100.png/dddddd/000000",
-        description:
-            "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-        stock: 71,
-    },
-    {
-        name: "Topiramate",
-        price: 32,
-        image: "http://dummyimage.com/191x100.png/5fa2dd/ffffff",
-        description:
-            "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-        stock: 65,
-    },
-    {
-        name: "Degree",
-        price: 40,
-        image: "http://dummyimage.com/223x100.png/ff4444/ffffff",
-        description: "Fusce consequat. Nulla nisl. Nunc nisl.",
-        stock: 99,
-    },
-    {
-        name: "MBM 13 Female",
-        price: 37,
-        image: "http://dummyimage.com/144x100.png/ff4444/ffffff",
-        description:
-            "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-        stock: 83,
-    },
-    {
-        name: "Black Willow",
-        price: 3,
-        image: "http://dummyimage.com/233x100.png/cc0000/ffffff",
-        description:
-            "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
-        stock: 79,
-    },
-    {
-        name: "PASPALUM NOTATUM POLLEN",
-        price: 8,
-        image: "http://dummyimage.com/103x100.png/ff4444/ffffff",
-        description:
-            "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-        stock: 23,
-    },
-    {
-        name: "PIROXICAM",
-        price: 81,
-        image: "http://dummyimage.com/239x100.png/ff4444/ffffff",
-        description:
-            "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-        stock: 55,
-    },
-    {
-        name: "aspirin free",
-        price: 67,
-        image: "http://dummyimage.com/172x100.png/dddddd/000000",
-        description:
-            "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-        stock: 67,
-    },
-    {
-        name: "risperidone",
-        price: 36,
-        image: "http://dummyimage.com/146x100.png/ff4444/ffffff",
-        description:
-            "Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-        stock: 33,
-    },
-    {
-        name: "Cyproheptadine Hydrochloride",
-        price: 17,
-        image: "http://dummyimage.com/239x100.png/dddddd/000000",
-        description:
-            "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-        stock: 10,
-    },
-    {
-        name: "ZOLPIDEM TARTRATE",
-        price: 84,
-        image: "http://dummyimage.com/199x100.png/5fa2dd/ffffff",
-        description:
-            "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
-        stock: 21,
-    },
-    {
-        name: "Trimethobenzamide Hydrochloride",
-        price: 24,
-        image: "http://dummyimage.com/198x100.png/5fa2dd/ffffff",
-        description:
-            "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-        stock: 35,
-    },
-    {
-        name: "Norpramin",
-        price: 52,
-        image: "http://dummyimage.com/196x100.png/5fa2dd/ffffff",
-        description:
-            "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-        stock: 16,
-    },
-    {
-        name: "CareOne Nighttime Sleep Aid",
-        price: 60,
-        image: "http://dummyimage.com/186x100.png/cc0000/ffffff",
-        description:
-            "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-        stock: 29,
-    },
-    {
-        name: "Tolmetin Sodium",
-        price: 71,
-        image: "http://dummyimage.com/117x100.png/cc0000/ffffff",
-        description:
-            "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-        stock: 64,
-    },
-];
+const productsTestData = [{ 
+    name: "Remera blanca", 
+    price: 100, 
+    image: "https://afaar.vtexassets.com/arquivos/ids/155903-1600-auto?v=638113837487800000&width=1600&height=auto&aspect=true",
+
+    description: "remera blanca",
+    stock: 5,
+},
+{ 
+    name: "Remera negra", 
+    price: 100, 
+    image: "https://afaar.vtexassets.com/arquivos/ids/155904-1600-auto?v=638113839210270000&width=1600&height=auto&aspect=true",
+
+    description: "remera negra",
+    stock: 6,
+},
+{ 
+    name: "Remera gris", 
+    price: 100, 
+    image: "https://afaar.vtexassets.com/arquivos/ids/155902-1600-auto?v=638113835917000000&width=1600&height=auto&aspect=true",
+    description: "remera gris",
+    stock: 3,
+},
+{ 
+    name: "Remera roja", 
+    price: 100, 
+    image: "https://aedlp.vtexassets.com/arquivos/ids/156138-500-auto?v=1772979721&width=500&height=auto&aspect=true",
+
+    description: "remera roja",
+    stock: 3,
+},
+{ 
+    name: "Remera verde", 
+    price: 100, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_926685-MLA42160565643_062020-O.webp",
+
+    description: "remera verde",
+    stock: 3,
+},
+{ 
+    name: "Remera amarilla", 
+    price: 100, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_803855-MLA46308276931_062021-O.webp",
+
+    description: "remera amarilla",
+    stock: 3,
+},
+{
+    name: "Gorra", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_2X_930720-MLA48164080171_112021-F.webp",
+
+    description: "gorra nike",
+    stock: 3,
+},
+{ 
+    name: "Remera blanca", 
+    price: 100, 
+    image: "https://afaar.vtexassets.com/arquivos/ids/155903-1600-auto?v=638113837487800000&width=1600&height=auto&aspect=true",
+ 
+    description: "Remera blanca de Estudiantes de La Plata",
+    stock: 5,
+  },
+  { 
+    name: "Remera negra", 
+    price: 100, 
+    image: "https://afaar.vtexassets.com/arquivos/ids/155904-1600-auto?v=638113839210270000&width=1600&height=auto&aspect=true",
+
+    description: "Remera negra de Estudiantes de La Plata",
+    stock: 6,
+  },
+  { 
+    name: "Remera gris", 
+    price: 100, 
+    image: "https://afaar.vtexassets.com/arquivos/ids/155902-1600-auto?v=638113835917000000&width=1600&height=auto&aspect=true",
+ 
+    description: "Remera gris de Estudiantes de La Plata",
+    stock: 3,
+  },
+  {
+    name: "Remera roja", 
+    price: 100, 
+    image: "https://aedlp.vtexassets.com/arquivos/ids/156138-500-auto?v=1772979721&width=500&height=auto&aspect=true",
+
+    description: "Remera roja de Estudiantes de La Plata",
+    stock: 3,
+  },
+  { 
+    name: "Remera verde", 
+    price: 100, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_926685-MLA42160565643_062020-O.webp",
+
+    description: "Remera verde generica",
+    stock: 3,
+  },
+  { 
+    name: "Remera amarilla", 
+    price: 100, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_803855-MLA46308276931_062021-O.webp",
+ 
+    description: "Remera amarilla generica",
+    stock: 3,
+  },
+  { 
+    name: "Gorra", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_2X_930720-MLA48164080171_112021-F.webp",
+ 
+    description: "gorra nike - Espectacular",
+    stock: 3,
+  },
+  { 
+    name: "Remera Pokemon", 
+    price: 250, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_783614-MLA52065051214_102022-V.webp",
+
+    description: "Remera blanca personalizada de Pokemon",
+    stock: 3,
+  },
+  { 
+    name: "Remera Copiar-Pegar", 
+    price: 200, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_769920-MLA50207769034_062022-V.webp",
+
+    description: "Remera negra copiar - pegar",
+    stock: 3,
+  },
+  { 
+    name: "Remera star wars", 
+    price: 200, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_826113-MLA50233484452_062022-V.webp",
+
+    description: "Remera blanca Darth Vader",
+    stock: 3,
+  },
+  { 
+    name: "Remera blanca", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_923599-MLA54800329255_042023-V.webp",
+
+    description: "Remera blanca generica",
+    stock: 3,
+  },
+  { 
+    name: "Remera SuperPapa", 
+    price: 211, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_894074-MLA50233482928_062022-V.webp",
+
+    description: "Remera azul personalizada - Super Papa",
+    stock: 3,
+  },
+  { 
+    name: "Remera estampada", 
+    price: 100, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_703763-MLA53789032141_022023-V.webp",
+ 
+    description: "Remera blanca estampada - Pew Pew Madafakas",
+    stock: 3,
+  },
+  { 
+    name: "Remera Charly", 
+    price: 300, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_624992-MLA51228120332_082022-V.webp",
+
+    description: "Remera blanca - caricatura Charly Garcia",
+    stock: 3,
+  },
+  { 
+    name: "Remera Morat", 
+    price: 160, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_631618-MLA53787728707_022023-V.webp",
+
+    description: "Remera blanca personalizada de Morat",
+    stock: 3,
+  },
+  { 
+    name: "Remera Homero", 
+    price: 299, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_852991-MLA49364628351_032022-V.webp",
+
+    description: "Remera blanca con estampa de Los Simpson - Mr Chispa",
+    stock: 3,
+  },
+  { 
+    name: "Remera Flash", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_977216-MLA51259686475_082022-W.webp",
+
+    description: "Remera roja personalizada de Flash",
+    stock: 3,
+  },
+  { 
+    name: "Remera SuperMario", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_758736-MLA69694464307_052023-W.webp",
+
+    description: "Remera negra de manga larga de Super Mario",
+    stock: 3,
+  },
+  { 
+    name: "Remera negra", 
+    price: 250, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_790095-MLA69997793287_062023-W.webp",
+
+    description: "Remera negra de Puma",
+    stock: 3,
+  },
+  { 
+    name: "Remera New York", 
+    price: 200, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_894429-MLA54968708481_042023-W.webp",
+
+    description: "Remera azul de New York",
+    stock: 3,
+  },
+  { 
+    name: "Remera RyM", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_985581-MLA69809779004_062023-W.webp",
+
+    description: "Remera con estampa de Rick y Morty",
+    stock: 3,
+  },
+  { 
+    name: "Remera Celeste", 
+    price: 150, 
+    image: "https://http2.mlstatic.com/D_NQ_NP_675208-MLA46442521850_062021-W.webp",
+ 
+    description: "Remera celeste con estampa del genio de Aladdin",
+    stock: 3,
+  }];
 
 const activityTestData = [
     {

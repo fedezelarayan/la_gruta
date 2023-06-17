@@ -3,15 +3,15 @@ const ActivityTypesRouter = Router();
 
 const {
     getAllActivityTypesHandler,
-    getActivityTypesHandler,
+/*     getActivityTypesHandler,
     createActivityTypesHandler,
-    putActivityTypesHandler
+    putActivityTypesHandler */
 } = require ("../handlers/roomTypesHandler")
 
 ActivityTypesRouter.get("/", getAllActivityTypesHandler)
-ActivityTypesRouter.get("/:id_Activity", getActivityTypesHandler)
+/* ActivityTypesRouter.get("/:id_Activity", getActivityTypesHandler)
 ActivityTypesRouter.post("/:id_Activity", createActivityTypesHandler)
-ActivityTypesRouter.put("/:id_Activity", putActivityTypesHandler)
+ActivityTypesRouter.put("/:id_Activity", putActivityTypesHandler) */
 
 
 module.exports = ActivityTypesRouter;
