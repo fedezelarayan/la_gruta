@@ -1,23 +1,13 @@
 const {
-    /* filtroPrecio, */
     filtroTipo,
     filtroNombre
 } = require ('../../controllers/filterControllers/filterProductControllers');
 
-/* const orderByPrice = async (req, res) => {
-    const { price } = req.query;
-    try {
-        const filteredProducts = await filtroPrecio(price);
-        res.status(200).json(filteredProducts);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-} */
 
 const filterByType = async (req, res) => {
-    const { productType } = req.query;
+    const { name } = req.query;
     try {
-        const filteredByType = await filtroTipo(productType);
+        const filteredByType = await filtroTipo(name);
         res.status(200).json({filteredByType});
     } catch (error) {
         res.status(400).json({ error: error.message })
