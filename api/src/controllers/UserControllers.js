@@ -29,31 +29,33 @@ const getAllUsers = async () => {
 
 const postUser = async (
     fullName,
+    username,
     birthDate,
     image,
     phone,
     mail,
     password,
+    occupation,
     rol
 ) => {
-    if (!fullName || !password || !mail) {
-        throw new Error("Faltan datos");
-    }
-    // const findUserByUsername = await User.findOne({ where: { fullName } });
+    if (!fullName || !username || !password || !mail) throw new Error("Faltan datos");
+
+    const findUserByUsername = await User.findOne({ where: { username } });
     const findUserByEmail = await User.findOne({ where: { mail } });
 
-    // if (findUserByUsername) {
-    //   throw new Error("Ya existe el nombre de usuario");
-    // } else
+    if (findUserByUsername) throw new Error("Ya existe el nombre de usuario");
+
     if (findUserByEmail) throw new Error("Ya existe un usuario con el mismo email");
 
     const newUser = await User.create({
         fullName,
+        username,
         birthDate,
         image,
         phone,
         mail,
         password,
+        occupation,
     })
 
     newUser.addRol(rol);
