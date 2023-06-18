@@ -5,6 +5,9 @@ const { Activity, ActivityType } = require("../db");
 const getAllActivity = async (clic = 0) => {
 
     const allActivity = await Activity.findAll({
+      where:{
+        status: true
+      },
       include : {
         model: ActivityType,
         through: {
@@ -73,7 +76,7 @@ const deleteActivity = async (id) => {
     if (!activity) {
       throw new Error("La actividad no existe");
     } else {
-      await Activity.destroy({ where: { id } });
+      await Activity.update({status:false},{ where: { id } });
       return;
     }
 

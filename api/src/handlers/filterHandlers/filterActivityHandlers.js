@@ -1,5 +1,4 @@
 const {
-    /* filtroPrecio, */
     ActivityFilterType,
     filtroNombre
 } = require ('../../controllers/filterControllers/filterActivityControllers');
@@ -14,6 +13,8 @@ const filterByType = async (req, res) => {
         res.status(400).json({ error: error.message })
     }
 }
+
+
 const filterByName = async (req, res) => {
     const { name } = req.query;
     try {

@@ -27,6 +27,10 @@ module.exports = (sequelize) => {
                 allowNull: false,
             },
         },
+        status:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        },
     },
         {
             paranoid: true,
