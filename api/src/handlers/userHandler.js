@@ -29,16 +29,19 @@ const {
     }
   };
   
-  // //* Handler que postea el user en la DB
-  // const postUserHandler = async (req, res) => {
-  //   const { fullName, password, email, rol } = req.body;
-  //   try {
-  //     await postUser( fullName, password, email, rol );
-  //     res.status(200).json("Usuario agregado con exito");
-  //   } catch (error) {
-  //     res.status(400).json({ error: error.message });
-  //   }
-  // };
+  //* Handler que postea el user en la DB
+  const postUserHandler = async (req, res) => {
+    const { fullName, birthDate, image, phone, mail, password, rol } = req.body;
+
+    if(!fullName || !mail || !password) res.status(400).json({msg: 'Faltan datos necesarios'});
+
+    try {
+      await postUser( fullName, birthDate, image, phone, mail, password, rol );
+      res.status(200).json({msg: "Usuario agregado con exito"});
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
   
   // //* Handler que modifica la password del usuario
   // const putPasswordUserHandler = async (req,res) => {
@@ -77,7 +80,7 @@ const {
   
   module.exports = {
     // getUserHandler,
-    // postUserHandler,
+    postUserHandler,
     getAllUsersHandler,
     // putRolUserHandler,
     // putPasswordUserHandler,

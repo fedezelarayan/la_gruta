@@ -3,7 +3,7 @@ const { Router } = require("express");
 
 const {
   // getUserHandler,
-  // postUserHandler,
+  postUserHandler,
   getAllUsersHandler,
   // putRolUserHandler,
   // putPasswordUserHandler,
@@ -26,9 +26,9 @@ const UserRouter = Router();
 //   return res.status(400).json({ error: "Falta información en la solicitud" });
 // };
 
-// UserRouter.post("/", checkUserProperties);
+// UserRouter.use(checkUserProperties);
 UserRouter.get("/", getAllUsersHandler);
-
+UserRouter.post("/", postUserHandler)
 // UserRouter.get("/:id_user", getAllUsersHandler);
 // UserRouter.put("/password", putPasswordUserHandler)
 // UserRouter.put("/status/:id_user",putStatusUserHandler)

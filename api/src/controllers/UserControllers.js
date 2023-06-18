@@ -1,24 +1,55 @@
 //?----------------------------IMPORTS--------------------------------
 
-
 const { User, Rol, Activity } = require("../db");
 const { Op } = require("sequelize");
 //?----------------------------CONTROLLERS------------------------------
 
 //*---------------GET ALL USERS----------------------
 const getAllUsers = async () => {
-  const allUsers = await User.findAll( {
-    include: {
-      model: Rol && Activity,
-      through: { attributes: [] }
+    const allUsers = await User.findAll({
+        include: {
+            model: Rol && Activity,
+            through: { attributes: [] },
+        },
+    });
+
+    return allUsers;
+};
+
+//*---------------CREATE USER---------------------
+
+const postUser = async (
+    fullName,
+    birthDate,
+    image,
+    phone,
+    mail,
+    password,
+    rol
+) => {
+    if (!fullName || !password || !mail) {
+        throw new Error("Faltan datos");
     }
-  });
+    // const findUserByUsername = await User.findOne({ where: { fullName } });
+    const findUserByEmail = await User.findOne({ where: { mail } });
 
-  
+    // if (findUserByUsername) {
+    //   throw new Error("Ya existe el nombre de usuario");
+    // } else
+    if (findUserByEmail) throw new Error("Ya existe un usuario con el mismo email");
 
+    const newUser = await User.create({
+        fullName,
+        birthDate,
+        image,
+        phone,
+        mail,
+        password,
+    })
 
+    newUser.addRol(rol);
 
-  return allUsers;
+    return newUser;
 };
 
 //!-------lógica útil pero que sirve para admin------
@@ -62,37 +93,6 @@ const getAllUsers = async () => {
 //   }
 // };
 
-//*---------------CREATE USER---------------------
-
-// const postUser = async ( fullName, password, email, rol ) => {
-//   if (!fullName || !password || !email) {
-//     throw new Error("Faltan datos");
-//   } else {
-//     const findUserByUsername = await User.findOne({ where: { fullName } });
-//     const findUserByEmail = await User.findOne({ where: { email } });
-
-//     if (findUserByUsername) {
-//       throw new Error("Ya existe el nombre de usuario");
-//     } else if (findUserByEmail) {
-//       throw new Error("Ya existe el email");
-//     } else {
-//       await User.create({
-//         fullName,
-//         password,
-//         email,
-//         admin,
-//         volunteer,
-//         sponsor
-
-//       });
-//       return;
-//     }
-//   }
-
-//   User.addRol(rol);
-// };
-
-
 // //*---------------PUT PASSWORD USER---------------------
 // const putPasswordUser = async (email, password) => {
 //   const findUser = await User.findOne({where:{
@@ -132,7 +132,7 @@ const getAllUsers = async () => {
 
 //       findUser.status = true
 //     }
-   
+
 //     await findUser.save();
 //   } else {
 //     throw new Error("El usuario no existe");
@@ -141,14 +141,11 @@ const getAllUsers = async () => {
 //   return findUser;
 // };
 
-
-
-
 module.exports = {
-  // getUser,
-  // postUser,
-  getAllUsers,
-  // putRolUser,
-  // putPasswordUser,
-  // putStatusUser
+    // getUser,
+    postUser,
+    getAllUsers,
+    // putRolUser,
+    // putPasswordUser,
+    // putStatusUser
 };
