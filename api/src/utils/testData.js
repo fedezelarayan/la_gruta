@@ -229,67 +229,60 @@ const productsTestData = [
 
 const activityTestData = [
     {
-        name: "American badger",
-        type_activity: 6,
-        date: "13 December 2022",
+        name: "No escaping new high tech speed cameras",
+        date: "22 Mar - 2022",
         description:
-            "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+            "You audience. Least, the recently his repeat the this avarice for the have and was on would before the concise bedding were hall politely name be regretting have of even five of it the his are there again. Word seven designer far lady problem will have work with you to fully understand your business to achieve. We work with clients big and small across a range of sectors and we utilize all forms of media to get your name out there in a way that’s right for you. We believe that analysis of your company and your customers is key in responding effectively to your promotional needs and we will work with you. We have a number of different teams within our agency that specialise in different areas of business so you can be sure that you won’t receive a generic service and although we can’t boast years and years of service we can ensure you that is a good thing in this industry.",
         img: "http://dummyimage.com/143x100.png/dddddd/000000",
     },
     {
-        name: "Caracara, yellow-headed",
-        type_activity: 3,
-        date: "1 August 2022",
+        name: "More than billion football fans attend Brazil world cup",
+        date: "12 Aug - 2022",
         description:
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
+            "You audience. Least, the recently his repeat the this avarice for the have and was on would before the concise bedding were hall politely name be regretting have of even five of it the his are there again. Word seven designer far lady problem will have work with you to fully understand your business to achieve. We work with clients big and small across a range of sectors and we utilize all forms of media to get your name out there in a way that’s right for you. We believe that analysis of your company and your customers is key in responding effectively to your promotional needs and we will work with you. We have a number of different teams within our agency that specialise in different areas of business so you can be sure that you won’t receive a generic service and although we can’t boast years and years of service we can ensure you that is a good thing in this industry.",
         img: "http://dummyimage.com/234x100.png/cc0000/ffffff",
     },
     {
-        name: "Common dolphin",
-        type_activity: 7,
-        date: "10 April 2023",
+        name: "Google To Boost Android Security In Few Days",
+        date: "5 Jun - 2022",
         description:
-            "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
+            "You audience. Least, the recently his repeat the this avarice for the have and was on would before the concise bedding were hall politely name be regretting have of even five of it the his are there again. Word seven designer far lady problem will have work with you to fully understand your business to achieve. We work with clients big and small across a range of sectors and we utilize all forms of media to get your name out there in a way that’s right for you. We believe that analysis of your company and your customers is key in responding effectively to your promotional needs and we will work with you. We have a number of different teams within our agency that specialise in different areas of business so you can be sure that you won’t receive a generic service and although we can’t boast years and years of service we can ensure you that is a good thing in this industry.",
         img: "http://dummyimage.com/184x100.png/dddddd/000000",
     },
     {
-        name: "Lorikeet, scaly-breasted",
-        type_activity: 1,
-        date: "7 December 2022",
+        name: "Emma Watson stands up for Turkish women",
+        date: "08 Dec - 2022",
         description:
-            "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
+            "You audience. Least, the recently his repeat the this avarice for the have and was on would before the concise bedding were hall politely name be regretting have of even five of it the his are there again. Word seven designer far lady problem will have work with you to fully understand your business to achieve. We work with clients big and small across a range of sectors and we utilize all forms of media to get your name out there in a way that’s right for you. We believe that analysis of your company and your customers is key in responding effectively to your promotional needs and we will work with you. We have a number of different teams within our agency that specialise in different areas of business so you can be sure that you won’t receive a generic service and although we can’t boast years and years of service we can ensure you that is a good thing in this industry.",
         img: "http://dummyimage.com/133x100.png/ff4444/ffffff",
     },
     {
-        name: "Black bear",
-        type_activity: 2,
-        date: "14 May 2022",
+        name: "Stepping back does make Sussex safer and at peace",
+        date: "5 Jun - 2022",
         description:
             "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
         img: "http://dummyimage.com/245x100.png/dddddd/000000",
     },
     {
-        name: "Bee-eater, nubian",
-        type_activity: 5,
-        date: "7 August 2022",
+        name: "Renewable energy dead as industry waits for Policy",
+        date: "5 Jun - 2022",
         description:
-            "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
+            "If rather, him the would treble-range wild any long of policy waved preparations disguised first initial that commitment had my in for spirits gradual solitary I for his absolutely with it and I to unable follow the to as every it the control and a of thinks the what's help days, with and paint, series at window and could we've offer, hard with king either written dry be are of princesses. We’re here to help, we’ve written examples of web copy for over 40 industries for you to use at concept phase of your projects to bring a little life and realism to your designs and help you think about who and what you are designing for. We want clients and designers alike to think about their design and how it will work with the web copy, we want you think about how numbers, symbols and bullet points will look. Sure, it's easier to just run down the forms and fill the fields with garbage in order to plow through them quickly. But that's not real. That's not what your customers are going to do. Is it really smart to take a shortcut when customers are forced to take the long road? When you just enter fake copy in rapid-fire fashion, you don't know what it really feels like to fill out that form. Do as your customers do and you'll understand them better. When you understand them better, and feel what they feel, you'll build a better interface.",
         img: "http://dummyimage.com/154x100.png/dddddd/000000",
     },
     {
-        name: "Desert spiny lizard",
+        name: "Our Favorite Photos From All Around",
         type_activity: 4,
-        date: "25 March 2023",
+        date: "19. February 2022",
         description:
-            "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
         img: "http://dummyimage.com/199x100.png/dddddd/000000",
     },
     {
-        name: "Duck, blue",
-        type_activity: 3,
-        date: "24 July 2021",
+        name: "Places To Visit For A Peaceful Holiday",
+        date: "19. February 2022",
         description:
-            "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.",
         img: "http://dummyimage.com/159x100.png/cc0000/ffffff",
     },
 ];
