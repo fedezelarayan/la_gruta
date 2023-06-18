@@ -1,4 +1,7 @@
-const { Activity } = require("../../db");
+const { Activity, ActivityType } = require("../../db");
+
+
+// Handler para filtrado de tipos actividad por nombre
 
 const ActivityFilterType = async (name) => {
     const allActivity = await Activity.findAll({
@@ -9,8 +12,9 @@ const ActivityFilterType = async (name) => {
             },
         },
     });
+    /* console.log(allActivity) */
     const activityFilter = allActivity.filter((activity) =>
-        activity.ActivityTypes.some((t) => t.name === name)
+        activity.dataValues.ActivityTypes.some((t) => t.name === name)
     );
     if (!activityFilter.length) {
         throw new Error("Tipo de Actividades no encontrados");
