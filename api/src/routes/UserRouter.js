@@ -5,6 +5,7 @@ const {
   // getUserHandler,
   postUserHandler,
   getAllUsersHandler,
+  getUserById,
   // putRolUserHandler,
   // putPasswordUserHandler,
   // putStatusUserHandler
@@ -28,6 +29,7 @@ const UserRouter = Router();
 
 // UserRouter.use(checkUserProperties);
 UserRouter.get("/", getAllUsersHandler);
+UserRouter.get("/:user_id", getUserById);
 UserRouter.post("/", postUserHandler)
 // UserRouter.get("/:id_user", getAllUsersHandler);
 // UserRouter.put("/password", putPasswordUserHandler)

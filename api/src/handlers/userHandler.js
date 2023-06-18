@@ -2,6 +2,7 @@ const {
     getUser,
     postUser,
     getAllUsers,
+    userById,
     putRolUser,
     putPasswordUser,
     putStatusUser
@@ -42,6 +43,17 @@ const {
       res.status(400).json({ error: error.message });
     }
   };
+
+  //* Handler que busca a usuario por ID
+  const getUserById = async (req, res) => {
+    const { user_id } = req.params;
+    try {
+      const userId = await userById( user_id );
+      res.status(200).json(userId);
+    } catch (error) {
+      res.status(400).json({error: error.message});
+    }
+  }
   
   // //* Handler que modifica la password del usuario
   // const putPasswordUserHandler = async (req,res) => {
@@ -82,6 +94,7 @@ const {
     // getUserHandler,
     postUserHandler,
     getAllUsersHandler,
+    getUserById
     // putRolUserHandler,
     // putPasswordUserHandler,
     // putStatusUserHandler

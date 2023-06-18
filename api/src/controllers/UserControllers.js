@@ -7,22 +7,44 @@ const { Op } = require("sequelize");
 //*---------------GET ALL USERS----------------------
 const getAllUsers = async () => {
     const allUsers = await User.findAll({
-        include: [{
-            model: Rol,
-            
-            through: { attributes: [] },
-        },
-        {
-          model: Activity,
-          through: { attributes: [] }
-        }],
-        // include: {
-        //     model: Activity,
-        //     through: { attributes: [] }
-        // }
+        include: [
+            {
+                model: Rol,
+
+                through: { attributes: [] },
+            },
+            {
+                model: Activity,
+                through: { attributes: [] },
+            },
+        ],
     });
 
     return allUsers;
+};
+
+//*---------------GET USER BY ID------------------
+
+const userById = async (id) => {
+    if (!id) throw new Error("Falta el id del Usuario");
+
+    const user = await User.findByPk(id, {
+        include: [
+            {
+                model: Rol,
+
+                through: { attributes: [] },
+            },
+            {
+                model: Activity,
+                through: { attributes: [] },
+            },
+        ],
+    });
+
+    if (!user) throw new Error("No existe el Usuario");
+
+    return user;
 };
 
 //*---------------CREATE USER---------------------
@@ -38,14 +60,16 @@ const postUser = async (
     occupation,
     rol
 ) => {
-    if (!fullName || !username || !password || !mail) throw new Error("Faltan datos");
+    if (!fullName || !username || !password || !mail)
+        throw new Error("Faltan datos");
 
     const findUserByUsername = await User.findOne({ where: { username } });
     const findUserByEmail = await User.findOne({ where: { mail } });
 
     if (findUserByUsername) throw new Error("Ya existe el nombre de usuario");
 
-    if (findUserByEmail) throw new Error("Ya existe un usuario con el mismo email");
+    if (findUserByEmail)
+        throw new Error("Ya existe un usuario con el mismo email");
 
     const newUser = await User.create({
         fullName,
@@ -56,9 +80,9 @@ const postUser = async (
         mail,
         password,
         occupation,
-    })
+    });
 
-    newUser.addRol(rol);
+    await newUser.addRol(rol);
 
     return newUser;
 };
@@ -156,6 +180,7 @@ module.exports = {
     // getUser,
     postUser,
     getAllUsers,
+    userById,
     // putRolUser,
     // putPasswordUser,
     // putStatusUser
