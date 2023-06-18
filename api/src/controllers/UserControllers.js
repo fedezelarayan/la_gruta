@@ -7,10 +7,19 @@ const { Op } = require("sequelize");
 //*---------------GET ALL USERS----------------------
 const getAllUsers = async () => {
     const allUsers = await User.findAll({
-        include: {
-            model: Rol && Activity,
+        include: [{
+            model: Rol,
+            
             through: { attributes: [] },
         },
+        {
+          model: Activity,
+          through: { attributes: [] }
+        }],
+        // include: {
+        //     model: Activity,
+        //     through: { attributes: [] }
+        // }
     });
 
     return allUsers;
