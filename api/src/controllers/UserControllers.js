@@ -1,7 +1,7 @@
 //?----------------------------IMPORTS--------------------------------
 
 
-const { User, Rol } = require("../db");
+const { User, Rol, Activity } = require("../db");
 const { Op } = require("sequelize");
 //?----------------------------CONTROLLERS------------------------------
 
@@ -9,7 +9,7 @@ const { Op } = require("sequelize");
 const getAllUsers = async () => {
   const allUsers = await User.findAll( {
     include: {
-      model: Rol,
+      model: Rol && Activity,
       through: { attributes: [] }
     }
   });
