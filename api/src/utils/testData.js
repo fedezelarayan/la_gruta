@@ -467,17 +467,6 @@ const productsTypeTestData = [
     { name: "Cardguard" },
     { name: "Tresom" },
     { name: "Bitwolf" },
-    { name: "Job" },
-    { name: "Stringtough" },
-    { name: "Lotlux" },
-    { name: "Zamit" },
-    { name: "Kanlam" },
-    { name: "Namfix" },
-    { name: "Voyatouch" },
-    { name: "Daltfresh" },
-    { name: "Namfix" },
-    { name: "Cardify" },
-    { name: "Redhold" },
 ];
 
 const rolTestData = [
