@@ -29,7 +29,9 @@ const filtroNombre = async (name) => {
             name: name,
         }
     })
-    return productosFiltrados;
+    const filteredProducts = await productosFiltrados.filter((pr) => pr.dataValues.name.toLowerCase().includes(name.toLowerCase()))
+    console.log(productosFiltrados)
+    return filteredProducts;
 }
 
 module.exports = { filtroTipo, filtroNombre };
