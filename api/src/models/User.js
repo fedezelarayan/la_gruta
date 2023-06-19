@@ -12,7 +12,6 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         birthDate: {
             type: DataTypes.STRING,
             // defaultValue: 0,
@@ -31,6 +30,7 @@ module.exports = (sequelize) => {
         mail:{
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             isEmail: {
                 msg: "Debe ingresar un email válido"
             }
@@ -42,10 +42,10 @@ module.exports = (sequelize) => {
             isAlphanumeric: {
                 msg: "La contraseña debe ser alfanumérica"
             }, //Chequea que sea alfanumerico
-            len: {
-                arg: [[6, 14]],
-                msg: "La contraseña debe tener entre 6 y 14 caracteres"
-            }, //longitud de la contraseña
+            // len: {
+            //     arg: [[6, 14]],
+            //     msg: "La contraseña debe tener entre 6 y 14 caracteres"
+            // }, //longitud de la contraseña
 
 
         }
