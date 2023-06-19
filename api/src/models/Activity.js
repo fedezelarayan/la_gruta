@@ -22,10 +22,11 @@ module.exports = (sequelize) => {
             isUrl: {
                 msg: "La imagen debe tener formato URL"
             },
+        
+        },
         description: {
-                type: DataTypes.TEXT,
-                allowNull: false,
-            },
+            type: DataTypes.TEXT,
+            allowNull: false,
         },
         status:{
             type: DataTypes.BOOLEAN,
