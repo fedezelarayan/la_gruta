@@ -1,143 +1,187 @@
 //?----------------------------IMPORTS--------------------------------
 
-const { User } = require("../db");
+const { User, Rol, Activity } = require("../db");
 const { Op } = require("sequelize");
 //?----------------------------CONTROLLERS------------------------------
 
-//*-----------------GET USER---------------------
-const getUser = async (password, email) => {
-  if (!password) {
-    throw new Error("No puede enviar una contraseña vacia");
-  } else if (!email) {
-    throw new Error("No puede enviar un email vacio");
-  } else {
-    const findUser = await User.findOne({ where: { email } });
-    if (!findUser) {
-      throw new Error("El usuario no existe");
-    } else {
-      const findUser2 = await User.findOne({
-        where: { password, email },
-        attributes: ["id", "fullName","birthDate", "image", "phone", "email", "admin","password", "volunteer", "sponsor"],
-      });
-      if (!findUser2) {
-        throw new Error("Contraseña equivocada");
-      }
+//*---------------GET ALL USERS----------------------
+const getAllUsers = async () => {
+    const allUsers = await User.findAll({
+        include: [
+            {
+                model: Rol,
 
-      if(!findUser2.status) throw new Error("Usuario bloqueado")
-      return findUser2;
-    }
-  }
+                through: { attributes: [] },
+            },
+            {
+                model: Activity,
+                through: { attributes: [] },
+            },
+        ],
+    });
+
+    return allUsers;
+};
+
+//*---------------GET USER BY ID------------------
+
+const userById = async (id) => {
+    if (!id) throw new Error("Falta el id del Usuario");
+
+    const user = await User.findByPk(id, {
+        include: [
+            {
+                model: Rol,
+
+                through: { attributes: [] },
+            },
+            {
+                model: Activity,
+                through: { attributes: [] },
+            },
+        ],
+    });
+
+    if (!user) throw new Error("No existe el Usuario");
+
+    return user;
 };
 
 //*---------------CREATE USER---------------------
 
-const postUser = async ( fullName, password, email, rol ) => {
-  if (!fullName || !password || !email) {
-    throw new Error("Faltan datos");
-  } else {
-    const findUserByUsername = await User.findOne({ where: { fullName } });
-    const findUserByEmail = await User.findOne({ where: { email } });
+const postUser = async (
+    fullName,
+    username,
+    birthDate,
+    image,
+    phone,
+    mail,
+    password,
+    occupation,
+    rol
+) => {
+    if (!fullName || !username || !password || !mail)
+        throw new Error("Faltan datos");
 
-    if (findUserByUsername) {
-      throw new Error("Ya existe el nombre de usuario");
-    } else if (findUserByEmail) {
-      throw new Error("Ya existe el email");
-    } else {
-      await User.create({
+    const findUserByUsername = await User.findOne({ where: { username } });
+    const findUserByEmail = await User.findOne({ where: { mail } });
+
+    if (findUserByUsername) throw new Error("Ya existe el nombre de usuario");
+
+    if (findUserByEmail)
+        throw new Error("Ya existe un usuario con el mismo email");
+
+    const newUser = await User.create({
         fullName,
+        username,
+        birthDate,
+        image,
+        phone,
+        mail,
         password,
-        email,
-        admin,
-        volunteer,
-        sponsor
-
-      });
-      return;
-    }
-  }
-
-  User.addRol(rol);
-};
-
-//*---------------GET ALL USERS----------------------
-const getAllUsers = async (id_user) => {
-  const findUser = await User.findOne({ where: { id: id_user } });
-
-  if (findUser.rol == 3) {
-    findAllUsers = await User.findAll({
-      where: {
-        id: {
-          [Op.not]: id_user,
-        },
-      },
-      order: [["id", "ASC"]],
-      attributes: ["id", "username", "email", "admin","volunteer", "sponsor" ],
+        occupation,
     });
-  } else {
-    throw new Error("Permiso denegado, no eres administrador");
-  }
 
+    await newUser.addRol(rol);
 
-
-  return findAllUsers;
+    return newUser;
 };
 
-//*---------------PUT PASSWORD USER---------------------
-const putPasswordUser = async (email, password) => {
-  const findUser = await User.findOne({where:{
-    email
-  }})
+//!-------lógica útil pero que sirve para admin------
 
-  if(!findUser){ throw new Error("El usuario no existe")}
+// if (findUser.rol == 3) {
+//   findAllUsers = await User.findAll({
+//     where: {
+//       id: {
+//         [Op.not]: id_user,
+//       },
+//     },
+//     order: [["id", "ASC"]],
+//     attributes: ["id", "username", "email", "admin","volunteer", "sponsor" ],
+//   });
+// } else {
+//   throw new Error("Permiso denegado, no eres administrador");
+// }
 
-  findUser.password = password
+// //*-----------------GET USER---------------------
+// const getUser = async (password, email) => {
+//   if (!password) {
+//     throw new Error("No puede enviar una contraseña vacia");
+//   } else if (!email) {
+//     throw new Error("No puede enviar un email vacio");
+//   } else {
+//     const findUser = await User.findOne({ where: { email } });
+//     if (!findUser) {
+//       throw new Error("El usuario no existe");
+//     } else {
+//       const findUser2 = await User.findOne({
+//         where: { password, email },
+//         attributes: ["id", "fullName","birthDate", "image", "phone", "email", "admin","password", "volunteer", "sponsor"],
+//       });
+//       if (!findUser2) {
+//         throw new Error("Contraseña equivocada");
+//       }
 
-  findUser.save()
+//       if(!findUser2.status) throw new Error("Usuario bloqueado")
+//       return findUser2;
+//     }
+//   }
+// };
 
-  return;
-}
+// //*---------------PUT PASSWORD USER---------------------
+// const putPasswordUser = async (email, password) => {
+//   const findUser = await User.findOne({where:{
+//     email
+//   }})
 
-//*---------------PUT ROL USER---------------------
-const putRolUser = async (id_user, rol) => {
-  const findUser = await User.findByPk(id_user);
+//   if(!findUser){ throw new Error("El usuario no existe")}
 
-  if (findUser) {
-    findUser.rol = rol;
+//   findUser.password = password
 
-    await findUser.save();
-  } else {
-    throw new Error("El usuario no existe");
-  }
+//   findUser.save()
 
-  return findUser;
-};
+//   return;
+// }
 
-//*------------- BANEAR USER -------------------------
-const putStatusUser = async (id_user) => {
-  const findUser = await User.findByPk(id_user);
+// //*---------------PUT ROL USER---------------------
+// const putRolUser = async (id_user, rol) => {
+//   const findUser = await User.findByPk(id_user);
 
-  if (findUser) {
-    if(findUser.status == true){findUser.status = false} else{
+//   if (findUser) {
+//     findUser.rol = rol;
 
-      findUser.status = true
-    }
-   
-    await findUser.save();
-  } else {
-    throw new Error("El usuario no existe");
-  }
+//     await findUser.save();
+//   } else {
+//     throw new Error("El usuario no existe");
+//   }
 
-  return findUser;
-};
+//   return findUser;
+// };
 
+// //*------------- BANEAR USER -------------------------
+// const putStatusUser = async (id_user) => {
+//   const findUser = await User.findByPk(id_user);
 
+//   if (findUser) {
+//     if(findUser.status == true){findUser.status = false} else{
 
+//       findUser.status = true
+//     }
+
+//     await findUser.save();
+//   } else {
+//     throw new Error("El usuario no existe");
+//   }
+
+//   return findUser;
+// };
 
 module.exports = {
-  getUser,
-  postUser,
-  getAllUsers,
-  putRolUser,
-  putPasswordUser,
-  putStatusUser
+    // getUser,
+    postUser,
+    getAllUsers,
+    userById,
+    // putRolUser,
+    // putPasswordUser,
+    // putStatusUser
 };

@@ -37,6 +37,8 @@ const testDataUploader = async () => {
         
         testUser.forEach(user => user.addRol(Math.floor(Math.random()*3)));
 
+        testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*7)].id));
+
         testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*15)));
 
         testActivity.forEach(activity => activity.addActivityType(Math.floor(Math.random()*8)));
