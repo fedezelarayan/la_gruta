@@ -12,11 +12,6 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        username:{
-            type: DataTypes.STRING,
-            unique: true,
-            allowNull: false,
-        },
         birthDate: {
             type: DataTypes.STRING,
             // defaultValue: 0,
@@ -39,9 +34,6 @@ module.exports = (sequelize) => {
             isEmail: {
                 msg: "Debe ingresar un email válido"
             }
-        },
-        occupation: {
-            type: DataTypes.STRING,
         },
         password:{
             type: DataTypes.INTEGER,
