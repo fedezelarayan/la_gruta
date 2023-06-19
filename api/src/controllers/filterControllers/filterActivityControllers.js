@@ -27,6 +27,12 @@ const filtroNombre = async (name) => {
         where: {
             name: name,
         },
+        include: {
+            model: ActivityType,
+            through: {
+                attributes: [],
+            },
+        },
     });
     return actividadesFiltrados;
 };

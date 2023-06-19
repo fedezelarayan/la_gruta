@@ -1,4 +1,5 @@
 const { Products, ProductsType } = require ('../../db');
+const { Op } = require('sequelize');
 
 const filtroTipo = async (name) => {
     const allProducts = await Products.findAll({
@@ -26,12 +27,14 @@ const filtroTipo = async (name) => {
 const filtroNombre = async (name) => {
     const productosFiltrados = await Products.findAll({
         where: {
-            name: name,
+            name: {
+                [Op.substring]: name,
+            },
         }
     })
-    const filteredProducts = await productosFiltrados.filter((pr) => pr.dataValues.name.toLowerCase().includes(name.toLowerCase()))
+    // const filteredProducts = await productosFiltrados.filter((pr) => pr.dataValues.name.toLowerCase().includes(name.toLowerCase()))
     console.log(productosFiltrados)
-    return filteredProducts;
+    return productosFiltrados;
 }
 
 module.exports = { filtroTipo, filtroNombre };
