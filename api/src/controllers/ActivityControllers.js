@@ -13,7 +13,7 @@ const getAllActivity = async (clic = 0) => {
         through: {
           attributes:[]
         }
-      },limit: 5, offset: (clic *5) });
+      },limit: 4, offset: (clic *4) });
   
     if (!allActivity.length) {
       throw new Error("Actividades no encontrados");
