@@ -54,8 +54,6 @@ module.exports = (sequelize) => {
             //     arg: [[6, 14]],
             //     msg: "La contraseña debe tener entre 6 y 14 caracteres"
             // }, //longitud de la contraseña
-
-
         }
     },
     {
