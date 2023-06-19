@@ -35,9 +35,6 @@ module.exports = (sequelize) => {
                 msg: "Debe ingresar un email válido"
             }
         },
-        occupation :{
-            type: DataTypes.STRING,
-        },
         password:{
             type: DataTypes.INTEGER,
             allowNull: false,
