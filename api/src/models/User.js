@@ -12,9 +12,11 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        username: {
+
+         username: {
             type: DataTypes.STRING,
             unique: true,
+
             allowNull: false,
         },
         birthDate: {
@@ -44,7 +46,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         password:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             defaultValue: 12345678,
             isAlphanumeric: {
