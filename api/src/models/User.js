@@ -12,8 +12,11 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        username:{
+
+         username: {
             type: DataTypes.STRING,
+            unique: true,
+
             allowNull: false,
         },
         birthDate: {
@@ -38,6 +41,9 @@ module.exports = (sequelize) => {
             isEmail: {
                 msg: "Debe ingresar un email válido"
             }
+        },
+        occupation: {
+            type: DataTypes.STRING,
         },
         password:{
             type: DataTypes.STRING,
