@@ -27,11 +27,11 @@ const CreateAdmin = async() => {
         mail:"admin@gmail.com",
         password: "admin123",
     }
-    await User.create(admin)
-    
-    const newAdmin = await User.findOne({where:{username:"admin"}})
-    const rol = await Rol.findByPk(1)
-    await rol.addUser(newAdmin)
+    const newAdmin = await User.create(admin)
+    await newAdmin.addRol(3)
+    /* const newAdmin = await User.findOne({where:{username:"admin"}})
+    const rol = await Rol.findByPk(3)
+    await rol.addUser(newAdmin) */
    
 
 }
@@ -54,7 +54,7 @@ const testDataUploader = async () => {
         
         await ActivityType.bulkCreate(activityTypeTestData, { ignoreDuplicates: true });
         
-        testUser.forEach(user => user.addRol(Math.floor(Math.random()*3)));
+        testUser.forEach(user => user.addRol(Math.floor(Math.random()*2)));
         await CreateAdmin()
 
         testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*7)].id));
