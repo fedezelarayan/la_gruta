@@ -14,8 +14,27 @@ const {
     userTestData,
     activityTypeTestData,
     productsTypeTestData,
-    rolTestData
+    rolTestData,
 } = require("./testData");
+
+const CreateAdmin = async() => {
+    const admin = {
+        fullName: "admin",
+        username:"admin",
+        birthDate:"",
+        image:"",
+        phone:"",
+        mail:"admin@gmail.com",
+        password: "admin123",
+    }
+    const newAdmin = await User.create(admin)
+    await newAdmin.addRol(3)
+    /* const newAdmin = await User.findOne({where:{username:"admin"}})
+    const rol = await Rol.findByPk(3)
+    await rol.addUser(newAdmin) */
+   
+
+}
 
 const testDataUploader = async () => {
 
@@ -35,11 +54,12 @@ const testDataUploader = async () => {
         
         await ActivityType.bulkCreate(activityTypeTestData, { ignoreDuplicates: true });
         
-        testUser.forEach(user => user.addRol(Math.floor(Math.random()*3)));
+        testUser.forEach(user => user.addRol(Math.floor(Math.random()*2)));
+        await CreateAdmin()
 
         testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*7)].id));
 
-        testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*15)));
+        testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*4)));
 
         testActivity.forEach(activity => activity.addActivityType(Math.floor(Math.random()*8)));
 

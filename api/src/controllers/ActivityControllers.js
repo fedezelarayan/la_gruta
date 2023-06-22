@@ -21,44 +21,44 @@ cloudinary.config({
 
 //*-----------------GET Activity---------------------
 const getAllActivity = async (clic = 0) => {
-  const allActivity = await Activity.findAll({
-    where: {
-      status: true
-    },
-    include: {
-      model: ActivityType,
-      through: {
-        attributes: []
-      }
-    }, limit: 5, offset: (clic * 5)
-  });
 
-  if (!allActivity.length) {
-    throw new Error("Actividades no encontrados");
-  } else {
-    return allActivity;
-  }
-};
-
-
-//*---------------GET AtivityID--------------------
-
-const getActivityById = async (id) => {
-  const activityId = await Activity.findByPk(id, {
-    include: {
-      model: ActivityType,
-      through: {
-        attributes: []
-      }
+    const allActivity = await Activity.findAll({
+      where:{
+        status: true
+      },
+      include : {
+        model: ActivityType,
+        through: {
+          attributes:[]
+        }
+      },limit: 4, offset: (clic *4) });
+  
+    if (!allActivity.length) {
+      throw new Error("Actividades no encontrados");
+    } else {
+      return allActivity;
     }
-  })
+  };
 
-  if (!activityId) {
-    throw new Error("No se encontro la actividad");
-  } else {
-    return activityId;
-  }
-};
+
+  //*---------------GET AtivityID--------------------
+
+  const getActivityById = async (id) =>{
+    const activityId = await Activity.findByPk(id, {
+      include: {
+        model: ActivityType,
+        through: {
+          attributes:[]
+        }
+      }
+    })
+    
+    if(!activityId){
+      throw new Error ("No se encontro la actividad");
+    }else {
+      return activityId;
+    }
+  };
 
 //*-----------------POST Activity---------------------
 

@@ -57,10 +57,10 @@ const postUser = async (
     phone,
     mail,
     password,
-    occupation,
+    /* occupation */
     rol
 ) => {
-    if (!fullName || !username || !password || !mail)
+    if (!fullName && !username && !password && !mail)
         throw new Error("Faltan datos");
 
     const findUserByUsername = await User.findOne({ where: { username } });
@@ -79,7 +79,8 @@ const postUser = async (
         phone,
         mail,
         password,
-        occupation,
+        /* occupation, */  // no esta en el modelo de user
+        
     });
 
     await newUser.addRol(rol);
