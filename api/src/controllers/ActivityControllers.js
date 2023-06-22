@@ -60,7 +60,7 @@ const getAllActivity = async (clic = 0) => {
     }
   };
 
-//*-----------------POST Activity---------------------
+//*-----------------POST Activity--------------------- 
 
 const createActivity = async ({ name, description, type_activity, date, img }) => {
   const imagePath = ASSET_PATH;
