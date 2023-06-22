@@ -1,4 +1,4 @@
-const { createOrder } = require('../controllers/mpCreateOrderController');
+const { createOrder } = require('../controllers/mpController');
 
 
 const cartOrderHandler = async (req, res) => {
