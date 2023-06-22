@@ -1,5 +1,23 @@
 const { Activity, ActivityType } = require("../db");
 /* const ActivityType = require("../models/ActivityType"); */
+require('dotenv').config();
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
+
+
+const API_KEY = process.env.API_KEY;
+const API_SECRET = process.env.API_SECRET;
+const CLOUD_NAME = process.env.CLOUD_NAME;
+const ASSET_PATH = process.env.ASSET_PATH;
+
+
+
+cloudinary.config({
+  cloud_name: CLOUD_NAME,
+  api_key: API_KEY,
+  api_secret: API_SECRET,
+})
+
 
 //*-----------------GET Activity---------------------
 const getAllActivity = async (clic = 0) => {
@@ -42,45 +60,50 @@ const getAllActivity = async (clic = 0) => {
     }
   };
 
-//*-----------------POST Activity---------------------
+//*-----------------POST Activity--------------------- 
+
 const createActivity = async ({ name, description, type_activity, date, img }) => {
+  const imagePath = ASSET_PATH;
+
+  const files = await fs.promises.readdir(imagePath);
+  for (const file of files) {
+    const imgFullPath = imagePath + file;
+    console.log(imgFullPath);
+    const result = await cloudinary.uploader.upload(imgFullPath, { public_id: "image_activity" });
+    const imgLink = result.secure_url;
+    console.log(imgLink);
+    await fs.promises.unlink(imgFullPath);
+    img = imgLink;
+
     if (!name) throw new Error("No puedes enviar un nombre vacío");
 
     const existingActivity = await Activity.findAll({ where: { name } })
-    console.log(existingActivity);
 
     if (existingActivity.length) {
       throw new Error("La Actividad existe");
     } else {
 
-      const newActivity = await Activity.create({
-        name, description, date, img,
+      const newActivity = await Activity.create({ name, description, date, img });
 
-      });
-
+      console.log(img);
       newActivity.addActivityType(type_activity)
       return newActivity;
     }
-  };
+  }
+};
 
- /*  const createActivity = async (name, description, class_activity, date, img) => {
-    const newActivity = await Activity.create({ name, description, class_activity, date, img })
-    newActivity.addActivityType(type)
-    return newActivity;
-}
- */
 //*-----------------DELETE Activity---------------------
 const deleteActivity = async (id) => {
-    const activity = await Activity.findByPk(id);
-  
-    if (!activity) {
-      throw new Error("La actividad no existe");
-    } else {
-      await Activity.update({status:false},{ where: { id } });
-      return;
-    }
+  const activity = await Activity.findByPk(id);
+
+  if (!activity) {
+    throw new Error("La actividad no existe");
+  } else {
+    await Activity.update({ status: false }, { where: { id } });
+    return;
+  }
 
 };
-  
-  module.exports = { getAllActivity, createActivity, deleteActivity, getActivityById };
+
+module.exports = { getAllActivity, createActivity, deleteActivity, getActivityById };
 
