@@ -5,6 +5,7 @@ const { addToCartHandler, removeFromCartHandler } = require('../handlers/cartHan
 const cartRouter = Router();
 
 cartRouter.post('/add', addToCartHandler);
+
 cartRouter.delete('/remove', removeFromCartHandler)
 
 module.exports = cartRouter;

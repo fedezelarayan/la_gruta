@@ -20,4 +20,4 @@ const removeFromCartHandler = async (req, res) => {
     }
 }
 
-module.exports = { addToCartHandler, }
+module.exports = { addToCartHandler, removeFromCartHandler }

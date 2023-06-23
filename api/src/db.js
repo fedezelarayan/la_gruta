@@ -64,5 +64,6 @@ Cart.belongsToMany(Products, { through: Cart_Products});
 
 module.exports = {
     ...sequelize.models,
+    Cart,
     conn: sequelize,
 };

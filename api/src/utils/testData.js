@@ -491,7 +491,14 @@ const rolTestData = [
     { name: "admin" },
 ];
 
-
+// const cartTestData = [
+//     {quantity: 2},
+//     {quantity: 4},
+//     {quantity: 6},
+//     {quantity: 3},
+//     {quantity: 4},
+//     {quantity: 5},
+// ]
 
 module.exports = {
     productsTestData,

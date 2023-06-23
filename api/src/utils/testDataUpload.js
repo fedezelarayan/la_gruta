@@ -5,7 +5,8 @@ const {
     Products,
     ProductsType,
     User,
-    Rol
+    Rol,
+    // Cart
 } = require("../db");
 const {
     productsTestData,
@@ -15,6 +16,7 @@ const {
     activityTypeTestData,
     productsTypeTestData,
     rolTestData,
+    // cartTestData
 } = require("./testData");
 
 const CreateAdmin = async() => {
@@ -53,6 +55,8 @@ const testDataUploader = async () => {
         const testActivity = await Activity.bulkCreate(activityTestData, { ignoreDuplicates: true });
         
         await ActivityType.bulkCreate(activityTypeTestData, { ignoreDuplicates: true });
+
+        // await Cart.bulkCreate(cartTestData);
         
         testUser.forEach(user => user.addRol(Math.floor(Math.random()*2)));
         await CreateAdmin()
