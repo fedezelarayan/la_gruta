@@ -28,7 +28,7 @@ const addToCart = async ( user_id, product_id, quantity ) => {
     console.log(product);
 
 
-    await cart.setProducts(product, {through: { quantity: quantity }});
+    await cart.addProducts(product, {through: { quantity: quantity }});
 
     // product.stock -= quantity;
 
