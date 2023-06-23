@@ -24,7 +24,6 @@ const formVoluntario = async (formData) => {
           <p style="color: #555555;">Por favor, ponte en contacto con el solicitante para brindarle más información sobre cómo convertirse en voluntario.</p>
           <p style="color: #555555;">Saludos,</p>
           <p style="color: #555555;">Equipo de LA GRUTA</p>
-          <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/640px-Heart_coraz%C3%B3n.svg.png' style="width: 200px; height: auto;"/>
         </div>
       `,
     };
