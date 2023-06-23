@@ -1,4 +1,13 @@
-const { Cart, Products, User } = require('../db');
+const { Cart, Products, User, Cart_Products } = require('../db');
+
+
+const getUserCart = async ( user_id ) => {
+
+    const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products, through: { Cart_Products }}});
+    if(!cart) throw new Error('No es posible encontrar el carrito');
+
+    return cart;
+}
 
 
 const addToCart = async ( user_id, product_id, quantity ) => {
@@ -42,4 +51,4 @@ const removeFromCart = async ( user_id, product_id ) => {
     return;
 }
 
-module.exports = { addToCart, removeFromCart }
+module.exports = { addToCart, removeFromCart, getUserCart }

@@ -1,4 +1,16 @@
-const { addToCart, removeFromCart } = require('../controllers/cartControllers')
+const { addToCart, removeFromCart, getUserCart } = require('../controllers/cartControllers');
+
+
+
+const getUserCartHandler = async (req, res) => {
+    const { user_id } = req.params;
+    try {
+        const cart = await getUserCart( user_id );
+        return res.status(200).json(cart);
+    } catch (error) {
+        return res.status(400).json({error: error.message})
+    }
+}
 
 const addToCartHandler = async (req, res) => {
     const { user_id, product_id, quantity } = req.query;
@@ -20,4 +32,4 @@ const removeFromCartHandler = async (req, res) => {
     }
 }
 
-module.exports = { addToCartHandler, removeFromCartHandler }
+module.exports = { addToCartHandler, removeFromCartHandler, getUserCartHandler }
