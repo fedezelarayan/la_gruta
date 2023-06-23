@@ -12,6 +12,8 @@ const filterActivityRouter = require ("./filters/filterActivityRouter");
 /* const orderByName = require ('./filters/orderRouter'); */
 const orderRouter = require("./filters/orderRouter");
 const peymentRouter = require("./peymentRouter");
+const cartRouter = require("./cartRouter");
+
 const router = Router();
 
 // Rutes
@@ -26,6 +28,7 @@ router.use("/filter", filterProductsRouter);
 router.use("/filter_activity", filterActivityRouter);
 router.use("/order", orderRouter);
 router.use("/payment", peymentRouter)
+router.use("/cart", cartRouter);
 
 
 module.exports = router;
