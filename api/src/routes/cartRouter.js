@@ -8,6 +8,6 @@ cartRouter.get('/:user_id', getUserCartHandler);
 
 cartRouter.post('/add', addToCartHandler);
 
-cartRouter.delete('/remove', removeFromCartHandler);
+cartRouter.delete('/remove', removeFromCartHandler); //! Este falta chequear todavía
 
 module.exports = cartRouter;

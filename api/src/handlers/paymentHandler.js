@@ -1,13 +1,13 @@
-const { createOrder } = require('../controllers/mpController');
+const { createOrder } = require('../controllers/paymentController');
 
 
 const cartOrderHandler = async (req, res) => {
-
+    const { user_id } = req.params;
     try {
-        const result = await createOrder();
-        res.status(200).json(result); 
+        const result = await createOrder(user_id);
+        return res.status(200).json(result); 
     } catch (error) {
-        res.status(400).json({error: error.message});
+        return res.status(400).json({error: error.message});
     }
 };
 
