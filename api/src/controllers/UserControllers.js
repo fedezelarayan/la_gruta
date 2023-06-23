@@ -64,10 +64,10 @@ const postUser = async (
     /* occupation */
     rol
 ) => {
-    if (!fullName && !username && !password && !mail)
+    if (!fullName || !mail)
         throw new Error("Faltan datos");
 
-    const findUserByUsername = await User.findOne({ where: { username } });
+    const findUserByUsername = await User.findOne({ where: { fullName } });
     const findUserByEmail = await User.findOne({ where: { mail } });
 
     if (findUserByUsername) throw new Error("Ya existe el nombre de usuario");
@@ -108,30 +108,30 @@ const postUser = async (
 //   throw new Error("Permiso denegado, no eres administrador");
 // }
 
-// //*-----------------GET USER---------------------
-// const getUser = async (password, email) => {
-//   if (!password) {
-//     throw new Error("No puede enviar una contraseña vacia");
-//   } else if (!email) {
-//     throw new Error("No puede enviar un email vacio");
-//   } else {
-//     const findUser = await User.findOne({ where: { email } });
-//     if (!findUser) {
-//       throw new Error("El usuario no existe");
-//     } else {
-//       const findUser2 = await User.findOne({
-//         where: { password, email },
-//         attributes: ["id", "fullName","birthDate", "image", "phone", "email", "admin","password", "volunteer", "sponsor"],
-//       });
-//       if (!findUser2) {
-//         throw new Error("Contraseña equivocada");
-//       }
+//*-----------------GET USER---------------------
+const getUser = async (password, mail) => {
+  if (!password) {
+    throw new Error("No puede enviar una contraseña vacia");
+  } else if (!mail) {
+    throw new Error("No puede enviar un email vacio");
+  } else {
+    const findUser = await User.findOne({ where: { mail } });
+    if (!findUser) {
+      throw new Error("El usuario no existe");
+    } else {
+      const findUser2 = await User.findOne({
+        where: { password, mail },
+        attributes: ["id", "fullName","birthDate", "image", "phone", "email", "admin","password", "volunteer", "sponsor"],
+      });
+      if (!findUser2) {
+        throw new Error("Contraseña equivocada");
+      }
 
-//       if(!findUser2.status) throw new Error("Usuario bloqueado")
-//       return findUser2;
-//     }
-//   }
-// };
+      if(!findUser2.status) throw new Error("Usuario bloqueado")
+      return findUser2;
+    }
+  }
+};
 
 // //*---------------PUT PASSWORD USER---------------------
 // const putPasswordUser = async (email, password) => {
