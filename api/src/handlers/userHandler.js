@@ -10,15 +10,15 @@ const {
   } = require("../controllers/UserControllers");
 
   //* Handler que verifica en la DB si existe el User
-// const getUserHandler = async (req, res) => {
-//     const { password, email } = req.body;
-//     try {
-//       const user = await getUser(password, email);
-//       res.status(200).json(user);
-//     } catch (error) {
-//       res.status(400).json({ error: error.message });
-//     }
-//   };
+const getUserHandler = async (req, res) => {
+    const { fullName, mail } = req.body;
+    try {
+      const user = await getUser(fullName, mail);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };
   
   //* Handler que trae a todos los Users de la DB
   const getAllUsersHandler = async (req, res) => {
