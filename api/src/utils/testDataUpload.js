@@ -34,9 +34,8 @@ const CreateAdmin = async() => {
     /* const newAdmin = await User.findOne({where:{username:"admin"}})
     const rol = await Rol.findByPk(3)
     await rol.addUser(newAdmin) */
-   
-
 }
+/* 87e4d961-ea70-49fc-9e9d-5729553d7568 | Pattie Senecaux  */
 
 const testDataUploader = async () => {
 
@@ -58,14 +57,14 @@ const testDataUploader = async () => {
 
         // await Cart.bulkCreate(cartTestData);
         
-        testUser.forEach(user => user.addRol(Math.floor(Math.random()*2)));
-        await CreateAdmin()
+       /*  testUser.forEach(user => user.addRol(Math.floor(Math.random()*2))); */
+        /* await CreateAdmin() */
 
-        testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*7)].id));
+/*         testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*7)].id));
 
         testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*4)));
 
-        testActivity.forEach(activity => activity.addActivityType(Math.floor(Math.random()*8)));
+        testActivity.forEach(activity => activity.addActivityType(Math.floor(Math.random()*8))); */
 
         console.log('Datos cargados exitosamente!');
 
