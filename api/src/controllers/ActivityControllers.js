@@ -1,5 +1,6 @@
 const { Activity, ActivityType } = require("../db");
 /* const ActivityType = require("../models/ActivityType"); */
+const { testDataUploader, testDataCheck } = require('../utils/testDataUpload');
 require('dotenv').config();
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
@@ -19,8 +20,17 @@ cloudinary.config({
 })
 
 
-//*-----------------GET Activity---------------------
+//*-----------------GET All Activity---------------------
 const getAllActivity = async (clic = 0) => {
+
+    const check = await testDataCheck();
+    console.log(check.length);
+    
+    if(check.length === 0){
+      await testDataUploader()
+    } else {
+      console.log('Los datos ya estaban cargados');
+    }
 
     const allActivity = await Activity.findAll({
       where:{
