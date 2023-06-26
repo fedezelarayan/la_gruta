@@ -49,6 +49,21 @@ const removeFromCart = async ( user_id, product_id ) => {
     await cart.removeProduct(product);
 
     return;
+};
+
+const emptyCart = async (user_id) => {
+
+    const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products, through: { Cart_Products }}});
+    if(!cart) throw new Error('No es posible encontrar el carrito');
+
+    const user = await User.findByPk(user_id);
+    if(!user) throw new Error('No se ha podido encontrar al usuario');
+
+    cart.Products.forEach(prod => user.addProducts(prod));
+
+    console.log(cart.Products);
+
+    cart.setProducts([]);
 }
 
-module.exports = { addToCart, removeFromCart, getUserCart }
+module.exports = { addToCart, removeFromCart, getUserCart, emptyCart }
