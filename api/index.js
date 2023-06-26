@@ -8,15 +8,12 @@ const CreateInformation = require("./src/controllers/CreateInformation");
 const { ActivityType } = require('../api/src/db');
 const { default: axios } = require("axios");
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   /* CreateInformation(); */
   server.listen(PORT, () => {
     console.log(`Server raised in port ${PORT}`); // eslint-disable-line no-console
 
   });
-  const activityTypes = axios.get("http://localhost:3001/activityTypes/")
-  if (activityTypes.length) { console.log("Los datos ya fueron cargados") }
-  else { testDataUploader() };
 });
 
 
