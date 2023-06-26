@@ -14,9 +14,6 @@ conn.sync({ force: false }).then(() => {
     console.log(`Server raised in port ${PORT}`); // eslint-disable-line no-console
 
   });
-  const activityTypes = axios.get("http://localhost:3001/activityTypes/")
-  if (activityTypes.length) { console.log("Los datos ya fueron cargados") }
-  else { testDataUploader() };
 });
 
 

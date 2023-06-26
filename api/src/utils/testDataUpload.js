@@ -57,14 +57,14 @@ const testDataUploader = async () => {
 
         // await Cart.bulkCreate(cartTestData);
         
-       /*  testUser.forEach(user => user.addRol(Math.floor(Math.random()*2))); */
+        await testUser.forEach(user => user.addRol(Math.floor(Math.random()*2))); 
         /* await CreateAdmin() */
 
-/*         testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*7)].id));
+        await testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*8)].id));
 
-        testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*4)));
+        await testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*3 + 1)));
 
-        testActivity.forEach(activity => activity.addActivityType(Math.floor(Math.random()*8))); */
+        await testActivity.forEach(activity => activity.addActivityType(Math.floor(Math.random()*8))); 
 
         console.log('Datos cargados exitosamente!');
 
@@ -78,4 +78,12 @@ const testDataUploader = async () => {
 
 }
 
-module.exports = { testDataUploader };
+const testDataCheck = async () => {
+
+    const activities = await Activity.findAll();
+
+    return activities;
+
+}
+
+module.exports = { testDataUploader, testDataCheck };

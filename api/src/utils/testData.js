@@ -50,7 +50,7 @@ const productsTestData = [
         stock: 3,
     },
     {
-        name: "Remera blanca",
+        name: "Camiseta Estudiantes de La Plata - Blanca",
         price: 100,
         image: "https://afaar.vtexassets.com/arquivos/ids/155903-1600-auto?v=638113837487800000&width=1600&height=auto&aspect=true",
 
@@ -58,7 +58,7 @@ const productsTestData = [
         stock: 5,
     },
     {
-        name: "Remera negra",
+        name: "Camiseta Estudiantes de La Plata - Negra",
         price: 100,
         image: "https://afaar.vtexassets.com/arquivos/ids/155904-1600-auto?v=638113839210270000&width=1600&height=auto&aspect=true",
 
@@ -66,7 +66,7 @@ const productsTestData = [
         stock: 6,
     },
     {
-        name: "Remera gris",
+        name: "Camiseta Estudiantes de La Plata - Gris",
         price: 100,
         image: "https://afaar.vtexassets.com/arquivos/ids/155902-1600-auto?v=638113835917000000&width=1600&height=auto&aspect=true",
 
@@ -74,7 +74,7 @@ const productsTestData = [
         stock: 3,
     },
     {
-        name: "Remera roja",
+        name: "Camiseta Estudiantes de La Plata - Roja",
         price: 100,
         image: "https://aedlp.vtexassets.com/arquivos/ids/156138-500-auto?v=1772979721&width=500&height=auto&aspect=true",
 
@@ -82,7 +82,7 @@ const productsTestData = [
         stock: 3,
     },
     {
-        name: "Remera verde",
+        name: "Remera verde v2",
         price: 100,
         image: "https://http2.mlstatic.com/D_NQ_NP_926685-MLA42160565643_062020-O.webp",
 
@@ -90,7 +90,7 @@ const productsTestData = [
         stock: 3,
     },
     {
-        name: "Remera amarilla",
+        name: "Remera amarilla v2",
         price: 100,
         image: "https://http2.mlstatic.com/D_NQ_NP_803855-MLA46308276931_062021-O.webp",
 
@@ -98,7 +98,7 @@ const productsTestData = [
         stock: 3,
     },
     {
-        name: "Gorra",
+        name: "Gorra remil re fachera",
         price: 150,
         image: "https://http2.mlstatic.com/D_NQ_NP_2X_930720-MLA48164080171_112021-F.webp",
 
@@ -130,7 +130,7 @@ const productsTestData = [
         stock: 3,
     },
     {
-        name: "Remera blanca",
+        name: "Remera blanca v3",
         price: 150,
         image: "https://http2.mlstatic.com/D_NQ_NP_923599-MLA54800329255_042023-V.webp",
 
@@ -194,7 +194,7 @@ const productsTestData = [
         stock: 3,
     },
     {
-        name: "Remera negra",
+        name: "Remera negra de Puma",
         price: 250,
         image: "https://http2.mlstatic.com/D_NQ_NP_790095-MLA69997793287_062023-W.webp",
 
@@ -218,7 +218,7 @@ const productsTestData = [
         stock: 3,
     },
     {
-        name: "Remera Celeste",
+        name: "Remera Aladdin",
         price: 150,
         image: "https://http2.mlstatic.com/D_NQ_NP_675208-MLA46442521850_062021-W.webp",
 
