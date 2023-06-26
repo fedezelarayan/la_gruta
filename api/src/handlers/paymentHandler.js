@@ -1,11 +1,13 @@
 const { createOrder } = require('../controllers/paymentController');
+const { emptyCart } = require('../controllers/cartControllers')
 
 
 const cartOrderHandler = async (req, res) => {
     const { user_id } = req.params;
     try {
         const result = await createOrder(user_id);
-        return res.status(200).json(result); 
+        await emptyCart(user_id);
+        return res.status(200).json(result.body); 
     } catch (error) {
         return res.status(400).json({error: error.message});
     }
