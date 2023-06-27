@@ -7,7 +7,7 @@ const {
   getAllUsersHandler,
   getUserById,
   // putRolUserHandler,
-  // putPasswordUserHandler,
+  putEditUserHandler,
   // putStatusUserHandler
 } = require("../handlers/userHandler");
 
@@ -32,7 +32,7 @@ UserRouter.get("/", getAllUsersHandler);
 UserRouter.get("/:user_id", getUserById);
 UserRouter.post("/", postUserHandler)
 // UserRouter.get("/:id_user", getAllUsersHandler);
-// UserRouter.put("/password", putPasswordUserHandler)
+UserRouter.put("/edit", putEditUserHandler)
 // UserRouter.put("/status/:id_user",putStatusUserHandler)
 // UserRouter.put("/", putRolUserHandler);
 
