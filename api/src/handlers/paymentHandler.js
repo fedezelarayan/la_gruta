@@ -16,6 +16,7 @@ const cartOrderHandler = async (req, res) => {
 
 const donationOrderHandler = async (req, res) => {
     const { user_id, amount } = req.body;
+    console.log(user_id, amount);
     try {
         const result = await createDonationOrder( user_id, amount );
         return res.status(200).json(result);

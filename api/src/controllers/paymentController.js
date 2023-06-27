@@ -1,5 +1,5 @@
 const mercadopago = require('mercadopago');
-const { Cart, Cart_Products, Products, User } = require('../db');
+const { Cart, Cart_Products, Products, User, Donation } = require('../db');
 require("dotenv").config();
 const { MP_CART_ACCESS_TOKEN } = process.env;
 
@@ -40,16 +40,17 @@ const createDonationOrder = async ( user_id, amount ) => {
     const user = await User.findByPk(user_id);
     if(!user) throw new Error('No se pudo encontrar al usuario');
 
-    const tiempoTranscurrido = new Date.now();
-    const fecha = new Date(tiempoTranscurrido);
+    const fecha = new Date();
     const date = fecha.toLocaleDateString();
     
     console.log(date);
 
-    const newDonation = {
+    const donation = {
         date,
         amount
     };
+
+    const newDonation = await Donation.create(donation)
 
     mercadopago.configure({
         access_token: MP_CART_ACCESS_TOKEN,
@@ -69,7 +70,7 @@ const createDonationOrder = async ( user_id, amount ) => {
         }
     });
 
-    user.addDonation(newDonation);
+    await user.addDonation(newDonation);
 
     return result.body;
 }
