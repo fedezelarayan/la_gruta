@@ -23,10 +23,10 @@ cloudinary.config({
 //*-----------------GET All Activity---------------------
 const getAllActivity = async (clic = 0) => {
 
-    const check = await testDataCheck();
-    console.log(check.length);
+    const { activitiesCheck, productsCheck } = await testDataCheck();
+    console.log(activitiesCheck, productsCheck);
     
-    if(check.length === 0){
+    if( productsCheck.length === 0 && activitiesCheck.length === 0){
       await testDataUploader()
     } else {
       console.log('Los datos ya estaban cargados');
