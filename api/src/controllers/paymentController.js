@@ -32,13 +32,46 @@ const createCartOrder = async (user_id) => {
 
     console.log(result);
 
-    return result;
+    return result.body;
 };
 
 const createDonationOrder = async ( user_id, amount ) => {
 
     const user = await User.findByPk(user_id);
+    if(!user) throw new Error('No se pudo encontrar al usuario');
 
+    const tiempoTranscurrido = new Date.now();
+    const fecha = new Date(tiempoTranscurrido);
+    const date = fecha.toLocaleDateString();
+    
+    console.log(date);
+
+    const newDonation = {
+        date,
+        amount
+    };
+
+    mercadopago.configure({
+        access_token: MP_CART_ACCESS_TOKEN,
+    });
+
+    const result = await mercadopago.preferences.create({
+        items: [
+            {
+                title: 'Donación',
+                unit_price: amount,
+                currency_id: 'ARS',
+                quantity: 1,
+            }
+        ],  //Aca va un array de productos con las props: title, unit_price, currency_id, quantity
+        back_urls: {
+            success: ""
+        }
+    });
+
+    user.addDonation(newDonation);
+
+    return result.body;
 }
 
 module.exports = { createCartOrder, createDonationOrder }
