@@ -61,8 +61,10 @@ Activity.belongsToMany(User, { through: "User_Activity" });
 User.belongsToMany(Products, { through: "User_Products" });
 Products.belongsToMany(User, { through: "User_Products" });
 
-User.belongsToMany(Rol, { through: "User_Rol" });
-Rol.belongsToMany(User, { through: "User_Rol" });
+const Roles = sequelize.define("Roles");
+
+User.belongsToMany(Rol, { through: Roles });
+Rol.belongsToMany(User, { through: Roles});
 
 User.hasOne(Cart);
 Cart.belongsTo(User);
