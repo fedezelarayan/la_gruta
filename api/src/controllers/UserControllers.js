@@ -1,6 +1,6 @@
 //?----------------------------IMPORTS--------------------------------
 
-const { User, Rol, Activity, Cart, Roles } = require("../db");
+const { User, Rol, Activity, Cart, Roles, Donation } = require("../db");
 const { Op } = require("sequelize");
 //?----------------------------CONTROLLERS------------------------------
 
@@ -19,6 +19,9 @@ const getAllUsers = async () => {
             },
             {
                 model: Cart,
+            },
+            {
+                model: Donation,
             },
         ],
     });

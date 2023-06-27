@@ -1,9 +1,9 @@
 const mercadopago = require('mercadopago');
-const { Cart, Cart_Products, Products } = require('../db');
+const { Cart, Cart_Products, Products, User, Donation } = require('../db');
 require("dotenv").config();
 const { MP_CART_ACCESS_TOKEN } = process.env;
 
-const createOrder = async (user_id) => {
+const createCartOrder = async (user_id) => {
 
     const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products, through: { Cart_Products }}});
     if(!cart) throw new Error('No es posible encontrar el carrito');
@@ -32,7 +32,47 @@ const createOrder = async (user_id) => {
 
     console.log(result);
 
-    return result;
+    return result.body;
 };
 
-module.exports = { createOrder }
+const createDonationOrder = async ( user_id, amount ) => {
+
+    const user = await User.findByPk(user_id);
+    if(!user) throw new Error('No se pudo encontrar al usuario');
+
+    const fecha = new Date();
+    const date = fecha.toLocaleDateString();
+    
+    console.log(date);
+
+    const donation = {
+        date,
+        amount
+    };
+
+    const newDonation = await Donation.create(donation)
+
+    mercadopago.configure({
+        access_token: MP_CART_ACCESS_TOKEN,
+    });
+
+    const result = await mercadopago.preferences.create({
+        items: [
+            {
+                title: 'Donación',
+                unit_price: amount,
+                currency_id: 'ARS',
+                quantity: 1,
+            }
+        ],  //Aca va un array de productos con las props: title, unit_price, currency_id, quantity
+        back_urls: {
+            success: ""
+        }
+    });
+
+    await user.addDonation(newDonation);
+
+    return result.body;
+}
+
+module.exports = { createCartOrder, createDonationOrder }
