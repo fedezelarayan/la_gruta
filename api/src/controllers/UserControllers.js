@@ -1,6 +1,6 @@
 //?----------------------------IMPORTS--------------------------------
 
-const { User, Rol, Activity, Cart } = require("../db");
+const { User, Rol, Activity, Cart, Roles } = require("../db");
 const { Op } = require("sequelize");
 //?----------------------------CONTROLLERS------------------------------
 
@@ -134,19 +134,28 @@ const postUser = async (
 // };
 
 // //*---------------PUT PASSWORD USER---------------------
-// const putPasswordUser = async (email, password) => {
-//   const findUser = await User.findOne({where:{
-//     email
-//   }})
+const putEditUser = async (email, password,) => {
+const findUser = await User.findOne({where:{
+ email,
+ }})
 
-//   if(!findUser){ throw new Error("El usuario no existe")}
+if(!findUser){ throw new Error("El usuario no existe")}
 
-//   findUser.password = password
+if (password) findUser.password = password
+if (birthDate) findUser.birthDate = birthDate
+if (image) findUser.image = image
+if (phone) findUser.phone = phone
+if (occupation) findUser.occupation = occupation
+if (address) findUser.address = address
+if(rol){const  newrol =  await Roles.findOne ({where:{Users: findUser.id}
+})
+newrol.Rols = rol
+newrol.save()}
 
-//   findUser.save()
+findUser.save()
 
-//   return;
-// }
+ return;
+}
 
 // //*---------------PUT ROL USER---------------------
 // const putRolUser = async (id_user, rol) => {
@@ -187,6 +196,6 @@ module.exports = {
     getAllUsers,
     userById,
     // putRolUser,
-    // putPasswordUser,
+    putEditUser,
     // putStatusUser
 };

@@ -4,7 +4,7 @@ const {
     getAllUsers,
     userById,
     putRolUser,
-    putPasswordUser,
+    putEditUser,
     putStatusUser
   
   } = require("../controllers/UserControllers");
@@ -55,28 +55,28 @@ const {
     }
   }
   
-  // //* Handler que modifica la password del usuario
-  // const putPasswordUserHandler = async (req,res) => {
-  //   const {email,password} =req.body
-  //   try {
-  //     await putPasswordUser(email,password)
-  //     res.status(200).json("Contraseña cambiada con exito")
-  //   } catch (error) {
-  //     res.status(400).json({error: error.message})
-  //   }
-  // }
+  // //* Handler que modifica datos del usuario
+  const putEditUserHandler = async (req,res) => {
+ const {email, password, birthDate, image, phone, occupation, address  } =req.body
+  try {
+   await putEditUser(email, password, birthDate, image, phone, occupation, address)
+   res.status(200).json("Datos cambiados con exito")
+    } catch (error) {
+     res.status(400).json({error: error.message})
+    }
+   }
   
   // //* Handler que modifica el rol de usuario
-  // const putRolUserHandler = async (req, res) => {
-  //   const { id_user, admin, sponsor, volunteer } = req.body; //ID DEL USUARIO QUE LE VAMOS A CAMBIAR EL ROL
+  const putRolUserHandler = async (req, res) => {
+  const { id_user, admin, padrino } = req.body; //ID DEL USUARIO QUE LE VAMOS A CAMBIAR EL ROL
   
-  //   try {
-  //     putUser = await putRolUser(id_user, admin, sponsor, volunteer);
-  //     res.status(200).json(putUser);
-  //   } catch (error) {
-  //     res.status(400).json({ error: error.message });
-  //   }
-  // };
+  try {
+  putUser = await putRolUser(id_user, admin, padrino, volutario);
+    res.status(200).json(putUser);
+  } catch (error) {
+     res.status(400).json({ error: error.message });
+    }
+ };
   
   // //* Handler para banear un user
   // const putStatusUserHandler = async  (req,res) =>{
@@ -94,9 +94,9 @@ const {
     // getUserHandler,
     postUserHandler,
     getAllUsersHandler,
-    getUserById
+    getUserById,
     // putRolUserHandler,
-    // putPasswordUserHandler,
+    putEditUserHandler
     // putStatusUserHandler
   };
   
