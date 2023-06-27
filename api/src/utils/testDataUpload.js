@@ -70,6 +70,8 @@ const testDataUploader = async () => {
 
         // console.log(testUser);
 
+        return;
+
     } catch (error) {
 
         console.log(error);
@@ -80,9 +82,11 @@ const testDataUploader = async () => {
 
 const testDataCheck = async () => {
 
-    const activities = await Activity.findAll();
+    const activitiesCheck = await Activity.count();
 
-    return activities;
+    const productsCheck = await Products.count();
+
+    return { activitiesCheck, productsCheck };
 
 }
 
