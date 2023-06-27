@@ -1,9 +1,9 @@
 const mercadopago = require('mercadopago');
-const { Cart, Cart_Products, Products } = require('../db');
+const { Cart, Cart_Products, Products, User } = require('../db');
 require("dotenv").config();
 const { MP_CART_ACCESS_TOKEN } = process.env;
 
-const createOrder = async (user_id) => {
+const createCartOrder = async (user_id) => {
 
     const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products, through: { Cart_Products }}});
     if(!cart) throw new Error('No es posible encontrar el carrito');
@@ -35,4 +35,10 @@ const createOrder = async (user_id) => {
     return result;
 };
 
-module.exports = { createOrder }
+const createDonationOrder = async ( user_id, amount ) => {
+
+    const user = await User.findByPk(user_id);
+
+}
+
+module.exports = { createCartOrder, createDonationOrder }
