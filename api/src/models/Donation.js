@@ -4,6 +4,7 @@ module.exports = (sequelize) => {
 
     sequelize.define('Donation', {
         id: {
+            primaryKey: true,
             type: DataTypes.UUID,
             default: DataTypes.UUIDV4,
         },
