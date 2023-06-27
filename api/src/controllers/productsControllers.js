@@ -1,16 +1,6 @@
 const { Products, ProductsType } = require ('../db');
-const { testDataUploader, testDataCheck } = require('../utils/testDataUpload');
 
 const getAllProducts = async () => {
-
-    const { activitiesCheck, productsCheck } = await testDataCheck();
-    console.log(activitiesCheck, productsCheck);
-    
-    if( productsCheck.length === 0 && activitiesCheck.length === 0){
-      await testDataUploader()
-    } else {
-      console.log('Los datos ya estaban cargados');
-    }
 
     const dbProducts = await Products.findAll({
         include: {

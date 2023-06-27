@@ -82,9 +82,9 @@ const testDataUploader = async () => {
 
 const testDataCheck = async () => {
 
-    const activitiesCheck = await Activity.findAll();
+    const activitiesCheck = await Activity.count();
 
-    const productsCheck = await Products.findAll();
+    const productsCheck = await Products.count();
 
     return { activitiesCheck, productsCheck };
 
