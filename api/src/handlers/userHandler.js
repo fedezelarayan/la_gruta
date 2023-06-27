@@ -32,12 +32,12 @@ const {
   
   //* Handler que postea el user en la DB
   const postUserHandler = async (req, res) => {
-    const { fullName, username, birthDate, image, phone, mail, password, occupation, rol } = req.body;
+    const { fullName, username, birthDate, image, phone, mail, password, occupation, rol, address } = req.body;
 
     if(!fullName || !mail || !password) res.status(400).json({msg: 'Faltan datos necesarios'});
 
     try {
-      const newUser = await postUser( fullName, username, birthDate, image, phone, mail, password, occupation, rol );
+      const newUser = await postUser( fullName, username, birthDate, image, phone, mail, password, occupation, rol, address );
       res.status(200).json({msg: "Usuario agregado con exito", newUser});
     } catch (error) {
       res.status(400).json({ error: error.message });
@@ -57,9 +57,9 @@ const {
   
   // //* Handler que modifica datos del usuario
   const putEditUserHandler = async (req,res) => {
- const {email, password, birthDate, image, phone, occupation, address  } =req.body
+ const {mail, password, birthDate, image, phone, occupation, address  } =req.body
   try {
-   await putEditUser(email, password, birthDate, image, phone, occupation, address)
+   await putEditUser(mail, password, birthDate, image, phone, occupation, address)
    res.status(200).json("Datos cambiados con exito")
     } catch (error) {
      res.status(400).json({error: error.message})
@@ -68,7 +68,7 @@ const {
   
   // //* Handler que modifica el rol de usuario
   const putRolUserHandler = async (req, res) => {
-  const { id_user, admin, padrino } = req.body; //ID DEL USUARIO QUE LE VAMOS A CAMBIAR EL ROL
+  const { id_user, admin, padrino,} = req.body; //ID DEL USUARIO QUE LE VAMOS A CAMBIAR EL ROL
   
   try {
   putUser = await putRolUser(id_user, admin, padrino, volutario);

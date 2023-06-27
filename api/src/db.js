@@ -66,11 +66,6 @@ const Roles = sequelize.define("Roles");
 User.belongsToMany(Rol, { through: Roles });
 Rol.belongsToMany(User, { through: Roles});
 
-
-
-User.belongsToMany(Roles, { through: Favorites });
-User.belongsToMany(Hotel, { through: Favorites });
-
 User.hasOne(Cart);
 Cart.belongsTo(User);
 

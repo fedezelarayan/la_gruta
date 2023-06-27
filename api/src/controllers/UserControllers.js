@@ -61,7 +61,8 @@ const postUser = async (
     phone,
     mail,
     password,
-    /* occupation */
+    occupation,
+    address,
     rol
 ) => {
     if (!fullName && !username && !password && !mail)
@@ -83,7 +84,8 @@ const postUser = async (
         phone,
         mail,
         password,
-        /* occupation, */  // no esta en el modelo de user
+        occupation,
+        address,
         
     });
 
@@ -133,10 +135,10 @@ const postUser = async (
 //   }
 // };
 
-// //*---------------PUT PASSWORD USER---------------------
-const putEditUser = async (email, password,) => {
+// //*---------------PUT USER---------------------
+const putEditUser = async (mail, password, birthDate, image, phone, occupation, address, rol) => {
 const findUser = await User.findOne({where:{
- email,
+ mail,
  }})
 
 if(!findUser){ throw new Error("El usuario no existe")}
@@ -147,6 +149,7 @@ if (image) findUser.image = image
 if (phone) findUser.phone = phone
 if (occupation) findUser.occupation = occupation
 if (address) findUser.address = address
+
 if(rol){const  newrol =  await Roles.findOne ({where:{Users: findUser.id}
 })
 newrol.Rols = rol
