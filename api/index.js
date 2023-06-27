@@ -9,7 +9,7 @@ const { ActivityType } = require('../api/src/db');
 const { default: axios } = require("axios");
 const { testDataUploader, testDataCheck } = require('../api/src/utils/testDataUpload');
 
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
 
   /* CreateInformation(); */
 
