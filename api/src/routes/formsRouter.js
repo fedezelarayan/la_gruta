@@ -1,8 +1,11 @@
 const { Router } = require('express');
-const { formsHandler } = require('../handlers/formsHandler');
+const { formVoluntarioHandler, formPadrinoHandler, formFooterHandler, formDonacionHandler } = require('../handlers/formsHandler');
 
 const formsRouter = Router();
 
-formsRouterrouter.post('/formVoluntario', formsHandler);
+formsRouter.post('/formVoluntario', formVoluntarioHandler);
+formsRouter.post('/formPadrino', formPadrinoHandler);
+formsRouter.post('/formFooter', formFooterHandler);
+formsRouter.post('/formDonacion', formDonacionHandler);
 
 module.exports = formsRouter;

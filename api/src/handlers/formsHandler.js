@@ -1,12 +1,38 @@
-const formsController = require('../controllers/formController');
+const formsController = require('../controllers/formsController');
 
-const formsHandler = async (req, res) => {
+const formVoluntarioHandler = async (req, res) => {
   try {
-    // Obtén los datos del formulario desde req.body
+    await formsController.formVoluntario(req.body); 
+    res.send('Correo electrónico enviado correctamente');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error al enviar el correo electrónico');
+  }
+};
 
-    // Llama al controlador para procesar la lógica del formulario
-    await formsController.processForm(req.body);
+const formPadrinoHandler = async (req, res) => {
+  try {
+    await formsController.formPadrino(req.body); 
+    res.send('Correo electrónico enviado correctamente');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error al enviar el correo electrónico');
+  }
+};
 
+const formFooterHandler = async (req, res) => {
+  try {
+    await formsController.formFooter(req.body); 
+    res.send('Correo electrónico enviado correctamente');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error al enviar el correo electrónico');
+  }
+};
+
+const formDonacionHandler = async (req, res) => {
+  try {
+    await formsController.formDonacion(req.body); 
     res.send('Correo electrónico enviado correctamente');
   } catch (error) {
     console.error(error);
@@ -15,5 +41,8 @@ const formsHandler = async (req, res) => {
 };
 
 module.exports = {
-    formsHandler,
+    formVoluntarioHandler,
+    formPadrinoHandler,
+    formFooterHandler,
+    formDonacionHandler
 };
