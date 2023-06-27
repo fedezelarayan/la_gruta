@@ -1,6 +1,7 @@
 const { Products, ProductsType } = require ('../db');
 
 const getAllProducts = async () => {
+
     const dbProducts = await Products.findAll({
         include: {
             model: ProductsType,
