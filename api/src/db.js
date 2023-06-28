@@ -2,10 +2,10 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
+const { /* DB_USER, DB_PASSWORD, DB_HOST, DB_NAME,  */DB_DEPLOY } = process.env;
 
 const sequelize = new Sequelize( 
-    // `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+    /* `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, */
      DB_DEPLOY,
     { 
         logging: false, 
@@ -47,7 +47,7 @@ let capsEntries = entries.map((entry) => [
 
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Activity, ActivityType, Children, Products, ProductsType, User, Rol, Cart, Cart_Products } = sequelize.models;
+const { Activity, ActivityType, Children, Products, ProductsType, User, Rol, Cart, Cart_Products, Donation, Review } = sequelize.models;
 
 Activity.belongsToMany(ActivityType, { through: "Activity_ActivityType" });
 ActivityType.belongsToMany(Activity, { through: "Activity_ActivityType" });
@@ -71,6 +71,13 @@ Cart.belongsTo(User);
 
 Products.belongsToMany(Cart, { through: Cart_Products});
 Cart.belongsToMany(Products, { through: Cart_Products});
+
+User.hasMany(Donation);
+Donation.belongsTo(User);
+
+Products.hasMany(Review, {foreignKey: "product_id"}); 
+Review.belongsTo(Products, {foreignKey: "product_id"}); 
+
 
 module.exports = {
     ...sequelize.models,

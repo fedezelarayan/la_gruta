@@ -11,9 +11,11 @@ const filterProductsRouter = require ("./filters/filterProductsRouter");
 const filterActivityRouter = require ("./filters/filterActivityRouter");
 /* const orderByName = require ('./filters/orderRouter'); */
 const orderRouter = require("./filters/orderRouter");
-const peymentRouter = require("./peymentRouter");
+const paymentRouter = require("./paymentRouter");
 const cartRouter = require("./cartRouter");
 const formsRouter = require("./formsRouter")
+const reviewRouter = require("./reviewRouter");
+
 
 const router = Router();
 
@@ -28,9 +30,9 @@ router.use("/activityTypes", ActivityTypesRouter);
 router.use("/filter", filterProductsRouter);
 router.use("/filter_activity", filterActivityRouter);
 router.use("/order", orderRouter);
-router.use("/payment", peymentRouter)
+router.use("/payment", paymentRouter)
 router.use("/cart", cartRouter);
 router.use("/form", formsRouter);
-
+router.use("/review", reviewRouter);
 
 module.exports = router;

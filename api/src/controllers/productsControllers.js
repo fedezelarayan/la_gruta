@@ -1,4 +1,4 @@
-const { Products, ProductsType } = require ('../db');
+const { Products, ProductsType, Review } = require ('../db');
 
 const getAllProducts = async () => {
 
@@ -20,11 +20,17 @@ const postProducts = async (name, price, image, description, stock, type) => {
 
 const getDetailProducts = async (id) => {
     const products = await Products.findByPk(id, {
-        include: {
+        include: [
+            {
             model: ProductsType,
             attributes: ['name'],
-            through: { attributes: "" }
-        }
+            through: { attributes: [] }
+        },
+        {
+            model: Review,
+            attributes: ['content', 'rating'],
+          }
+    ]
     })
     return products;
 }
