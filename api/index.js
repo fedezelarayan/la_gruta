@@ -2,12 +2,11 @@
 
 const server = require("./src/app");
 const { conn } = require("./src/db.js");
-const { testDataUploader } = require('./src/utils/testDataUpload');
 const PORT = process.env.PORT || 3001;
 const CreateInformation = require("./src/controllers/CreateInformation");
 const { ActivityType } = require('../api/src/db');
 const { default: axios } = require("axios");
-const { testDataUploader, testDataCheck } = require('./utils/testDataUpload');
+const { testDataUploader, testDataCheck } = require('./src/utils/testDataUpload');
 
 conn.sync({ force: false }).then(async () => {
 
