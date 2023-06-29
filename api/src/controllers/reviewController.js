@@ -12,6 +12,13 @@ const postReview = async (user_id, content, rating, product_id) => {
     const review = await Review.create ({ user_id, content, rating, product_id })
     await product.addReview(review);
     return review;
+
+/*     { 
+        "user_id":"585db0f5-f020-46f9-a47e-6c4a267e3f38",
+        "content": "lalala",
+        "rating": 2,
+        "product_id": "7e198d47-056c-422e-ae69-ec5843a52e22"
+      } */
 };
 
 
