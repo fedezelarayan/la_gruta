@@ -8,7 +8,8 @@ const {
   getUserById,
   // putRolUserHandler,
   putEditUserHandler,
-  // putStatusUserHandler
+  putStatusUserHandler,
+  restoreStatusUserHandler
 } = require("../handlers/userHandler");
 
 const UserRouter = Router();
@@ -33,7 +34,8 @@ UserRouter.get("/:user_id", getUserById);
 UserRouter.post("/", postUserHandler)
 // UserRouter.get("/:id_user", getAllUsersHandler);
 UserRouter.put("/edit", putEditUserHandler)
-// UserRouter.put("/status/:id_user",putStatusUserHandler)
+UserRouter.delete("/status/:id_user",putStatusUserHandler)
+UserRouter.post("/restore/:id_user", restoreStatusUserHandler)
 // UserRouter.put("/", putRolUserHandler);
 
 module.exports = UserRouter;
