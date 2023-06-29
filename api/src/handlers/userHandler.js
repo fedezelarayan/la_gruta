@@ -11,7 +11,7 @@ const {
 } = require("../controllers/UserControllers");
 
 //* Handler que verifica en la DB si existe el User
-const getUserHandler = async (req, res) => {
+/* const getUserHandler = async (req, res) => {
     const { fullName, mail } = req.body;
     try {
       const user = await getUser(fullName, mail);
@@ -20,7 +20,7 @@ const getUserHandler = async (req, res) => {
       res.status(400).json({ error: error.message });
     }
   };
-
+ */
 //* Handler que trae a todos los Users de la DB
 const getAllUsersHandler = async (req, res) => {
   try {
@@ -35,7 +35,7 @@ const getAllUsersHandler = async (req, res) => {
 const postUserHandler = async (req, res) => {
   const { fullName, username, birthDate, image, phone, mail, password, occupation, rol, address } = req.body;
 
-  if (!fullName || !mail || !password) res.status(400).json({ msg: 'Faltan datos necesarios' });
+  if (!fullName || !mail ) res.status(400).json({ msg: 'Faltan datos necesarios' });
 
   try {
     const newUser = await postUser(fullName, username, birthDate, image, phone, mail, password, occupation, rol, address);
@@ -59,9 +59,9 @@ const getUserById = async (req, res) => {
 
 // //* Handler que modifica datos del usuario
 const putEditUserHandler = async (req, res) => {
-  const { mail, password, birthDate, image, phone, occupation, address } = req.body
+  const { mail, password, birthDate, image, phone, occupation, address, fullName, rol } = req.body
   try {
-    await putEditUser(mail, password, birthDate, image, phone, occupation, address)
+    await putEditUser(mail, password, birthDate, image, phone, occupation, address, rol, fullName)
     res.status(200).json("Datos cambiados con exito")
   } catch (error) {
     res.status(400).json({ error: error.message })
@@ -105,7 +105,7 @@ const restoreStatusUserHandler = async (req, res) => {
 };
 
 module.exports = {
-  // getUserHandler,
+  /* getUserHandler, */
   postUserHandler,
   getAllUsersHandler,
   getUserById,

@@ -139,7 +139,7 @@ const getUser = async (password, mail) => {
 };
 
 // //*---------------PUT USER---------------------
-const putEditUser = async (mail, password, birthDate, image, phone, occupation, address, rol) => {
+const putEditUser = async (mail, password, birthDate, image, phone, occupation, address, rol, fullName) => {
     const findUser = await User.findOne({
         where: {
             mail,
@@ -154,14 +154,11 @@ const putEditUser = async (mail, password, birthDate, image, phone, occupation, 
     if (phone) findUser.phone = phone
     if (occupation) findUser.occupation = occupation
     if (address) findUser.address = address
+    if (fullName) findUser.fullName = fullName
 
-    if (rol) {
-        const newrol = await Roles.findOne({
-            where: { Users: findUser.id }
-        })
-        newrol.Rols = rol
-        newrol.save()
-    }
+    if(rol){
+        await findUser.setRols(rol)
+     }
 
     findUser.save()
 
