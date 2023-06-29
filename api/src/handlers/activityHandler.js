@@ -3,6 +3,7 @@ const {
   getActivityById,
   createActivity,
   deleteActivity,
+  restoreActivity,
 } = require("../controllers/ActivityControllers");
 
 
@@ -54,11 +55,22 @@ const deleteActivityHandler = async (req, res) => {
   }
 };
 
+//* Handler que restaurar la actividad
+const restoreActivityHandler = async (req, res) => {
+  const { id_restore } = req.params;
+
+  try {
+    await restoreActivity(id_restore);
+    res.status(200).json("Actividad se restauro con exito");
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
 module.exports = {
   getAllActivityHandler,
   postActivityHandler,
   deleteActivityHandler,
   getActivityIdHandler,
-
+  restoreActivityHandler
 };

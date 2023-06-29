@@ -5,6 +5,7 @@ const {
   postActivityHandler,
   deleteActivityHandler,
   getActivityIdHandler,
+  restoreActivityHandler,
 } = require("../handlers/activityHandler");
 const ActivityRouter = Router();
 
@@ -22,5 +23,5 @@ ActivityRouter.get("/", getAllActivityHandler);
 ActivityRouter.post("/", upload.single ('img'), postActivityHandler);
 ActivityRouter.get("/:id", getActivityIdHandler)
 ActivityRouter.delete("/:id_activity", deleteActivityHandler);
-
+ActivityRouter.post("/:id_restore", restoreActivityHandler);
 module.exports = ActivityRouter;
