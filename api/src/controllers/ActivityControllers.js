@@ -3,6 +3,7 @@ const { Activity, ActivityType } = require("../db");
 require('dotenv').config();
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
 
 const API_KEY = process.env.API_KEY;
@@ -69,11 +70,16 @@ const createActivity = async ({ name, description, type_activity, date, img }) =
   for (const file of files) {
     const imgFullPath = imagePath + file;
     console.log(imgFullPath);
-    const result = await cloudinary.uploader.upload(imgFullPath, { public_id: "image_activity" });
-    const imgLink = result.secure_url;
-    console.log(imgLink);
-    await fs.promises.unlink(imgFullPath);
-    img = imgLink;
+
+    try {
+      const result = await cloudinary.uploader.upload(imgFullPath, { public_id: `image_${uuidv4()}` });
+      const imgLink = result.secure_url;
+      console.log(imgLink);
+      await fs.promises.unlink(imgFullPath);
+      img = imgLink;
+    } catch (error) {
+      throw new Error('Error al subir la imagen a Cloudinary');
+    }
 
     if (!name) throw new Error("No puedes enviar un nombre vacío");
 
