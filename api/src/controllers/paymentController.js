@@ -35,10 +35,9 @@ const createCartOrder = async (user_id) => {
     return result.body;
 };
 
-const createDonationOrder = async ( user_id, amount ) => {
+const createDonationOrder = async ( user_mail, amount ) => {
 
-    const user = await User.findByPk(user_id);
-    if(!user) throw new Error('No se pudo encontrar al usuario');
+    
 
     const fecha = new Date();
     const date = fecha.toLocaleDateString();
@@ -50,7 +49,9 @@ const createDonationOrder = async ( user_id, amount ) => {
         amount
     };
 
-    const newDonation = await Donation.create(donation)
+    
+    const user = await User.findOne({where: { mail: user_mail }});
+    console.log(user);
 
     mercadopago.configure({
         access_token: MP_CART_ACCESS_TOKEN,
@@ -70,7 +71,14 @@ const createDonationOrder = async ( user_id, amount ) => {
         }
     });
 
-    await user.addDonation(newDonation);
+    if(user){
+
+        console.log('hola');
+        const newDonation = await Donation.create(donation)
+    
+        await user.addDonation(newDonation);
+    }
+
 
     return result.body;
 }
