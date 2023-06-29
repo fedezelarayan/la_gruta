@@ -107,7 +107,7 @@ const postUser = async (
 //       },
 //     },
 //     order: [["id", "ASC"]],
-//     attributes: ["id", "username", "email", "admin","volunteer", "sponsor" ],
+//     attributes: ["id", "username", "email", "admin","voluntario", "padrino" ],
 //   });
 // } else {
 //   throw new Error("Permiso denegado, no eres administrador");
@@ -178,23 +178,33 @@ findUser.save()
 //   return findUser;
 // };
 
-// //*------------- BANEAR USER -------------------------
-// const putStatusUser = async (id_user) => {
-//   const findUser = await User.findByPk(id_user);
+// //*------------- INACTIVAR USER -------------------------
+const putStatusUser = async (id_user) => {
+ const findUser = await User.findByPk(id_user);
 
-//   if (findUser) {
-//     if(findUser.status == true){findUser.status = false} else{
+ if (!findUser) {
+    throw new Error("El usuario no existe");
+  } else {
+    await findUser.update({ status: false }, { where: { id: id_user } });
+    return;
+  }
+ };
 
-//       findUser.status = true
-//     }
 
-//     await findUser.save();
-//   } else {
-//     throw new Error("El usuario no existe");
-//   }
-
-//   return findUser;
-// };
+/////////////////RESTORE USER /////////////////////////////////
+ const restoreStatusUser = async (id_user) => {
+    const findUser = await User.findByPk(id_user);
+   
+    if (!findUser) {
+        throw new Error("El Usuario no existe");
+      } else {
+        await findUser.update({
+             status: true },
+             { where: { id: id_user } });
+        return;
+      }
+    
+    };
 
 module.exports = {
     // getUser,
@@ -203,5 +213,6 @@ module.exports = {
     userById,
     // putRolUser,
     putEditUser,
-    // putStatusUser
+    putStatusUser,
+    restoreStatusUser
 };

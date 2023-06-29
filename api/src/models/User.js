@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
 
-         username: {
+        username: {
             type: DataTypes.STRING,
             unique: true,
 
@@ -63,7 +63,11 @@ module.exports = (sequelize) => {
             // }, //longitud de la contraseña
 
 
-        }
+        },
+        status:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        },
     },
     {
         paranoid: true,

@@ -52,7 +52,6 @@ const getAllActivity = async (clic = 0) => {
         }
       }
     })
-    
     if(!activityId){
       throw new Error ("No se encontro la actividad");
     }else {
@@ -105,5 +104,18 @@ const deleteActivity = async (id) => {
 
 };
 
-module.exports = { getAllActivity, createActivity, deleteActivity, getActivityById };
+//*-----------------Restore Activity---------------------
+const restoreActivity = async (id) => {
+  const activity = await Activity.findByPk(id);
+
+  if (!activity) {
+    throw new Error("La actividad no existe");
+  } else {
+    await Activity.update({ status: true }, { where: { id } });
+    return;
+  }
+
+};
+
+module.exports = { getAllActivity, createActivity, deleteActivity, getActivityById, restoreActivity };
 
