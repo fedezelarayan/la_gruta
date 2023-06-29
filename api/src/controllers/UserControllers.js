@@ -89,7 +89,7 @@ const postUser = async (
         password,
         occupation,
         address,
-        
+
     });
 
     await newUser.addRol(rol);
@@ -140,27 +140,32 @@ const postUser = async (
 
 // //*---------------PUT USER---------------------
 const putEditUser = async (mail, password, birthDate, image, phone, occupation, address, rol) => {
-const findUser = await User.findOne({where:{
- mail,
- }})
+    const findUser = await User.findOne({
+        where: {
+            mail,
+        }
+    })
 
-if(!findUser){ throw new Error("El usuario no existe")}
+    if (!findUser) { throw new Error("El usuario no existe") }
 
-if (password) findUser.password = password
-if (birthDate) findUser.birthDate = birthDate
-if (image) findUser.image = image
-if (phone) findUser.phone = phone
-if (occupation) findUser.occupation = occupation
-if (address) findUser.address = address
+    if (password) findUser.password = password
+    if (birthDate) findUser.birthDate = birthDate
+    if (image) findUser.image = image
+    if (phone) findUser.phone = phone
+    if (occupation) findUser.occupation = occupation
+    if (address) findUser.address = address
 
-if(rol){const  newrol =  await Roles.findOne ({where:{Users: findUser.id}
-})
-newrol.Rols = rol
-newrol.save()}
+    if (rol) {
+        const newrol = await Roles.findOne({
+            where: { Users: findUser.id }
+        })
+        newrol.Rols = rol
+        newrol.save()
+    }
 
-findUser.save()
+    findUser.save()
 
- return;
+    return;
 }
 
 // //*---------------PUT ROL USER---------------------
@@ -180,31 +185,32 @@ findUser.save()
 
 // //*------------- INACTIVAR USER -------------------------
 const putStatusUser = async (id_user) => {
- const findUser = await User.findByPk(id_user);
+    const findUser = await User.findByPk(id_user);
 
- if (!findUser) {
-    throw new Error("El usuario no existe");
-  } else {
-    await findUser.update({ status: false }, { where: { id: id_user } });
-    return;
-  }
- };
+    if (!findUser) {
+        throw new Error("El usuario no existe");
+    } else {
+        await findUser.update({ status: false }, { where: { id: id_user } });
+        return;
+    }
+};
 
 
 /////////////////RESTORE USER /////////////////////////////////
- const restoreStatusUser = async (id_user) => {
+const restoreStatusUser = async (id_user) => {
     const findUser = await User.findByPk(id_user);
-   
+
     if (!findUser) {
         throw new Error("El Usuario no existe");
-      } else {
+    } else {
         await findUser.update({
-             status: true },
-             { where: { id: id_user } });
+            status: true
+        },
+            { where: { id: id_user } });
         return;
-      }
-    
-    };
+    }
+
+};
 
 module.exports = {
     // getUser,
