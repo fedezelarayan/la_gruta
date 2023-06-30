@@ -2,10 +2,10 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { /* DB_USER, DB_PASSWORD, DB_HOST, DB_NAME,  */DB_DEPLOY } = process.env;
+const {/*  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, */ DB_DEPLOY } = process.env;
 
 const sequelize = new Sequelize( 
-    /* `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, */
+    /* `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}` */
      DB_DEPLOY,
     { 
         logging: false, 
@@ -76,7 +76,10 @@ User.hasMany(Donation);
 Donation.belongsTo(User);
 
 Products.hasMany(Review, {foreignKey: "product_id"}); 
-Review.belongsTo(Products, {foreignKey: "product_id"}); 
+Review.belongsTo(Products, {foreignKey: "product_id"});
+
+User.hasMany(Review, {foreignKey: "user_id"}); 
+Review.belongsTo(User, {foreignKey: "user_id"});
 
 
 module.exports = {

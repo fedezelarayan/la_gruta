@@ -19,9 +19,9 @@ module.exports = (sequelize) => {
         img: {
             type: DataTypes.STRING,
             allowNull: false,
-            isUrl: {
+            /* isUrl: {
                 msg: "La imagen debe tener formato URL"
-            },
+            }, */
         
         },
         description: {
