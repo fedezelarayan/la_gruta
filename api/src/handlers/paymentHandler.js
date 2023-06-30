@@ -32,17 +32,17 @@ const donationOrderHandler = async (req, res) => {
 //     }
 // }
 
-// const webhooCartHandler = async (req, res) => {
-//     try {
-//         res.send("Pending");
-//     } catch (error) {
-//         res.status(400).json({error: error.message});
-//     }
-// }
+const webhookCartHandler = async (req, res) => {
+    try {
+        res.send("Pending");
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
 
 module.exports = { 
     cartOrderHandler,
-    donationOrderHandler
+    donationOrderHandler,
     // successCartHandler,
-    // webhooCartHandler
+    webhookCartHandler,
 };
