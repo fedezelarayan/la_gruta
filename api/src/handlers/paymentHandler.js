@@ -15,10 +15,10 @@ const cartOrderHandler = async (req, res) => {
 
 
 const donationOrderHandler = async (req, res) => {
-    const { user_id, amount } = req.body;
-    console.log(user_id, amount);
+    const { user_mail, amount } = req.body;
+    // console.log(user_mail, amount);
     try {
-        const result = await createDonationOrder( user_id, amount );
+        const result = await createDonationOrder( user_mail, amount );
         return res.status(200).json(result);
     } catch (error) {
         return res.status(500).json({error: error.message});
