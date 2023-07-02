@@ -3,6 +3,7 @@ const { Activity, ActivityType } = require("../db");
 require('dotenv').config();
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
 
 const API_KEY = process.env.API_KEY;
@@ -22,43 +23,43 @@ cloudinary.config({
 //*-----------------GET All Activity---------------------
 const getAllActivity = async (clic = 0) => {
 
-    const allActivity = await Activity.findAll({
-      where:{
-        status: true
-      },
-      include : {
-        model: ActivityType,
-        through: {
-          attributes:[]
-        }
-      },limit: 4, offset: (clic *4) });
-  
-    if (!allActivity.length) {
-      throw new Error("Actividades no encontrados");
-    } else {
-      return allActivity;
-    }
-  };
-
-
-  //*---------------GET AtivityID--------------------
-
-  const getActivityById = async (id) =>{
-    const activityId = await Activity.findByPk(id, {
-      include: {
-        model: ActivityType,
-        through: {
-          attributes:[]
-        }
+  const allActivity = await Activity.findAll({
+    where: {
+      status: true
+    },
+    include: {
+      model: ActivityType,
+      through: {
+        attributes: []
       }
-    })
-    
-    if(!activityId){
-      throw new Error ("No se encontro la actividad");
-    }else {
-      return activityId;
+    }, limit: 4, offset: (clic * 4)
+  });
+
+  if (!allActivity.length) {
+    throw new Error("Actividades no encontrados");
+  } else {
+    return allActivity;
+  }
+};
+
+
+//*---------------GET AtivityID--------------------
+
+const getActivityById = async (id) => {
+  const activityId = await Activity.findByPk(id, {
+    include: {
+      model: ActivityType,
+      through: {
+        attributes: []
+      }
     }
-  };
+  })
+  if (!activityId) {
+    throw new Error("No se encontro la actividad");
+  } else {
+    return activityId;
+  }
+};
 
 //*-----------------POST Activity--------------------- 
 
@@ -69,11 +70,16 @@ const createActivity = async ({ name, description, type_activity, date, img }) =
   for (const file of files) {
     const imgFullPath = imagePath + file;
     console.log(imgFullPath);
-    const result = await cloudinary.uploader.upload(imgFullPath, { public_id: "image_activity" });
-    const imgLink = result.secure_url;
-    console.log(imgLink);
-    await fs.promises.unlink(imgFullPath);
-    img = imgLink;
+
+    try {
+      const result = await cloudinary.uploader.upload(imgFullPath, { public_id: `image_${uuidv4()}` });
+      const imgLink = result.secure_url;
+      console.log(imgLink);
+      await fs.promises.unlink(imgFullPath);
+      img = imgLink;
+    } catch (error) {
+      throw new Error('Error al subir la imagen a Cloudinary');
+    }
 
     if (!name) throw new Error("No puedes enviar un nombre vacío");
 
@@ -105,5 +111,18 @@ const deleteActivity = async (id) => {
 
 };
 
-module.exports = { getAllActivity, createActivity, deleteActivity, getActivityById };
+//*-----------------Restore Activity---------------------
+const restoreActivity = async (id) => {
+  const activity = await Activity.findByPk(id);
+
+  if (!activity) {
+    throw new Error("La actividad no existe");
+  } else {
+    await Activity.update({ status: true }, { where: { id } });
+    return;
+  }
+
+};
+
+module.exports = { getAllActivity, createActivity, deleteActivity, getActivityById, restoreActivity };
 

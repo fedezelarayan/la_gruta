@@ -76,7 +76,10 @@ User.hasMany(Donation);
 Donation.belongsTo(User);
 
 Products.hasMany(Review, {foreignKey: "product_id"}); 
-Review.belongsTo(Products, {foreignKey: "product_id"}); 
+Review.belongsTo(Products, {foreignKey: "product_id"});
+
+User.hasMany(Review, {foreignKey: "user_id"}); 
+Review.belongsTo(User, {foreignKey: "user_id"});
 
 
 module.exports = {
