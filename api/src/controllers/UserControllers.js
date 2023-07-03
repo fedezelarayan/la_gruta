@@ -54,6 +54,31 @@ const userById = async (id) => {
     return user;
 };
 
+//*---------------GET USER BY MAIL------------------
+
+const userByMail = async (mail) => {
+   
+      const findUser = await User.findOne({
+        where: {
+          mail,
+        },
+        include: [
+          {
+            model: Rol,
+            through: { attributes: [] },
+          },
+        ],
+      });
+  
+      if (!findUser) {
+        throw new Error("No hay usuario con este correo electrónico");
+      }
+  
+      return findUser;
+
+  };
+  
+
 //*---------------CREATE USER---------------------
 
 const postUser = async (
@@ -214,6 +239,7 @@ module.exports = {
     postUser,
     getAllUsers,
     userById,
+    userByMail,
     // putRolUser,
     putEditUser,
     putStatusUser,

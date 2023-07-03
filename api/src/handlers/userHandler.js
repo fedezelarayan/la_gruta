@@ -1,9 +1,10 @@
 const {
-  getUser,
+  //getUser,
   postUser,
   getAllUsers,
   userById,
-  putRolUser,
+  userByMail,
+  //putRolUser,
   putEditUser,
   putStatusUser,
   restoreStatusUser
@@ -52,6 +53,17 @@ const getUserById = async (req, res) => {
   try {
     const userId = await userById(user_id);
     res.status(200).json(userId);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
+//* Handler que busca a usuario por mail
+const getUserByMail = async (req, res) => {
+  const { mail } = req.params;
+  try {
+    const user = await userByMail(mail);
+    res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -109,6 +121,7 @@ module.exports = {
   postUserHandler,
   getAllUsersHandler,
   getUserById,
+  getUserByMail,
   // putRolUserHandler,
   putEditUserHandler,
   putStatusUserHandler,
