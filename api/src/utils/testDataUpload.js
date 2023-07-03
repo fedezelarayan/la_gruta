@@ -16,6 +16,10 @@ const {
     activityTypeTestData,
     productsTypeTestData,
     rolTestData,
+    activityTestDataArte,
+    activityTestDataDeportes,
+    activityTestDataEducacion,
+    activityTestDataMedicina,
     // cartTestData
 } = require("./testData");
 
@@ -50,21 +54,31 @@ const testDataUploader = async () => {
         const testProduct = await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
         
         await ProductsType.bulkCreate(productsTypeTestData, { ignoreDuplicates: true });
-        
-        const testActivity = await Activity.bulkCreate(activityTestData, { ignoreDuplicates: true });
-        
+                
         await ActivityType.bulkCreate(activityTypeTestData, { ignoreDuplicates: true });
+
+        const activityArt = await Activity.bulkCreate(activityTestDataArte);
+
+        const activitySports = await Activity.bulkCreate(activityTestDataDeportes);
+
+        const activityEduc = await Activity.bulkCreate(activityTestDataEducacion);
+
+        const activityMed = await Activity.bulkCreate(activityTestDataMedicina);
 
         // await Cart.bulkCreate(cartTestData);
         
         await testUser.forEach(user => user.addRol(Math.floor(Math.random()*2))); 
         /* await CreateAdmin() */
 
-        await testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*5)].id));
-
         await testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*3 + 1)));
 
-        await testActivity.forEach(activity => activity.addActivityType(/* Math.floor(Math.random()*5) */ ActivityType )); 
+        await activityArt.forEach(activity => activity.addActivityType(4));
+
+        await activitySports.forEach(activity => activity.addActivityType(3));
+        
+        await activityEduc.forEach(activity => activity.addActivityType(1));
+
+        await activityMed.forEach(activity => activity.addActivityType(2));
 
         console.log('Datos cargados exitosamente!');
 

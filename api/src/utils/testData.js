@@ -227,7 +227,7 @@ const productsTestData = [
     },
 ];
 
-const activityTestData = [
+const activityTestDataMedicina = [
     {
         name: "Sábados de merenderos y catequesis.",
         date: "6 Julio, 2022",
@@ -473,11 +473,10 @@ const userTestData = [
 ];
 
 const activityTypeTestData = [
-    { name: "Educación" },
-    { name: "Salud" },
-    { name: "Actividades" },
-    { name: "Desarrollo" },
-    { name: "General" },
+    { name: "Educacion" },
+    { name: "Medicina" },
+    { name: "Deportes" },
+    { name: "Arte" }
 ];
 
 const productsTypeTestData = [
@@ -504,10 +503,13 @@ const rolTestData = [
 
 module.exports = {
     productsTestData,
-    activityTestData,
     childrenTestData,
     userTestData,
     activityTypeTestData,
     productsTypeTestData,
     rolTestData,
+    activityTestDataArte,
+    activityTestDataDeportes,
+    activityTestDataEducacion,
+    activityTestDataMedicina,
 };
