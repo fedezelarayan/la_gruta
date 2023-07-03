@@ -38,7 +38,7 @@ const createCartOrder = async (user_id) => {
 
 const createDonationOrder = async ( user_mail, amount ) => {
 
-    
+ console.log(user_mail, amount);   
 
     const fecha = new Date();
     const date = fecha.toLocaleDateString();
@@ -51,7 +51,7 @@ const createDonationOrder = async ( user_mail, amount ) => {
     };
 
     
-    const user = await User.findOne({where: { mail: user_mail }});
+    //const user = await User.findOne({where: { mail: user_mail }});
     // console.log(user);
 
     mercadopago.configure({
@@ -62,7 +62,7 @@ const createDonationOrder = async ( user_mail, amount ) => {
         items: [
             {
                 title: 'Donación',
-                unit_price: amount,
+                unit_price: Number(amount),
                 currency_id: 'ARS',
                 quantity: 1,
             }
@@ -76,20 +76,20 @@ const createDonationOrder = async ( user_mail, amount ) => {
 
     console.log(payment_id, 'este es el payment_id');
 
-    await axios.get(`https://api.mercadopago.com/v1/payments/${payment_id}?accessToken=${MP_CART_ACCESS_TOKEN}`)
-    .then(response => console.log(response.data)).catch(error => console.log(error.response.status, error.response.data))
+    // await axios.get(`https://api.mercadopago.com/v1/payments/${payment_id}?accessToken=${MP_CART_ACCESS_TOKEN}`)
+    // .then(response => console.log(response.data)).catch(error => console.log(error.response.status, error.response.data))
 
     // mercadopago.payment.findById(payment_id)
     //     .then(response => console.log(response.data))
     //     .catch(console.log({error: error.status}));
 
-    if(user){
+    // if(user){
 
-        // console.log('hola');
-        const newDonation = await Donation.create(donation)
+    //     // console.log('hola');
+    //     const newDonation = await Donation.create(donation)
     
-        await user.addDonation(newDonation);
-    }
+    //     await user.addDonation(newDonation);
+    // }
 
 
     return result.body;
