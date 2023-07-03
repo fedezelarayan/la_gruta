@@ -60,11 +60,11 @@ const testDataUploader = async () => {
         await testUser.forEach(user => user.addRol(Math.floor(Math.random()*2))); 
         /* await CreateAdmin() */
 
-        await testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*8)].id));
+        await testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random()*5)].id));
 
         await testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*3 + 1)));
 
-        await testActivity.forEach(activity => activity.addActivityType(Math.floor(Math.random()*8))); 
+        await testActivity.forEach(activity => activity.addActivityType(/* Math.floor(Math.random()*5) */ ActivityType )); 
 
         console.log('Datos cargados exitosamente!');
 
