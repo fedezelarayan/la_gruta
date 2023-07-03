@@ -3,7 +3,7 @@
 const server = require("./src/app");
 const { conn } = require("./src/db.js");
 const PORT = process.env.PORT || 3001;
-const CreateInformation = require("./src/controllers/CreateInformation");
+/* const CreateInformation = require("./src/controllers/CreateInformation"); */
 const { ActivityType } = require('../api/src/db');
 const { default: axios } = require("axios");
 const { testDataUploader, testDataCheck } = require('./src/utils/testDataUpload');
