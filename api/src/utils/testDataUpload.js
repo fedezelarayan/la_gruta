@@ -16,6 +16,10 @@ const {
     activityTypeTestData,
     productsTypeTestData,
     rolTestData,
+    activityTestDataArte,
+    activityTestDataDeportes,
+    activityTestDataEducacion,
+    activityTestDataMedicina,
     // cartTestData
 } = require("./testData");
 
@@ -54,13 +58,26 @@ const testDataUploader = async () => {
         const testProduct = await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
 
         await ProductsType.bulkCreate(productsTypeTestData, { ignoreDuplicates: true });
+<<<<<<< HEAD
 
         const testActivity = await Activity.bulkCreate(activityTestData, { ignoreDuplicates: true });
 
+=======
+                
+>>>>>>> main
         await ActivityType.bulkCreate(activityTypeTestData, { ignoreDuplicates: true });
+
+        const activityArt = await Activity.bulkCreate(activityTestDataArte);
+
+        const activitySports = await Activity.bulkCreate(activityTestDataDeportes);
+
+        const activityEduc = await Activity.bulkCreate(activityTestDataEducacion);
+
+        const activityMed = await Activity.bulkCreate(activityTestDataMedicina);
 
         // await Cart.bulkCreate(cartTestData);
 
+<<<<<<< HEAD
         await testUser.forEach(user => user.addRol(Math.floor(Math.random() * 2)));
         await CreateAdmin();
 
@@ -69,6 +86,17 @@ const testDataUploader = async () => {
         await testProduct.forEach(product => product.addProductsType(Math.floor(Math.random() * 3 + 1)));
 
         await testActivity.forEach(activity => activity.addActivityType(Math.floor(Math.random() * 8)));
+=======
+        await testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*3 + 1)));
+
+        await activityArt.forEach(activity => activity.addActivityType(4));
+
+        await activitySports.forEach(activity => activity.addActivityType(3));
+        
+        await activityEduc.forEach(activity => activity.addActivityType(1));
+
+        await activityMed.forEach(activity => activity.addActivityType(2));
+>>>>>>> main
 
         console.log('Datos cargados exitosamente!');
 

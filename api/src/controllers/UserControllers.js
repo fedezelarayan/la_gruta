@@ -68,6 +68,10 @@ const postUser = async (
     address,
     rol
 ) => {
+
+    console.log("username:", fullName);
+    console.log("email:", mail);
+
     if (!fullName || !mail)
         throw new Error("Faltan datos");
 
@@ -93,7 +97,6 @@ const postUser = async (
     });
 
     await newUser.addRol(rol);
-
     return newUser;
 };
 
@@ -114,29 +117,45 @@ const postUser = async (
 // }
 
 //*-----------------GET USER---------------------
-const getUser = async (password, mail) => {
-  if (!password) {
+const getUser = async (/* password, */ mail) => {
+ /*  if (!password) {
     throw new Error("No puede enviar una contraseña vacia");
   } else if (!mail) {
     throw new Error("No puede enviar un email vacio");
-  } else {
-    const findUser = await User.findOne({ where: { mail } });
-    if (!findUser) {
+  } else {};*/
+    const findUser = await User.findOne({ 
+        where: {
+            mail: mail,
+        }, 
+        include: [
+            {
+                model: Rol,
+                through: { attributes: [] },
+            },
+            {
+                model: Activity,
+                through: { attributes: [] },
+            },
+        ],
+     });
+     return findUser;
+   }
+
+
+
+    /*if (!findUser) {
       throw new Error("El usuario no existe");
-    } else {
+    }  else {
       const findUser2 = await User.findOne({
-        where: { password, mail },
+        where: { mail },
         attributes: ["id", "fullName","birthDate", "image", "phone", "email", "admin","password", "volunteer", "sponsor"],
       });
       if (!findUser2) {
         throw new Error("Contraseña equivocada");
       }
+      if(!findUser2.status) throw new Error("Usuario bloqueado") */
+  
 
-      if(!findUser2.status) throw new Error("Usuario bloqueado")
-      return findUser2;
-    }
-  }
-};
 
 // //*---------------PUT USER---------------------
 const putEditUser = async (mail, password, birthDate, image, phone, occupation, address, rol, fullName) => {
@@ -211,7 +230,7 @@ const restoreStatusUser = async (id_user) => {
 };
 
 module.exports = {
-    // getUser,
+    getUser,
     postUser,
     getAllUsers,
     userById,
