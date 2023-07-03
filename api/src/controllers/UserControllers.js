@@ -204,6 +204,7 @@ const restoreStatusUser = async (id_user) => {
             status: true
         },
             { where: { id: id_user } });
+            
         return;
     }
 
