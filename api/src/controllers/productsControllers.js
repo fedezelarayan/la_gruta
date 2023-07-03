@@ -20,11 +20,15 @@ cloudinary.config({
 const getAllProducts = async () => {
 
     const dbProducts = await Products.findAll({
-        include: {
+        include: [{
             model: ProductsType,
             attributes: ['name'],
             through: { attributes: [] }
-        }
+        },            
+        {
+            model: Review,
+            attributes: ['content', 'rating', 'user_id'],
+        }]
     });
     return dbProducts;
 }

@@ -11,16 +11,16 @@ const {
 } = require("../controllers/UserControllers");
 
 //* Handler que verifica en la DB si existe el User
-/* const getUserHandler = async (req, res) => {
-    const { fullName, mail } = req.body;
+const getUserHandler = async (req, res) => {
+    const { mail } = req.params;
     try {
-      const user = await getUser(fullName, mail);
+      const user = await getUser(mail);
       res.status(200).json(user);
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   };
- */
+
 //* Handler que trae a todos los Users de la DB
 const getAllUsersHandler = async (req, res) => {
   try {
@@ -39,7 +39,7 @@ const postUserHandler = async (req, res) => {
 
   try {
     const newUser = await postUser(fullName, username, birthDate, image, phone, mail, password, occupation, rol, address);
-    res.status(200).json({ msg: "Usuario agregado con exito", newUser });
+    res.status(200).json({msg: "Usuario agregado con exito", userId: [newUser.id]});
   } catch (error) {
       console.log(error, "ESTE ES EL ERROR LOCOOO")
     res.status(400).json({ error: error.message });
@@ -105,12 +105,12 @@ const restoreStatusUserHandler = async (req, res) => {
 };
 
 module.exports = {
-  /* getUserHandler, */
+  getUserHandler,
   postUserHandler,
   getAllUsersHandler,
   getUserById,
   // putRolUserHandler,
   putEditUserHandler,
   putStatusUserHandler,
-  restoreStatusUserHandler
+  restoreStatusUserHandler,
 };
