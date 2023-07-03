@@ -76,8 +76,8 @@ const createDonationOrder = async ( user_mail, amount ) => {
 
     console.log(payment_id, 'este es el payment_id');
 
-    await axios.get(`https://api.mercadopago.com/v1/payments/${payment_id}?accessToken=${MP_CART_ACCESS_TOKEN}`)
-    .then(response => console.log(response.data)).catch(error => console.log(error.response.status, error.response.data))
+    // await axios.get(`https://api.mercadopago.com/v1/payments/${payment_id}?accessToken=${MP_CART_ACCESS_TOKEN}`)
+    // .then(response => console.log(response.data)).catch(error => console.log(error.response.status, error.response.data))
 
     // mercadopago.payment.findById(payment_id)
     //     .then(response => console.log(response.data))
