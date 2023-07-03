@@ -2,14 +2,15 @@ const { Router } = require("express");
 
 
 const {
-  // getUserHandler,
+  getUserHandler,
   postUserHandler,
   getAllUsersHandler,
   getUserById,
   // putRolUserHandler,
   putEditUserHandler,
   putStatusUserHandler,
-  restoreStatusUserHandler
+  restoreStatusUserHandler,
+  getUserByMail
 } = require("../handlers/userHandler");
 
 const UserRouter = Router();
@@ -37,5 +38,6 @@ UserRouter.put("/edit", putEditUserHandler)
 UserRouter.delete("/status/:id_user",putStatusUserHandler)
 UserRouter.post("/restore/:id_user", restoreStatusUserHandler)
 // UserRouter.put("/", putRolUserHandler);
+UserRouter.get('/mail/:mail', getUserHandler)
 
 module.exports = UserRouter;
