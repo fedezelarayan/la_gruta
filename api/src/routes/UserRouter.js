@@ -6,7 +6,7 @@ const {
   postUserHandler,
   getAllUsersHandler,
   getUserById,
-  // putRolUserHandler,
+  putRolUserHandler,
   putEditUserHandler,
   putStatusUserHandler,
   restoreStatusUserHandler,
@@ -37,7 +37,7 @@ UserRouter.post("/", postUserHandler)
 UserRouter.put("/edit", putEditUserHandler)
 UserRouter.delete("/status/:id_user",putStatusUserHandler)
 UserRouter.post("/restore/:id_user", restoreStatusUserHandler)
-// UserRouter.put("/", putRolUserHandler);
+UserRouter.put("/", putRolUserHandler);
 UserRouter.get('/mail/:mail', getUserHandler)
 
 module.exports = UserRouter;

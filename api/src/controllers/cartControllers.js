@@ -24,7 +24,7 @@ const addToCart = async ( user_id, product_id, quantity ) => {
     const product = await Products.findByPk(product_id);
     if(!product) throw new Error('No se ha podido encontrar el producto');
 
-    console.log(UserId);
+    console.log(user_id);
     console.log(cart);
     console.log(product);
 

@@ -94,6 +94,19 @@ const testDataUploader = async () => {
         await activityMed.forEach(activity => activity.addActivityType(2));
 
 
+        const userAdmin = async () => {
+            const user = await User.findOne({
+                where: {
+                    mail: "malenaparaschuk@gmail.com"
+                }
+            })
+            if (user) {
+                user.setRol(3)
+            }
+        }
+        userAdmin();
+
+
         console.log('Datos cargados exitosamente!');
 
         // console.log(testUser);

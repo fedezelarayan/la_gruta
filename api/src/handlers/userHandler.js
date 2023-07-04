@@ -70,10 +70,10 @@ const putEditUserHandler = async (req, res) => {
 
 // //* Handler que modifica el rol de usuario
 const putRolUserHandler = async (req, res) => {
-  const { id_user, admin, padrino, } = req.body; //ID DEL USUARIO QUE LE VAMOS A CAMBIAR EL ROL
+  const { id_user, admin, padrino, voluntario} = req.body; //ID DEL USUARIO QUE LE VAMOS A CAMBIAR EL ROL
 
   try {
-    putUser = await putRolUser(id_user, admin, padrino, volutario);
+    putUser = await putRolUser(id_user, admin, padrino, voluntario);
     res.status(200).json(putUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -109,7 +109,7 @@ module.exports = {
   postUserHandler,
   getAllUsersHandler,
   getUserById,
-  // putRolUserHandler,
+  putRolUserHandler,
   putEditUserHandler,
   putStatusUserHandler,
   restoreStatusUserHandler,
