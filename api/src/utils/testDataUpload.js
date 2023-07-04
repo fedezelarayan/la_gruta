@@ -23,22 +23,26 @@ const {
     // cartTestData
 } = require("./testData");
 
-const CreateAdmin = async() => {
+const CreateAdmin = async () => {
+   const roladmin = await Rol.findOne({where: {
+       name:"admin" 
+    }})
     const admin = {
-        fullName: "admin",
-        username:"admin",
-        birthDate:"",
-        image:"",
-        phone:"",
-        mail:"admin@gmail.com",
-        password: "admin123",
+        fullName: "lagruta",
+        username: "lagruta",
+        birthDate: "",
+        image: "",
+        phone: "",
+        mail: "lagrutacdi@gmail.com",
+        password: "lagruta2011",
     }
     const newAdmin = await User.create(admin)
-    await newAdmin.addRol(3)
-    /* const newAdmin = await User.findOne({where:{username:"admin"}})
-    const rol = await Rol.findByPk(3)
-    await rol.addUser(newAdmin) */
+    await newAdmin.setRols([roladmin.id])
 }
+/* const newAdmin = await User.findOne({where:{username:"admin"}})
+const rol = await Rol.findByPk(3) */
+/*  await rol.addUser(newAdmin)
+}*/
 /* 87e4d961-ea70-49fc-9e9d-5729553d7568 | Pattie Senecaux  */
 
 const testDataUploader = async () => {
@@ -46,16 +50,18 @@ const testDataUploader = async () => {
     try {
 
         const testUser = await User.bulkCreate(userTestData, { ignoreDuplicates: true });
-        
+
         await Rol.bulkCreate(rolTestData, { ignoreDuplicates: true });
-        
+
         await Children.bulkCreate(childrenTestData, { ignoreDuplicates: true });
-        
+
         const testProduct = await Products.bulkCreate(productsTestData, { ignoreDuplicates: true });
-        
+
         await ProductsType.bulkCreate(productsTypeTestData, { ignoreDuplicates: true });
-                
-        await ActivityType.bulkCreate(activityTypeTestData, { ignoreDuplicates: true });
+
+        const testActivity = await Activity.bulkCreate(activityTestData, { ignoreDuplicates: true });
+
+          await ActivityType.bulkCreate(activityTypeTestData, { ignoreDuplicates: true });
 
         const activityArt = await Activity.bulkCreate(activityTestDataArte);
 
@@ -66,9 +72,16 @@ const testDataUploader = async () => {
         const activityMed = await Activity.bulkCreate(activityTestDataMedicina);
 
         // await Cart.bulkCreate(cartTestData);
-        
-        await testUser.forEach(user => user.addRol(Math.floor(Math.random()*2))); 
-        /* await CreateAdmin() */
+
+
+        await testUser.forEach(user => user.addRol(Math.floor(Math.random() * 2)));
+        await CreateAdmin();
+
+        await testUser.forEach(user => user.addActivity(testActivity[Math.floor(Math.random() * 8)].id));
+
+        await testProduct.forEach(product => product.addProductsType(Math.floor(Math.random() * 3 + 1)));
+
+        await testActivity.forEach(activity => activity.addActivityType(Math.floor(Math.random() * 8)));
 
         await testProduct.forEach(product => product.addProductsType(Math.floor(Math.random()*3 + 1)));
 
@@ -79,6 +92,20 @@ const testDataUploader = async () => {
         await activityEduc.forEach(activity => activity.addActivityType(1));
 
         await activityMed.forEach(activity => activity.addActivityType(2));
+
+
+        const userAdmin = async () => {
+            const user = await User.findOne({
+                where: {
+                    mail: "malenaparaschuk@gmail.com"
+                }
+            })
+            if (user) {
+                user.setRol(3)
+            }
+        }
+        userAdmin();
+
 
         console.log('Datos cargados exitosamente!');
 

@@ -185,19 +185,19 @@ const putEditUser = async (mail, password, birthDate, image, phone, occupation, 
 }
 
 // //*---------------PUT ROL USER---------------------
-// const putRolUser = async (id_user, rol) => {
-//   const findUser = await User.findByPk(id_user);
+ const putRolUser = async (id_user, rol) => {
+   const findUser = await User.findByPk(id_user);
 
-//   if (findUser) {
-//     findUser.rol = rol;
+   if (findUser) {
+     findUser.rol = rol;
 
-//     await findUser.save();
-//   } else {
-//     throw new Error("El usuario no existe");
-//   }
+     await findUser.save();
+   } else {
+     throw new Error("El usuario no existe");
+   }
 
-//   return findUser;
-// };
+   return findUser;
+ };
 
 // //*------------- INACTIVAR USER -------------------------
 const putStatusUser = async (id_user) => {
@@ -223,6 +223,7 @@ const restoreStatusUser = async (id_user) => {
             status: true
         },
             { where: { id: id_user } });
+            
         return;
     }
 
@@ -233,7 +234,7 @@ module.exports = {
     postUser,
     getAllUsers,
     userById,
-    // putRolUser,
+    putRolUser,
     putEditUser,
     putStatusUser,
     restoreStatusUser

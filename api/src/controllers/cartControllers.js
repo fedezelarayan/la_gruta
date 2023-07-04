@@ -69,6 +69,7 @@ const emptyCart = async (user_id) => {
     cart.setProducts([]);
 }
 
+
 const changeQuantity = async (user_id, product_id, quantity) => {
 
     if(!user_id) throw new Error('Falta el ID del usuario');
@@ -88,13 +89,14 @@ const changeQuantity = async (user_id, product_id, quantity) => {
     //? Traigo todos los productos que estan en el carrito del usuario
     
     const prod = await cart.getProducts({ where: { id: product_id },  });
-
+    // hacer un consolelog de prod
+    
     //? Separo al producto que se la quiere cambiar la cantidad de unidades
 
     // console.log('primer instancia del producto', prod[0].Cart_Products);
     
     const otherProducts = allCartProducts.filter( prod => prod.id != product_id);
-
+    
     //? Armo un array con los objetos a los que no se le tiene que modificar la cantidad
     
     if(quantity <= product.stock){
@@ -107,7 +109,7 @@ const changeQuantity = async (user_id, product_id, quantity) => {
     
     // console.log('segunda instancia del producto', prod[0].Cart_Products);
 
-    const finalCart = otherProducts.concat(prod);
+    const finalCart = otherProducts.concat(prod); //investigar bien el concat
 
     //! Aca vuelvo a unir los productos a los que no se le modifico nada con el que si
     // console.log('Este es otherProducts: ', otherProducts);
@@ -133,3 +135,6 @@ const changeQuantity = async (user_id, product_id, quantity) => {
 }
 
 module.exports = { addToCart, removeFromCart, getUserCart, emptyCart, changeQuantity }
+
+module.exports = { addToCart, removeFromCart, getUserCart, emptyCart }
+
