@@ -63,9 +63,8 @@ const emptyCart = async (user_id) => {
     const user = await User.findByPk(user_id);
     if(!user) throw new Error('No se ha podido encontrar al usuario');
 
-    cart.Products.forEach(prod => user.addProducts(prod));
 
-    console.log(cart.Products);
+    // console.log(cart.Products);
 
     cart.setProducts([]);
 }
