@@ -74,7 +74,7 @@ const changeQuantity = async (user_id, product_id, quantity) => {
 
     if(!user_id) throw new Error('Falta el ID del usuario');
 
-    const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products }})
+    const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products, through: { Cart_Products } }})
 
     if(!product_id){
         throw new Error('Falta el ID del producto')
@@ -91,7 +91,7 @@ const changeQuantity = async (user_id, product_id, quantity) => {
     
     const otherProducts = allCartProducts.filter( prod => prod.id != product_id);
     
-    if(quantity <= prod[0].stock){
+    if(quantity <= product.stock){
          prod[0].Cart_Products.quantity = Number(quantity);
     }else{
         throw new Error('La cantidad solicitada es mayor al stock disponible');
@@ -103,9 +103,17 @@ const changeQuantity = async (user_id, product_id, quantity) => {
 
     // console.log('Este es otherProducts: ', otherProducts);
     // console.log('Esta es la primer instancia del carrito: ', allCartProducts);
-    console.log('Esta es la segunda instancia del carrito: ', finalCart);
+    // console.log('Esta es la segunda instancia del carrito: ', finalCart);
 
-    await cart.setProducts(finalCart);
+    await cart.setProducts([]);
+
+    console.log(cart.Products);
+
+    // await cart.setProducts(finalCart);
+
+    // await cart.save();
+
+    // console.log(cart.Products);
 
     return finalCart;
 }
