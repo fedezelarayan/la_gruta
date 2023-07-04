@@ -81,39 +81,54 @@ const changeQuantity = async (user_id, product_id, quantity) => {
 
     const product = Products.findByPk(product_id);
 
+    //? Hasta aca chequeo que llegue la data necesaria
+
     const allCartProducts = await cart.getProducts();
 
+    //? Traigo todos los productos que estan en el carrito del usuario
     
     const prod = await cart.getProducts({ where: { id: product_id },  });
+
+    //? Separo al producto que se la quiere cambiar la cantidad de unidades
 
     // console.log('primer instancia del producto', prod[0].Cart_Products);
     
     const otherProducts = allCartProducts.filter( prod => prod.id != product_id);
+
+    //? Armo un array con los objetos a los que no se le tiene que modificar la cantidad
     
     if(quantity <= product.stock){
          prod[0].Cart_Products.quantity = Number(quantity);
     }else{
         throw new Error('La cantidad solicitada es mayor al stock disponible');
     }
+
+    //! Aca hago la modificación de la cantidad en el producto
     
     // console.log('segunda instancia del producto', prod[0].Cart_Products);
 
     const finalCart = otherProducts.concat(prod);
 
+    //! Aca vuelvo a unir los productos a los que no se le modifico nada con el que si
     // console.log('Este es otherProducts: ', otherProducts);
     // console.log('Esta es la primer instancia del carrito: ', allCartProducts);
     // console.log('Esta es la segunda instancia del carrito: ', finalCart);
 
-    await cart.setProducts([]);
+    // await cart.setProducts([]);
 
-    console.log(cart.Products);
+    console.log(finalCart);
 
-    // await cart.setProducts(finalCart);
+    //? Aca consologueo que efectivamente se haya modificado
 
-    // await cart.save();
+    await cart.setProducts(finalCart);
+    //!Modifico los procutos del carrito para que esten actualizados
+
+    await cart.save();
+    //! Se guarda el carrito
 
     // console.log(cart.Products);
 
+    //todo El problema aca es que el cambio que se hace en la cantidad de unidades de un producto no queda guardado en la base de datos, por lo que la traer de nuevo el carrito del usuario no se reflejan los cambios
     return finalCart;
 }
 
