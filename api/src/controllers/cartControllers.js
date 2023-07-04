@@ -24,12 +24,15 @@ const addToCart = async ( user_id, product_id, quantity ) => {
     const product = await Products.findByPk(product_id);
     if(!product) throw new Error('No se ha podido encontrar el producto');
 
-    console.log(UserId);
+    console.log(user_id);
     console.log(cart);
     console.log(product);
 
-
-    await cart.addProducts(product, {through: { quantity: quantity }});
+    if( quantity <= product.stock){
+        await cart.addProducts(product, {through: { quantity: quantity }});
+    }else{
+        throw new Error('La cantidad solicitada es mayor al stock disponible');
+    }
 
     // product.stock -= quantity;
 
@@ -67,4 +70,44 @@ const emptyCart = async (user_id) => {
     cart.setProducts([]);
 }
 
-module.exports = { addToCart, removeFromCart, getUserCart, emptyCart }
+const changeQuantity = async (user_id, product_id, quantity) => {
+
+    if(!user_id) throw new Error('Falta el ID del usuario');
+
+    const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products }})
+
+    if(!product_id){
+        throw new Error('Falta el ID del producto')
+    }
+
+    const product = Products.findByPk(product_id);
+
+    const allCartProducts = await cart.getProducts();
+
+    
+    const prod = await cart.getProducts({ where: { id: product_id },  });
+
+    // console.log('primer instancia del producto', prod[0].Cart_Products);
+    
+    const otherProducts = allCartProducts.filter( prod => prod.id != product_id);
+    
+    if(quantity <= prod[0].stock){
+         prod[0].Cart_Products.quantity = Number(quantity);
+    }else{
+        throw new Error('La cantidad solicitada es mayor al stock disponible');
+    }
+    
+    // console.log('segunda instancia del producto', prod[0].Cart_Products);
+
+    const finalCart = otherProducts.concat(prod);
+
+    // console.log('Este es otherProducts: ', otherProducts);
+    // console.log('Esta es la primer instancia del carrito: ', allCartProducts);
+    console.log('Esta es la segunda instancia del carrito: ', finalCart);
+
+    await cart.setProducts(finalCart);
+
+    return finalCart;
+}
+
+module.exports = { addToCart, removeFromCart, getUserCart, emptyCart, changeQuantity }
