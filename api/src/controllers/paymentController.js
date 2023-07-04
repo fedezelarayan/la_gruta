@@ -9,6 +9,9 @@ const createCartOrder = async (user_id) => {
     const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products, through: { Cart_Products }}});
     if(!cart) throw new Error('No es posible encontrar el carrito');
 
+    const user = User.findByPk(user_id);
+    cart.Products.forEach(prod => user.addProducts(prod));
+
     const resumenPago = cart.Products.map(prod => {
         
         const resumenPago = {
