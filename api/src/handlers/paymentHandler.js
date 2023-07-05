@@ -35,6 +35,7 @@ const donationOrderHandler = async (req, res) => {
 
 const webhookDontaionHandler = async (req, res) => {
     const pay = req.query;
+    console.log(pay);
     try {
         if(pay.type === 'payment'){
             const data = await mercadopago.payment.findById(pay['data.id']);
