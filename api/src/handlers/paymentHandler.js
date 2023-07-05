@@ -42,7 +42,7 @@ const webhookDontaionHandler = async (req, res) => {
             const data = await mercadopago.payment.findById(pay['data.id']);
             // console.log(data);
             const info = data.body;
-            const dona = paymentVerification(info);
+            const dona = await paymentVerification(info);
             console.log(dona);
             
         }
