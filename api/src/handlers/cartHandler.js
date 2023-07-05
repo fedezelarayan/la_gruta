@@ -36,9 +36,9 @@ const changeQuantityHandler = async (req, res) => {
     const { user_id, product_id, quantity } = req.query;
     try {
         const changedProduct = await changeQuantity(user_id, product_id, quantity);
-        return res.status(200).json(changedProduct);
+        return res.status(201).json(changedProduct);
     } catch (error) {
-        return res.status(500).json({error: error.message})
+        return res.status(500).json({error: error.message, msg: 'Este es el error de el put'})
     }
 }
 
