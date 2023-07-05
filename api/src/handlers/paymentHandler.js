@@ -13,6 +13,13 @@ const cartOrderHandler = async (req, res) => {
     }
 };
 
+const webhookCartHandler = async (req, res) => {
+    try {
+        res.send("Pending");
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
 
 const donationOrderHandler = async (req, res) => {
     const { user_mail, amount } = req.body;
@@ -24,6 +31,11 @@ const donationOrderHandler = async (req, res) => {
         return res.status(500).json({error: error.message});
     }
 }
+
+const webhookDontaionHandler = async (req, res) => {
+    
+}
+
 // const successCartHandler = async (req, res) => {
 //     try {
 //         res.send("Success");
@@ -32,17 +44,10 @@ const donationOrderHandler = async (req, res) => {
 //     }
 // }
 
-// const webhooCartHandler = async (req, res) => {
-//     try {
-//         res.send("Pending");
-//     } catch (error) {
-//         res.status(400).json({error: error.message});
-//     }
-// }
-
 module.exports = { 
     cartOrderHandler,
-    donationOrderHandler
+    donationOrderHandler,
     // successCartHandler,
-    // webhooCartHandler
+    webhookCartHandler,
+    webhookDontaionHandler,
 };
