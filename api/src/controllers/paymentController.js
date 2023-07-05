@@ -77,7 +77,7 @@ const createDonationOrder = async ( user_mail, amount ) => {
             failure: "http://localhost:3001/payment/donation/failure",
             pending: "http://localhost:3001/payment/donation/pending"
         },
-        notification_url: "https://4a48-186-137-235-123.sa.ngrok.io/payment/donation/webhook",
+        notification_url: "https://lagruta.onrender.com/payment/donation/webhook",
         auto_return: "approved"
     });
 
