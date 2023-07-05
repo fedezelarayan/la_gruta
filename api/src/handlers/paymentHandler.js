@@ -1,4 +1,4 @@
-const { createCartOrder, createDonationOrder } = require('../controllers/paymentController');
+const { createCartOrder, createDonationOrder, paymentVerification } = require('../controllers/paymentController');
 const { emptyCart } = require('../controllers/cartControllers')
 const mercadopago = require('mercadopago');
 
@@ -38,11 +38,16 @@ const webhookDontaionHandler = async (req, res) => {
     console.log(pay);
     try {
         if(pay.type === 'payment'){
+
             const data = await mercadopago.payment.findById(pay['data.id']);
             console.log(data);
+            const info = data.body;
+            const dona = paymentVerification(info);
+            console.log(dona);
             
         }
     } catch (error) {
+        console.log(error)
         return res.status(500).json(error);
     }
 
