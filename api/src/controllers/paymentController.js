@@ -9,6 +9,9 @@ const createCartOrder = async (user_id) => {
     const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products, through: { Cart_Products }}});
     if(!cart) throw new Error('No es posible encontrar el carrito');
 
+    const user = User.findByPk(user_id);
+    cart.Products.forEach(prod => user.addProducts(prod));
+
     const resumenPago = cart.Products.map(prod => {
         
         const resumenPago = {
@@ -27,7 +30,9 @@ const createCartOrder = async (user_id) => {
     const result = await mercadopago.preferences.create({
         items: resumenPago,  //Aca va un array de productos con las props: title, unit_price, currency_id, quantity
         back_urls: {
-            success: ""
+            success: "http://localhost:3001/payment/donation/success",
+            failure: "http://localhost:3001/payment/donation/failure",
+            pending: "http://localhost:3001/payment/donation/pending"
         }
     }); 
 
@@ -67,9 +72,13 @@ const createDonationOrder = async ( user_mail, amount ) => {
                 quantity: 1,
             }
         ],  //Aca va un array de productos con las props: title, unit_price, currency_id, quantity
-        // back_urls: {
-        //     success: ""
-        // }
+        back_urls: {
+            success: "http://localhost:3001/payment/donation/success",
+            failure: "http://localhost:3001/payment/donation/failure",
+            pending: "http://localhost:3001/payment/donation/pending"
+        },
+        notification_url: "https://lagruta.onrender.com/payment/donation/webhook",
+        auto_return: "approved"
     });
 
     const payment_id = result.body.id;
