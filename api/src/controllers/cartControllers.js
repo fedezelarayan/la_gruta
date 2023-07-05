@@ -74,11 +74,16 @@ const changeQuantity = async (user_id, product_id, quantity) => {
 
     if(!user_id) throw new Error('Falta el ID del usuario');
 
-    const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products, through: { Cart_Products } }})
-
-    if(!product_id){
+    /* const cart = await Cart.findOne({ where: { UserId: user_id }, include: { model: Products, through: { Cart_Products } }}) */
+    
+    const cart = await Cart_Products.findOne({ where: { UserId: user_id } })
+    // <-- buscar registro en la tercer tabla y hacer la modif.
+    // igualar el quantity que traemos del findone con el que llega por query, validad bien stock
+    console.log(cart);
+    if(!product_id){  
         throw new Error('Falta el ID del producto')
     }
+
 
     const product = Products.findByPk(product_id);
 
@@ -99,7 +104,7 @@ const changeQuantity = async (user_id, product_id, quantity) => {
     
     //? Armo un array con los objetos a los que no se le tiene que modificar la cantidad
     
-    if(quantity <= product.stock){
+    if(quantity <= product.stock){  
          prod[0].Cart_Products.quantity = Number(quantity);
     }else{
         throw new Error('La cantidad solicitada es mayor al stock disponible');
@@ -125,7 +130,7 @@ const changeQuantity = async (user_id, product_id, quantity) => {
     await cart.setProducts(finalCart);
     //!Modifico los procutos del carrito para que esten actualizados
 
-    await cart.save();
+    await cart.save();  //save a cart_products
     //! Se guarda el carrito
 
     // console.log(cart.Products);
