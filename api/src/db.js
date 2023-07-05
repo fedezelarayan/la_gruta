@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const {  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME,  DB_DEPLOY } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 
 const sequelize = new Sequelize( 
     // `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
@@ -61,10 +61,10 @@ Activity.belongsToMany(User, { through: "User_Activity" });
 User.belongsToMany(Products, { through: "User_Products" });
 Products.belongsToMany(User, { through: "User_Products" });
 
-const Roles = sequelize.define("Roles");
+/* const Roles = sequelize.define("Roles"); */
 
-User.belongsToMany(Rol, { through: Roles });
-Rol.belongsToMany(User, { through: Roles});
+User.belongsToMany(Rol, { through: "User_Roles" });
+Rol.belongsToMany(User, { through: "User_Roles"});
 
 User.hasOne(Cart);
 Cart.belongsTo(User);
