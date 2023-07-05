@@ -1,5 +1,6 @@
 const { createCartOrder, createDonationOrder } = require('../controllers/paymentController');
 const { emptyCart } = require('../controllers/cartControllers')
+const mercadopago = require('mercadopago');
 
 
 const cartOrderHandler = async (req, res) => {
@@ -33,21 +34,48 @@ const donationOrderHandler = async (req, res) => {
 }
 
 const webhookDontaionHandler = async (req, res) => {
-    
+    const pay = req.query;
+    console.log(pay);
+    try {
+        if(pay.type === 'payment'){
+            const data = await mercadopago.payment.findById(pay['data.id']);
+            console.log(data);
+            
+        }
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+
 }
 
-// const successCartHandler = async (req, res) => {
-//     try {
-//         res.send("Success");
-//     } catch (error) {
-//         res.status(400).json({error: error.message});
-//     }
-// }
+const successHandler = async (req, res) => {
+    try {
+        res.send("Success");
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
+const failureHandler = async (req, res) => {
+    try {
+        res.send("Failure");
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
+const pendingHandler = async (req, res) => {
+    try {
+        res.send("Pending");
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
 
 module.exports = { 
     cartOrderHandler,
     donationOrderHandler,
-    // successCartHandler,
+    successHandler,
+    failureHandler,
+    pendingHandler,
     webhookCartHandler,
     webhookDontaionHandler,
 };

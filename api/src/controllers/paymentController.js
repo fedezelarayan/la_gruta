@@ -30,7 +30,9 @@ const createCartOrder = async (user_id) => {
     const result = await mercadopago.preferences.create({
         items: resumenPago,  //Aca va un array de productos con las props: title, unit_price, currency_id, quantity
         back_urls: {
-            success: ""
+            success: "http://localhost:3001/payment/donation/success",
+            failure: "http://localhost:3001/payment/donation/failure",
+            pending: "http://localhost:3001/payment/donation/pending"
         }
     }); 
 
@@ -70,9 +72,13 @@ const createDonationOrder = async ( user_mail, amount ) => {
                 quantity: 1,
             }
         ],  //Aca va un array de productos con las props: title, unit_price, currency_id, quantity
-        // back_urls: {
-        //     success: ""
-        // }
+        back_urls: {
+            success: "http://localhost:3001/payment/donation/success",
+            failure: "http://localhost:3001/payment/donation/failure",
+            pending: "http://localhost:3001/payment/donation/pending"
+        },
+        notification_url: "https://4a48-186-137-235-123.sa.ngrok.io/payment/donation/webhook",
+        auto_return: "approved"
     });
 
     const payment_id = result.body.id;
