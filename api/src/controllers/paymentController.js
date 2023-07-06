@@ -1,5 +1,6 @@
 const mercadopago = require("mercadopago");
 const axios = require("axios");
+const transporter = require('../utils/nodemailer');
 const { Cart, Cart_Products, Products, User, Donation } = require("../db");
 require("dotenv").config();
 const { MP_CART_ACCESS_TOKEN } = process.env;
@@ -126,6 +127,46 @@ const paymentVerification = async (info) => {
             const dona = await Donation.create(donation);
             return dona;
         }
+
+        const mensajeUsuario = {
+            from: '"LA GRUTA" <lagrutaweb@gmail.com>',
+            to: info.payer.email,
+            subject: 'Gracias por tu donación!',
+            html: `
+              <div style="background-color: #f3f3f3; padding: 20px;">
+                <h1 style="color: #B9362C; font-family: 'dk-lemon-yellow-sun', sans-serif;">Gracias por tu donación!</h1>
+                <p style="color: #555555;">Hola ${info.payer.first_name}</p>
+                <p style="color: #555555;">Los niños y la fundación estamos muy agradecidos por tu generosidad.</p>
+                <p style="color: #555555;">Si te interesa ayudar a LA GRUTA de otras maneras, podes mandar un email para que te brindemos más información sobre nuestro programa de voluntarios.</p>
+                <p style="color: #555555;">¡Esperamos contar contigo como parte de nuestra familia de LA GRUTA!</p>
+                <p style="color: #555555;">Saludos,</p>
+                <p style="color: #555555;">Equipo de LA GRUTA</p>
+              </div>
+            `,
+          };
+
+          const mensajeFundacion = {
+            from: '"LA GRUTA" <lagrutaweb@gmail.com>',
+            to: 'lagrutacdi@gmail.com', // Dirección de correo de la fundación
+            subject: 'Nueva donación a LA GRUTA',
+            html: `
+              <div style="background-color: #f3f3f3; padding: 20px;">
+                <h1 style="color: #B9362C; font-family: 'wicked-grit', sans-serif;">Nueva donación a LA GRUTA</h1>
+                <p style="color: #555555;">¡Hola!</p>
+                <p style="color: #555555;">Se ha recibido una nueva donación en LA GRUTA.</p>
+                <p style="color: #555555;">Datos del donante:</p>
+                <p style="color: #555555;">Nombre: ${info.payer.first_name}</p>
+                <p style="color: #555555;">Email: ${info.payer.email}</p>
+                <p style="color: #555555;">Saludos,</p>
+                <p style="color: #555555;">Equipo de LA GRUTA</p>
+              </div>
+            `,
+          };
+
+          await Promise.all([
+            transporter.sendMail(mensajeFundacion),
+            transporter.sendMail(mensajeUsuario),
+          ]);
 
     }
 
