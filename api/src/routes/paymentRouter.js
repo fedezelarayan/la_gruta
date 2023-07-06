@@ -5,6 +5,8 @@ const paymentRouter = Router();
 
 paymentRouter.post("/cart/create-order/:user_id", cartOrderHandler);
 
+paymentRouter.post("/cart/webhook", webhookCartHandler);
+
 // paymentRouter.get("/cart/webhook", webhookCartHandler);
 
 paymentRouter.post("/donation/create-order/", donationOrderHandler);
