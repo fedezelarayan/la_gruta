@@ -20,7 +20,7 @@ const webhookCartHandler = async (req, res) => {
         if(pay.type === 'payment'){
 
             const data = await mercadopago.payment.findById(pay['data.id']);
-            console.log(data.body);
+            console.log(data.body.items);
             const info = data.body;
             const pago = await cartPaymentVerification(info);
             console.log(pago);
