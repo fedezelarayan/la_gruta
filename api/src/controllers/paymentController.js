@@ -59,7 +59,7 @@ const createDonationOrder = async (user_mail, amount) => {
         items: [
             {
                 title: "Donación",
-                unit_price: amount,
+                unit_price: Number(amount),
                 currency_id: "ARS",
                 quantity: 1,
             },
