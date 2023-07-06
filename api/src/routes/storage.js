@@ -1,18 +1,5 @@
-const { Router } = require("express");
-const multer = require ('multer');
-const {
-  getAllActivityHandler,
-  postActivityHandler,
-  deleteActivityHandler,
-  getActivityIdHandler,
-  restoreActivityHandler,
-} = require("../handlers/activityHandler");
 const multer = require ('multer');
 const path = require('path');
-
-
-
-const ActivityRouter = Router();
 
 const storage = multer.diskStorage({
     destination: path.join(__dirname, "assets"),
@@ -32,11 +19,6 @@ const uploadImage = multer({
         }
         cb("Error: El archivo no es de tipo imagen.");
     },
-}).single("img");
+}).single("image");
 
-ActivityRouter.get("/", getAllActivityHandler);
-ActivityRouter.post("/", uploadImage, postActivityHandler);
-ActivityRouter.get("/:id", getActivityIdHandler)
-ActivityRouter.delete("/:id_activity", deleteActivityHandler);
-ActivityRouter.post("/:id_restore", restoreActivityHandler);
-module.exports = ActivityRouter;
+module.exports = uploadImage
