@@ -29,7 +29,8 @@ const getDetailProductsHandler = async (req, res) => {
     }
 };
 const postProductsHandler = async (req, res) => {
-    const {name, price, image, description, stock, type} = req.body
+    const {name, price, description, stock, type} = req.body
+    const image =  req.file
 try {
     const product = await postProducts (name, price, image, description, stock, type)
     res.status(200).json("Producto creado exitosamente")
