@@ -36,6 +36,9 @@ const createCartOrder = async (user_id) => {
             failure: "http://localhost:3001/payment/donation/failure",
             pending: "http://localhost:3001/payment/donation/pending",
         },
+        notification_url:
+            "https://lagruta.onrender.com/payment/cart/webhook",
+        auto_return: "approved",
     });
 
     console.log(result);
@@ -169,4 +172,44 @@ const paymentVerification = async (info) => {
 
 };
 
-module.exports = { createCartOrder, createDonationOrder, paymentVerification };
+const cartPaymentVerification = async (info) => {
+    /*
+      date_approved
+    payer.email
+    status
+    status_detail
+    transaction_amount
+    body.
+    description: 'Donación'  
+    */
+   
+    if(info.status === 'approved'){
+
+        return 'El pago fue aprobado.'
+
+        // const user = await User.findOne({ where: { mail: info.payer.email } });
+
+        // if (user) {
+        //     // console.log('hola');
+        //     const donation = {
+        //         date: info.date_approved,
+        //         amount: info.transaction_amount,
+        //         payer_mail: user.mail,
+        //     };
+        //     const newDonation = await Donation.create(donation);
+        //     await user.addDonation(newDonation);
+        // }else{
+        //     const donation = {
+        //         date: info.date_approved,
+        //         amount: info.transaction_amount,
+        //         payer_mail: info.payer.email,
+        //     };
+        //     const dona = await Donation.create(donation);
+        //     return dona;
+        // }
+
+    }
+
+};
+
+module.exports = { createCartOrder, createDonationOrder, paymentVerification, cartPaymentVerification };
