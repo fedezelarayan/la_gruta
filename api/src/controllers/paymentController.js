@@ -128,14 +128,16 @@ const paymentVerification = async (info) => {
             return dona;
         }
 
+        // ${info.payer.first_name}
+
         const mensajeUsuario = {
             from: '"LA GRUTA" <lagrutaweb@gmail.com>',
-            to: info.payer.email,
+            to: "sofiaparraweb@gmail.com",
             subject: 'Gracias por tu donación!',
             html: `
               <div style="background-color: #f3f3f3; padding: 20px;">
                 <h1 style="color: #B9362C; font-family: 'dk-lemon-yellow-sun', sans-serif;">Gracias por tu donación!</h1>
-                <p style="color: #555555;">Hola ${info.payer.first_name}</p>
+                <p style="color: #555555;">Hola Sofía!</p>
                 <p style="color: #555555;">Los niños y la fundación estamos muy agradecidos por tu generosidad.</p>
                 <p style="color: #555555;">Si te interesa ayudar a LA GRUTA de otras maneras, podes mandar un email para que te brindemos más información sobre nuestro programa de voluntarios.</p>
                 <p style="color: #555555;">¡Esperamos contar contigo como parte de nuestra familia de LA GRUTA!</p>
