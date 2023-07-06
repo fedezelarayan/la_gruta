@@ -12,7 +12,7 @@ const createCartOrder = async (user_id) => {
     });
     if (!cart) throw new Error("No es posible encontrar el carrito");
 
-    const user = User.findByPk(user_id);
+    const user = await User.findByPk(user_id, { include: { model: Products }});
     cart.Products.forEach((prod) => user.addProducts(prod));
 
     const resumenPago = cart.Products.map((prod) => {
