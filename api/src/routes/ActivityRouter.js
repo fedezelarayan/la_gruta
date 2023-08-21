@@ -7,7 +7,6 @@ const {
   getActivityIdHandler,
   restoreActivityHandler,
 } = require("../handlers/activityHandler");
-const multer = require ('multer');
 const path = require('path');
 
 
