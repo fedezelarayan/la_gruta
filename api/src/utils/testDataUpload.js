@@ -33,7 +33,7 @@ const CreateAdmin = async () => {
         birthDate: "",
         image: "",
         phone: "",
-        mail: "lagrutacdi@gmail.com",
+        email: "lagrutacdi@gmail.com",
         password: "Lagruta2011",
     }
     const newAdmin = await User.create(admin)
@@ -97,7 +97,7 @@ const testDataUploader = async () => {
 /*         const userAdmin = async () => {
             const user = await User.findOne({
                 where: {
-                    mail: ""
+                    email: ""
                 }
             })
             if (user) {

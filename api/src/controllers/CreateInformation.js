@@ -16,7 +16,7 @@ const createRols = async()=> {
         birthDate:"",
         image:"",
         phone:"",
-        mail:"lagrutacdi@gmail.com",
+        email:"lagrutacdi@gmail.com",
         password: "lagruta2011",
     }
     const newAdmin = await User.create(admin)
