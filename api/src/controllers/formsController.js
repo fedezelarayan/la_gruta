@@ -139,7 +139,7 @@ const formFooter = async (formData) => {
 
 const formDonacion = async (formData) => {
   try {
-    const email = formData.mail;
+    const email = formData.email;
     const mensajeCorreo = {
       from: '"LA GRUTA" <lagrutaweb@gmail.com>',
       to: email, // Asegúrate de obtener el correo electrónico del usuario desde los datos del formulario
