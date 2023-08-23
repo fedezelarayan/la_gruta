@@ -12,19 +12,11 @@ const {
   putStatusProductsHandler,
   updateProductsHandler,
 } = require("../handlers/productsHandler");
+const uploadImage = require('./storage')
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'productsAssets')
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`)
-  }
-})
-const upload = multer ({ storage: storage })
 
 productsRouter.get("/", getAllProductsHandler);
-productsRouter.post("/create", upload.single ('image'), postProductsHandler);
+productsRouter.post("/create", uploadImage, postProductsHandler);
 productsRouter.get("/:id_products", getDetailProductsHandler);
 productsRouter.delete("/delete/:id", deleteProducts);
 productsRouter.post("/restore/:id", restoreProducts);
