@@ -33,10 +33,10 @@ const webhookCartHandler = async (req, res) => {
 }
 
 const donationOrderHandler = async (req, res) => {
-    const { user_mail, amount } = req.body;
-    // console.log(user_mail, amount);
+    const { user_email, amount } = req.body;
+    // console.log(user_email, amount);
     try {
-        const result = await createDonationOrder( user_mail, amount );
+        const result = await createDonationOrder( user_email, amount );
         return res.status(200).json(result);
     } catch (error) {
         return res.status(500).json({error: error.message});

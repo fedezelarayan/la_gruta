@@ -32,21 +32,13 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             defaultValue: 0,
         },
-        mail: {
+       email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
             isEmail: {
                 msg: "Debe ingresar un email válido"
             }
-        },
-        occupation: {
-            type: DataTypes.STRING,
-
-        },
-        address: {
-            type: DataTypes.STRING,
-            allowNull: true,
         },
         password: {
             type: DataTypes.STRING,
