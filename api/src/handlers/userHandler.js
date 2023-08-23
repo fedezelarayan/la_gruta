@@ -12,9 +12,9 @@ const {
 
 //* Handler que verifica en la DB si existe el User
 const getUserHandler = async (req, res) => {
-    const { mail } = req.params;
+    const { email } = req.params;
     try {
-      const user = await getUser(mail);
+      const user = await getUser(email);
       res.status(200).json(user);
     } catch (error) {
       res.status(400).json({ error: error.message });
@@ -33,12 +33,12 @@ const getAllUsersHandler = async (req, res) => {
 
 //* Handler que postea el user en la DB
 const postUserHandler = async (req, res) => {
-  const { fullName, username, birthDate, image, phone, mail, password, occupation, rol, address } = req.body;
+  const { fullName, username, birthDate, image, phone, email, password, occupation, rol, address } = req.body;
 
-  if (!fullName || !mail ) res.status(400).json({ msg: 'Faltan datos necesarios' });
+  if (!fullName || !email ) res.status(400).json({ msg: 'Faltan datos necesarios' });
 
   try {
-    const newUser = await postUser(fullName, username, birthDate, image, phone, mail, password, occupation, rol, address);
+    const newUser = await postUser(fullName, username, birthDate, image, phone, email, password, occupation, rol, address);
     res.status(200).json({msg: "Usuario agregado con exito", userId: [newUser.id]});
   } catch (error) {
       console.log(error, "ESTE ES EL ERROR LOCOOO")
@@ -59,9 +59,9 @@ const getUserById = async (req, res) => {
 
 // //* Handler que modifica datos del usuario
 const putEditUserHandler = async (req, res) => {
-  const { mail, password, birthDate, image, phone, occupation, address, fullName, rol } = req.body
+  const { email, password, birthDate, image, phone, occupation, address, fullName, rol } = req.body
   try {
-    await putEditUser(mail, password, birthDate, image, phone, occupation, address, rol, fullName)
+    await putEditUser(email, password, birthDate, image, phone, occupation, address, rol, fullName)
     res.status(200).json("Datos cambiados con exito")
   } catch (error) {
     res.status(400).json({ error: error.message })

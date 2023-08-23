@@ -62,7 +62,7 @@ const postUser = async (
     birthDate,
     image,
     phone,
-    mail,
+    email,
     password,
     occupation,
     address,
@@ -70,13 +70,13 @@ const postUser = async (
 ) => {
 
     console.log("username:", fullName);
-    console.log("email:", mail);
+    console.log("email:", email);
 
-    if (!fullName || !mail)
+    if (!fullName || !email)
         throw new Error("Faltan datos");
 
     const findUserByUsername = await User.findOne({ where: { fullName } });
-    const findUserByEmail = await User.findOne({ where: { mail } });
+    const findUserByEmail = await User.findOne({ where: { email } });
 
     if (findUserByUsername) throw new Error("Ya existe el nombre de usuario");
 
@@ -89,7 +89,7 @@ const postUser = async (
         birthDate,
         image,
         phone,
-        mail,
+        email,
         password,
         occupation,
         address,
@@ -117,15 +117,15 @@ const postUser = async (
 // }
 
 //*-----------------GET USER---------------------
-const getUser = async (/* password, */ mail) => {
+const getUser = async (/* password, */ email) => {
  /*  if (!password) {
     throw new Error("No puede enviar una contraseña vacia");
-  } else if (!mail) {
+  } else if (!email) {
     throw new Error("No puede enviar un email vacio");
   } else {};*/
     const findUser = await User.findOne({ 
         where: {
-            mail: mail,
+            email: email,
         }, 
         include: [
             {
@@ -147,7 +147,7 @@ const getUser = async (/* password, */ mail) => {
       throw new Error("El usuario no existe");
     }  else {
       const findUser2 = await User.findOne({
-        where: { mail },
+        where: { email },
         attributes: ["id", "fullName","birthDate", "image", "phone", "email", "admin","password", "volunteer", "sponsor"],
       });
       if (!findUser2) {
@@ -158,10 +158,10 @@ const getUser = async (/* password, */ mail) => {
 
 
 // //*---------------PUT USER---------------------
-const putEditUser = async (mail, password, birthDate, image, phone, occupation, address, rol, fullName) => {
+const putEditUser = async (email, password, birthDate, image, phone, occupation, address, rol, fullName) => {
     const findUser = await User.findOne({
         where: {
-            mail,
+            email,
         }
     })
 

@@ -10,7 +10,7 @@ const {
   putEditUserHandler,
   putStatusUserHandler,
   restoreStatusUserHandler,
-  getUserByMail
+  getUserByEmail
 } = require("../handlers/userHandler");
 
 const UserRouter = Router();
@@ -38,6 +38,6 @@ UserRouter.put("/edit", putEditUserHandler)
 UserRouter.delete("/status/:id_user",putStatusUserHandler)
 UserRouter.post("/restore/:id_user", restoreStatusUserHandler)
 UserRouter.put("/", putRolUserHandler);
-UserRouter.get('/mail/:mail', getUserHandler)
+UserRouter.get('/email/:email', getUserHandler)
 
 module.exports = UserRouter;
