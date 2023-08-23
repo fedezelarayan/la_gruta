@@ -15,6 +15,9 @@ module.exports = (sequelize) => {
         amount: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        payer_mail: {
+            type: DataTypes.STRING,
         }
     })
 }

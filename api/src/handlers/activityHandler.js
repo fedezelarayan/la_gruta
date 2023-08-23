@@ -33,7 +33,8 @@ const getActivityIdHandler = async (req, res) => {
 
 // Handler para postear la actividad//
 const postActivityHandler = async (req, res) => {
-  const { name, description, type_activity, date, img } = req.body;
+  const { name, description, type_activity, date } = req.body;
+  const img = req.file
 
   try {
     await createActivity({ name, description, type_activity, date, img });

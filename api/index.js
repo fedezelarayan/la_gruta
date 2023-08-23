@@ -9,7 +9,7 @@ const { default: axios } = require("axios");
 const { testDataUploader, testDataCheck } = require('./src/utils/testDataUpload');
 
 
-conn.sync({ force: false }).then(async () => {
+conn.sync({ force: true }).then(async () => {
 
   /* CreateInformation(); */
 
