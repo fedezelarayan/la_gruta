@@ -34,12 +34,7 @@ const getAllProducts = async () => {
 }
 
 const postProducts = async (name, price, image, description, stock, type) => {
-    const imgPath = ASSET_PATH_PRODUCTS;
-
-    const files = await fs.promises.readdir(imgPath);
-    for (const file of files) {
-        const imageFullPath = imgPath + file;
-        console.log(imageFullPath);
+        const imageFullPath = image.path;
 
         try {
             const result = await cloudinary.uploader.upload(imageFullPath, { public_id: `image_${uuidv4()}` });
@@ -63,7 +58,6 @@ const postProducts = async (name, price, image, description, stock, type) => {
             newProducts.addProductsType(type)
             return newProducts;
         }
-    }
 };
 /* {
     "name" : "camisetita", 
