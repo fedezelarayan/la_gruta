@@ -64,12 +64,7 @@ const getActivityById = async (id) => {
 //*-----------------POST Activity--------------------- 
 
 const createActivity = async ({ name, description, type_activity, date, img }) => {
-  const imagePath = ASSET_PATH;
-
-  const files = await fs.promises.readdir(imagePath);
-  for (const file of files) {
-    const imgFullPath = imagePath + file;
-    console.log(imgFullPath);
+  const imgFullPath = img.path;
 
     try {
       const result = await cloudinary.uploader.upload(imgFullPath, { public_id: `image_${uuidv4()}` });
@@ -95,7 +90,7 @@ const createActivity = async ({ name, description, type_activity, date, img }) =
       newActivity.addActivityType(type_activity)
       return newActivity;
     }
-  }
+
 };
 
 //*-----------------DELETE Activity---------------------

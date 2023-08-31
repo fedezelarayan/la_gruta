@@ -159,6 +159,18 @@ const getUser = async (/* password, */ email) => {
 
 // //*---------------PUT USER---------------------
 const putEditUser = async (email, password, birthDate, image, phone, occupation, address, rol, fullName) => {
+ const imgFullPath = image.path;
+
+    try {
+      const result = await cloudinary.uploader.upload(imgFullPath, { public_id: `image_${uuidv4()}` });
+      const imgLink = result.secure_url;
+      console.log(imgLink);
+      await fs.promises.unlink(imgFullPath);
+      img = imgLink;
+    } catch (error) {
+      throw new Error('Error al subir la imagen a Cloudinary');
+    }
+
     const findUser = await User.findOne({
         where: {
             email,
