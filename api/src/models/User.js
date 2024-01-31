@@ -1,23 +1,21 @@
-const {DataTypes} = require("sequelize");
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
 
     sequelize.define('User', {
-        id:{
-            type:DataTypes.UUID,
+        id: {
+            type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        fullName:{
+        fullName: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
-         username: {
+        username: {
             type: DataTypes.STRING,
             unique: true,
-
-            allowNull: false,
+            allowNull: true,
         },
         birthDate: {
             type: DataTypes.STRING,
@@ -30,11 +28,11 @@ module.exports = (sequelize) => {
                 msg: "La imagen debe ser una URL"
             }
         },
-        phone:{
+        phone: {
             type: DataTypes.STRING,
             defaultValue: 0,
         },
-        mail:{
+       email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
@@ -42,10 +40,7 @@ module.exports = (sequelize) => {
                 msg: "Debe ingresar un email válido"
             }
         },
-        occupation: {
-            type: DataTypes.STRING,
-        },
-        password:{
+        password: {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: 12345678,
@@ -58,10 +53,14 @@ module.exports = (sequelize) => {
             // }, //longitud de la contraseña
 
 
-        }
+        },
+        status: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        },
     },
-    {
-        paranoid: true,
-    }
-    );
+{
+    paranoid: true,
+}
+    )
 }

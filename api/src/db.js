@@ -5,16 +5,16 @@ const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 
 const sequelize = new Sequelize( 
-    // `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-     DB_DEPLOY,
+    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+    //  DB_DEPLOY,
     { 
         logging: false, 
         native: false,
-        dialectOptions: {
-            ssl: {
-                    require: true,
-            }
-        }
+        // dialectOptions: {
+        //     ssl: {
+        //             require: true,
+        //     }
+        // }
     }
 );
 
@@ -47,7 +47,7 @@ let capsEntries = entries.map((entry) => [
 
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Activity, ActivityType, Children, Products, ProductsType, User, Rol, Cart, Cart_Products } = sequelize.models;
+const { Activity, ActivityType, Children, Products, ProductsType, User, Rol, Cart, Cart_Products, Donation, Review } = sequelize.models;
 
 Activity.belongsToMany(ActivityType, { through: "Activity_ActivityType" });
 ActivityType.belongsToMany(Activity, { through: "Activity_ActivityType" });
@@ -61,14 +61,26 @@ Activity.belongsToMany(User, { through: "User_Activity" });
 User.belongsToMany(Products, { through: "User_Products" });
 Products.belongsToMany(User, { through: "User_Products" });
 
-User.belongsToMany(Rol, { through: "User_Rol" });
-Rol.belongsToMany(User, { through: "User_Rol" });
+/* const Roles = sequelize.define("Roles"); */
+
+User.belongsToMany(Rol, { through: "User_Roles" });
+Rol.belongsToMany(User, { through: "User_Roles"});
 
 User.hasOne(Cart);
 Cart.belongsTo(User);
 
 Products.belongsToMany(Cart, { through: Cart_Products});
 Cart.belongsToMany(Products, { through: Cart_Products});
+
+User.hasMany(Donation);
+Donation.belongsTo(User);
+
+Products.hasMany(Review, {foreignKey: "product_id"}); 
+Review.belongsTo(Products, {foreignKey: "product_id"});
+
+User.hasMany(Review, {foreignKey: "user_id"}); 
+Review.belongsTo(User, {foreignKey: "user_id"});
+
 
 module.exports = {
     ...sequelize.models,
