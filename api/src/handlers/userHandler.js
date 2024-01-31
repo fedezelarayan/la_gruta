@@ -12,14 +12,27 @@ const {
 
 //* Handler que verifica en la DB si existe el User
 const getUserHandler = async (req, res) => {
-    const { email } = req.params;
-    try {
-      const user = await getUser(email);
-      res.status(200).json(user);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  };
+  const { email } = req.params;
+  try {
+    const user = await getUser(email);
+    // Si deseas seleccionar campos específicos, puedes hacerlo aquí
+    const userData = {
+      username: user.username,
+      fullName: user.fullName,
+      email: user.email,
+      occupation: user.occupation,
+      birthDate: user.birthDate,
+      phone: user.phone,
+      rol: user.Rols, // Asumiendo que la relación se llama 'Rols'
+      image: user.image,
+      address: user.address,
+      // Otros campos que puedas necesitar
+    };
+    res.status(200).json(userData);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
 //* Handler que trae a todos los Users de la DB
 const getAllUsersHandler = async (req, res) => {
@@ -58,16 +71,34 @@ const getUserById = async (req, res) => {
 }
 
 // //* Handler que modifica datos del usuario
+
+
+// ESPERA IMAGEN
+
+// const putEditUserHandler = async (req, res) => {
+//   const { email, password, birthDate, phone, occupation, address, fullName, rol } = req.body
+//   const { image } = req.file
+//   try {
+//     await putEditUser(email, password, birthDate, image, phone, occupation, address, rol, fullName)
+//     res.status(200).json("Datos cambiados con exito")
+//   } catch (error) {
+//     res.status(400).json({ error: error.message })
+//   }
+// }
+
+// SIN IMAGEN 
 const putEditUserHandler = async (req, res) => {
-  const { email, password, birthDate, phone, occupation, address, fullName, rol } = req.body
-  const { image } = req.file
+  const { email, password, birthDate, phone, occupation, address, fullName, rol } = req.body;
+  
   try {
-    await putEditUser(email, password, birthDate, image, phone, occupation, address, rol, fullName)
-    res.status(200).json("Datos cambiados con exito")
+    await putEditUser(email, password, birthDate, phone, occupation, address, rol, fullName);
+    res.status(200).json("Datos cambiados con éxito");
   } catch (error) {
-    res.status(400).json({ error: error.message })
+    res.status(400).json({ error: error.message });
   }
-}
+};
+
+
 
 // //* Handler que modifica el rol de usuario
 const putRolUserHandler = async (req, res) => {

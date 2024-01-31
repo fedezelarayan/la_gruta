@@ -32,7 +32,7 @@ const uploadImage = multer({
       }
       cb("Error: El archivo no es de tipo imagen.");
   },
-}).single("img");
+}).single("image");
 
 
 productsRouter.get("/", getAllProductsHandler);

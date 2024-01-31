@@ -30,9 +30,9 @@ const getDetailProductsHandler = async (req, res) => {
 };
 const postProductsHandler = async (req, res) => {
     const {name, price, description, stock, type} = req.body
-    const {image} =  req.file
+    const image =  req.file
 try {
-    const product = await postProducts (name, price, image, description, stock, type)
+    const product = await postProducts (name, price, description, stock, type, image)
     res.status(200).json("Producto creado exitosamente")
 } catch (error) {
     res.status(400).json({ error: error.message })   

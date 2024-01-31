@@ -25,14 +25,15 @@ const getAllActivity = async (clic = 0) => {
 
   const allActivity = await Activity.findAll({
     where: {
-      status: true
+      status: true,
     },
     include: {
+      // paranoid: false,
       model: ActivityType,
       through: {
         attributes: []
       }
-    }, limit: 4, offset: (clic * 4)
+    }, limit: 1000, offset: (clic * 5)
   });
 
   if (!allActivity.length) {
@@ -67,6 +68,7 @@ const createActivity = async ({ name, description, type_activity, date, img }) =
   const imgFullPath = img.path;
 
     try {
+      console.log(img)
       const result = await cloudinary.uploader.upload(imgFullPath, { public_id: `image_${uuidv4()}` });
       const imgLink = result.secure_url;
       console.log(imgLink);

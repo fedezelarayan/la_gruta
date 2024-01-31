@@ -20,6 +20,7 @@ cloudinary.config({
 const getAllProducts = async () => {
 
     const dbProducts = await Products.findAll({
+        paranoid: false,
         include: [{
             model: ProductsType,
             attributes: ['name'],
@@ -33,7 +34,7 @@ const getAllProducts = async () => {
     return dbProducts;
 }
 
-const postProducts = async (name, price, image, description, stock, type) => {
+const postProducts = async (name, price, description, stock, type, image) => {
         const imageFullPath = image.path;
 
         try {
@@ -54,7 +55,7 @@ const postProducts = async (name, price, image, description, stock, type) => {
         if (existingProduct) {
             throw new Error("El producto existe");
         } else {
-            const newProducts = await Products.create({ name, price, image, description, stock, type }) 
+            const newProducts = await Products.create({ name, price, description, stock, type, image }) 
             newProducts.addProductsType(type)
             return newProducts;
         }

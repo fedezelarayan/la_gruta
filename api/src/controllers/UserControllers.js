@@ -7,6 +7,7 @@ const { Op } = require("sequelize");
 //*---------------GET ALL USERS----------------------
 const getAllUsers = async () => {
     const allUsers = await User.findAll({
+
         include: [
             {
                 model: Rol,
@@ -26,10 +27,43 @@ const getAllUsers = async () => {
         ],
     });
 
+    return allUsers
+    // .map((user) => ({
+    //   ...user.toJSON(),
+    //   paranoid: true, // Agrega la propiedad 'paranoid' basada en 'deletedAt'
+    // }));
+  };
+  
 
-    return allUsers;
-};
+  const getAllUsersDashboard = async () => {
+    const allUsers = await User.findAll({
+        paranoid: false,
+        include: [
+            {
+                model: Rol,
 
+                through: { attributes: [] },
+            },
+            {
+                model: Activity,
+                through: { attributes: [] },
+            },
+            {
+                model: Cart,
+            },
+            {
+                model: Donation,
+            },
+        ],
+    });
+
+    return allUsers
+    // .map((user) => ({
+    //   ...user.toJSON(),
+    //   paranoid: true, // Agrega la propiedad 'paranoid' basada en 'deletedAt'
+    // }));
+  };
+  
 //*---------------GET USER BY ID------------------
 
 const userById = async (id) => {
@@ -46,6 +80,9 @@ const userById = async (id) => {
                 model: Activity,
                 through: { attributes: [] },
             },
+            {
+                model: Cart,
+            }
         ],
     });
 
@@ -117,29 +154,32 @@ const postUser = async (
 // }
 
 //*-----------------GET USER---------------------
-const getUser = async (/* password, */ email) => {
- /*  if (!password) {
-    throw new Error("No puede enviar una contraseña vacia");
-  } else if (!email) {
-    throw new Error("No puede enviar un email vacio");
-  } else {};*/
-    const findUser = await User.findOne({ 
+const getUser = async (email) => {
+    try {
+      const findUser = await User.findOne({
         where: {
-            email: email,
-        }, 
+          email: email,
+        },
         include: [
-            {
-                model: Rol,
-                through: { attributes: [] },
-            },
-            {
-                model: Activity,
-                through: { attributes: [] },
-            },
+          {
+            model: Rol,
+            through: { attributes: [] },
+          },
+          {
+            model: Activity,
+            through: { attributes: [] },
+          },
+          {
+            model: Cart,
+          },
         ],
-     });
-     return findUser;
-   }
+      });
+      return findUser;
+    } catch (error) {
+      throw new Error(`Error al buscar el usuario: ${error.message}`);
+    }
+  };
+  
 
 
 
@@ -158,43 +198,74 @@ const getUser = async (/* password, */ email) => {
 
 
 // //*---------------PUT USER---------------------
-const putEditUser = async (email, password, birthDate, image, phone, occupation, address, rol, fullName) => {
- const imgFullPath = image.path;
+// const putEditUser = async (email, password, birthDate, image, phone, occupation, address, rol, fullName) => {
+//  const imgFullPath = image.path;
 
-    try {
-      const result = await cloudinary.uploader.upload(imgFullPath, { public_id: `image_${uuidv4()}` });
-      const imgLink = result.secure_url;
-      console.log(imgLink);
-      await fs.promises.unlink(imgFullPath);
-      img = imgLink;
-    } catch (error) {
-      throw new Error('Error al subir la imagen a Cloudinary');
-    }
+//     try {
+//       const result = await cloudinary.uploader.upload(imgFullPath, { public_id: `image_${uuidv4()}` });
+//       const imgLink = result.secure_url;
+//       console.log(imgLink);
+//       await fs.promises.unlink(imgFullPath);
+//       img = imgLink;
+//     } catch (error) {
+//       throw new Error('Error al subir la imagen a Cloudinary');
+//     }
 
+//     const findUser = await User.findOne({
+//         where: {
+//             email,
+//         }
+//     })
+
+//     if (!findUser) { throw new Error("El usuario no existe") }
+
+//     if (password) findUser.password = password
+//     if (birthDate) findUser.birthDate = birthDate
+//     if (image) findUser.image = image
+//     if (phone) findUser.phone = phone
+//     if (occupation) findUser.occupation = occupation
+//     if (address) findUser.address = address
+//     if (fullName) findUser.fullName = fullName
+
+//     if(rol){
+//         await findUser.setRols(rol)
+//      }
+
+//     findUser.save()
+
+//     return;
+// }
+
+// //*---------------PUT USER---------------------
+const putEditUser = async (email, password, birthDate, phone, occupation, address, rol, fullName) => {
+    // Eliminamos la lógica de manejo de imágenes
+  
     const findUser = await User.findOne({
-        where: {
-            email,
-        }
-    })
-
-    if (!findUser) { throw new Error("El usuario no existe") }
-
-    if (password) findUser.password = password
-    if (birthDate) findUser.birthDate = birthDate
-    if (image) findUser.image = image
-    if (phone) findUser.phone = phone
-    if (occupation) findUser.occupation = occupation
-    if (address) findUser.address = address
-    if (fullName) findUser.fullName = fullName
-
-    if(rol){
-        await findUser.setRols(rol)
-     }
-
-    findUser.save()
-
+      where: {
+        email,
+      },
+    });
+  
+    if (!findUser) {
+      throw new Error("El usuario no existe");
+    }
+  
+    if (password) findUser.password = password;
+    if (birthDate) findUser.birthDate = birthDate;
+    if (phone) findUser.phone = phone;
+    if (occupation) findUser.occupation = occupation;
+    if (address) findUser.address = address;
+    if (fullName) findUser.fullName = fullName;
+  
+    if (rol) {
+      await findUser.setRols(rol);
+    }
+  
+    findUser.save();
+  
     return;
-}
+  };
+  
 
 // //*---------------PUT ROL USER---------------------
  const putRolUser = async (id_user, rol) => {
@@ -218,7 +289,8 @@ const putStatusUser = async (id_user) => {
     if (!findUser) {
         throw new Error("El usuario no existe");
     } else {
-        await findUser.update({ status: false }, { where: { id: id_user } });
+        // await findUser.update({ status: false }, { where: { id: id_user } });
+        const deletedUser = await findUser.destroy()
         return;
     }
 };
@@ -226,17 +298,13 @@ const putStatusUser = async (id_user) => {
 
 /////////////////RESTORE USER /////////////////////////////////
 const restoreStatusUser = async (id_user) => {
-    const findUser = await User.findByPk(id_user);
+    const findUser = await User.findByPk(id_user, { paranoid: false });
 
     if (!findUser) {
         throw new Error("El Usuario no existe");
     } else {
-        await findUser.update({
-            status: true
-        },
-            { where: { id: id_user } });
-            
-        return;
+    findUser.restore();
+    return findUser;
     }
 
 };
