@@ -18,9 +18,9 @@ const getAllUsers = async () => {
                 model: Activity,
                 through: { attributes: [] },
             },
-            {
-                model: Cart,
-            },
+            // {
+            //     model: Cart,
+            // },
             {
                 model: Donation,
             },
@@ -48,9 +48,9 @@ const getAllUsers = async () => {
                 model: Activity,
                 through: { attributes: [] },
             },
-            {
-                model: Cart,
-            },
+            // {
+            //     model: Cart,
+            // },
             {
                 model: Donation,
             },
@@ -80,9 +80,9 @@ const userById = async (id) => {
                 model: Activity,
                 through: { attributes: [] },
             },
-            {
-                model: Cart,
-            }
+            // {
+            //     model: Cart,
+            // }
         ],
     });
 
@@ -169,9 +169,9 @@ const getUser = async (email) => {
             model: Activity,
             through: { attributes: [] },
           },
-          {
-            model: Cart,
-          },
+        //   {
+        //     model: Cart,
+        //   },
         ],
       });
       return findUser;

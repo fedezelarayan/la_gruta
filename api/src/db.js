@@ -47,7 +47,9 @@ let capsEntries = entries.map((entry) => [
 
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Activity, ActivityType, Children, Products, ProductsType, User, Rol, Cart, Cart_Products, Donation, Review } = sequelize.models;
+const { Activity, ActivityType, Children, Products, ProductsType, User, Rol, 
+    // Cart, Cart_Products, 
+    Donation, Review } = sequelize.models;
 
 Activity.belongsToMany(ActivityType, { through: "Activity_ActivityType" });
 ActivityType.belongsToMany(Activity, { through: "Activity_ActivityType" });
@@ -66,24 +68,24 @@ Products.belongsToMany(User, { through: "User_Products" });
 User.belongsToMany(Rol, { through: "User_Roles" });
 Rol.belongsToMany(User, { through: "User_Roles"});
 
-User.hasOne(Cart);
-Cart.belongsTo(User);
+// User.hasOne(Cart);
+// Cart.belongsTo(User);
 
-Products.belongsToMany(Cart, { through: Cart_Products});
-Cart.belongsToMany(Products, { through: Cart_Products});
+// Products.belongsToMany(Cart, { through: Cart_Products});
+// Cart.belongsToMany(Products, { through: Cart_Products});
 
 User.hasMany(Donation);
 Donation.belongsTo(User);
 
-Products.hasMany(Review, {foreignKey: "product_id"}); 
-Review.belongsTo(Products, {foreignKey: "product_id"});
+// Products.hasMany(Review, {foreignKey: "product_id"}); 
+// Review.belongsTo(Products, {foreignKey: "product_id"});
 
-User.hasMany(Review, {foreignKey: "user_id"}); 
-Review.belongsTo(User, {foreignKey: "user_id"});
+// User.hasMany(Review, {foreignKey: "user_id"}); 
+// Review.belongsTo(User, {foreignKey: "user_id"});
 
 
 module.exports = {
     ...sequelize.models,
-    Cart,
+    // Cart,
     conn: sequelize,
 };
