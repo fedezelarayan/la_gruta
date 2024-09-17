@@ -28,7 +28,7 @@ const filtroNombre = async (name) => {
     const productosFiltrados = await Products.findAll({
         where: {
             name: {
-                [Op.substring]: name,
+                [Op.iLike]: name,
             },
         },
         include: {

@@ -5,22 +5,37 @@ const {
   postActivityHandler,
   deleteActivityHandler,
   getActivityIdHandler,
+  restoreActivityHandler,
 } = require("../handlers/activityHandler");
+const path = require('path');
+
+
+
 const ActivityRouter = Router();
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'assets')
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${Date.now()} - ${file.originalname}`)
-  }
-})
-const upload = multer ({ storage: storage })
+    destination: path.join(__dirname, "assets"),
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+const uploadImage = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        const filetypes = /jpeg|jpg|png|gif/;
+        const mimetype = filetypes.test(file.mimetype);
+        const extname = filetypes.test(path.extname(file.originalname));
+        if(mimetype && extname) {
+            return cb(null, true);
+        }
+        cb("Error: El archivo no es de tipo imagen.");
+    },
+}).single("img");
 
 ActivityRouter.get("/", getAllActivityHandler);
-ActivityRouter.post("/", upload.single ('img'), postActivityHandler);
+ActivityRouter.post("/", uploadImage, postActivityHandler);
 ActivityRouter.get("/:id", getActivityIdHandler)
 ActivityRouter.delete("/:id_activity", deleteActivityHandler);
-
+ActivityRouter.post("/:id_restore", restoreActivityHandler);
 module.exports = ActivityRouter;
